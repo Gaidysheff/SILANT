@@ -41,3 +41,7 @@ h3 {
   color: rgb(101, 15, 221);
   background: #ebe6d6;
 }
+
+svg {
+  fill: #dde546;
+}
