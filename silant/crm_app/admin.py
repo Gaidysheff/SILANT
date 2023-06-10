@@ -4,17 +4,31 @@ from .models import Breakdown, Claims, Machine, Maintenance, MaintenanceType, Mo
 
 @admin.register(Machine)
 class MachineAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'modelMachine', 'serialNumber', 'modelEngine', 'serialNumberEngine', 'modelTransmission', 'serialTransmission', 'modelDriveAxle',
+                    'serialDriveAxle', 'modelSteeringAxle', 'serialSteeringAxle', 'deliveryContract', 'shipmentDate', 'consignee', 'deliveryAddress', 'additionalOptions', 'client')
+    list_display_links = ('id', 'modelMachine', 'serialNumber', 'modelEngine', 'serialNumberEngine', 'modelTransmission', 'serialTransmission', 'modelDriveAxle',
+                          'serialDriveAxle', 'modelSteeringAxle', 'serialSteeringAxle', 'deliveryContract', 'shipmentDate', 'consignee', 'deliveryAddress', 'additionalOptions', 'client')
+    search_fields = ('modelMachine', 'serialNumber', 'modelEngine', 'serialNumberEngine', 'modelTransmission', 'serialTransmission', 'modelDriveAxle', 'serialDriveAxle',
+                     'modelSteeringAxle', 'serialSteeringAxle', 'deliveryContract', 'client')
 
 
 @admin.register(Maintenance)
 class MaintenanceAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'type', 'maintenanceDate', 'workOrder',
+                    'workOrderDate', 'executor', 'machine')
+    list_display_links = ('id', 'type', 'maintenanceDate',
+                          'workOrder', 'workOrderDate', 'executor', 'machine')
+    search_fields = ('workOrder', 'executor', 'machine')
 
 
 @admin.register(Claims)
 class ClaimsAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'breakdownDate', 'operatingTime', 'breakdownNode', 'breakdownDescription',
+                    'recoveryMethod', 'usedSpareParts', 'recoverDate', 'downtime', 'machine')
+    list_display_links = ('id', 'breakdownDate', 'operatingTime', 'breakdownNode', 'breakdownDescription',
+                          'recoveryMethod', 'usedSpareParts', 'recoverDate', 'downtime', 'machine')
+    search_fields = ('breakdownNode', 'breakdownDescription',
+                     'recoveryMethod', 'usedSpareParts', 'machine', 'serviceCompany')
 
 
 @admin.register(ModelMachine)

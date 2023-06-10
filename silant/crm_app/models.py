@@ -26,15 +26,15 @@ class Machine(models.Model):
         default='Комплектация не указана', verbose_name='Комплектация (доп. опции)')
     client = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='clients', verbose_name='Клиент')
-    serviceCompany = models.ManyToManyField(
-        'ServiceCompany', verbose_name='Сервисная компания')
+    serviceCompany = models.ForeignKey(
+        'ServiceCompany', on_delete=models.CASCADE, verbose_name='Сервисная компания')
 
     class Meta:
         verbose_name = 'Машина'
         verbose_name_plural = 'МАШИНЫ'
 
     def __str__(self):
-        return self.modelMachine
+        return self.serialNumber
 
 
 class Maintenance(models.Model):
@@ -47,15 +47,15 @@ class Maintenance(models.Model):
     executor = models.CharField(max_length=255, verbose_name='Организация, проводившая ТО')
     machine = models.ForeignKey(
         'ModelMachine', on_delete=models.CASCADE, verbose_name='Машина')
-    serviceCompany = models.ManyToManyField(
-        'ServiceCompany', verbose_name='Сервисная компания')
+    serviceCompany = models.ForeignKey(
+        'ServiceCompany', on_delete=models.CASCADE, verbose_name='Сервисная компания')
     
     class Meta:
         verbose_name = 'Техническое обслуживание'
         verbose_name_plural = 'ТЕХНИЧЕСКОЕ ОБСЛУЖИВАНИЕ'
 
     def __str__(self):
-        return self.type
+        return self.executor
 
 
 class Claims(models.Model):
@@ -71,15 +71,15 @@ class Claims(models.Model):
     downtime = models.IntegerField(verbose_name='Время простоя техники')
     machine = models.ForeignKey(
         'ModelMachine', on_delete=models.CASCADE, verbose_name='Mашина')
-    serviceCompany = models.ManyToManyField(
-        'ServiceCompany', verbose_name='Cервисная компания')
+    serviceCompany = models.ForeignKey(
+        'ServiceCompany', on_delete=models.CASCADE, verbose_name='Сервисная компания')
     
     class Meta:
         verbose_name = 'Рекламация'
         verbose_name_plural = 'РЕКЛАМАЦИИ'
 
     def __str__(self):
-        return self.machine
+        return self.breakdownDescription
 
 # =============================== Reference Tables =============================
 
