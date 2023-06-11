@@ -23,7 +23,7 @@ class Machine(models.Model):
     consignee = models.CharField(max_length=255, verbose_name='Грузополучатель (конечный потребитель)')
     deliveryAddress = models.CharField(max_length=255, verbose_name='Адрес поставки (эксплуатации)')
     additionalOptions = models.TextField(
-        default='Комплектация не указана', verbose_name='Комплектация (доп. опции)')
+        default='Комплектация не указана', verbose_name='Комплектация (дополнительные опции)')
     client = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='clients', verbose_name='Клиент')
     serviceCompany = models.ForeignKey(
@@ -44,7 +44,7 @@ class Maintenance(models.Model):
     operatingTime = models.IntegerField(verbose_name='Наработка, м/час')
     workOrder = models.CharField(max_length=255, verbose_name='№ заказ-наряда')
     workOrderDate = models.DateField(verbose_name='Дата заказ-наряда')
-    executor = models.CharField(max_length=255, verbose_name='Организация, проводившая ТО')
+    executor = models.CharField(max_length=255, verbose_name='Орг-ция, проводившая ТО')
     machine = models.ForeignKey(
         'ModelMachine', on_delete=models.CASCADE, verbose_name='Машина')
     serviceCompany = models.ForeignKey(
@@ -55,7 +55,7 @@ class Maintenance(models.Model):
         verbose_name_plural = 'ТЕХНИЧЕСКОЕ ОБСЛУЖИВАНИЕ'
 
     def __str__(self):
-        return self.executor
+        return self.workOrder
 
 
 class Claims(models.Model):
@@ -79,7 +79,7 @@ class Claims(models.Model):
         verbose_name_plural = 'РЕКЛАМАЦИИ'
 
     def __str__(self):
-        return self.breakdownDescription
+        return f'{self.breakdownDescription[:20]}...'
 
 # =============================== Reference Tables =============================
 
