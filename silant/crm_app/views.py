@@ -1,11 +1,14 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from .models import Machine
+
 menu = ['О нас', 'Обратная связь', 'Войти']
 
 
 def index(request):
-    return render(request, 'crm_app/index.html', {'menu': menu, 'title': 'Главная страница'})
+    machines = Machine.objects.all()
+    return render(request, 'crm_app/index.html', {'machines': machines, 'menu': menu, 'title': 'Главная страница'})
 
 
 def about(request):
