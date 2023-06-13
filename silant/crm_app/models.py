@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse 
 
 
 class Machine(models.Model):
@@ -35,6 +36,10 @@ class Machine(models.Model):
 
     def __str__(self):
         return self.serialNumber
+    
+    def get_absolute_url(self): 
+        return reverse('machine', kwargs={'machine_id': self.pk}) 
+
 
 
 class Maintenance(models.Model):

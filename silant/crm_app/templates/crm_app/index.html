@@ -9,46 +9,13 @@
 <div class="container">
   <div class="machines">
     <div class="machines__title">
+      {% for title in machine_table_titles %}
       <div class="machines__section table-head">
         <div class="machines__row">
-          <div class="machines__section-title">Машина</div>
+          <div class="machines__section-title">{{ title }}</div>
         </div>
       </div>
-      <div class="machines__section table-head">
-        <div class="machines__row">
-          <div class="machines__section-title">Двигатель</div>
-        </div>
-      </div>
-      <div class="machines__section table-head">
-        <div class="machines__row">
-          <div class="machines__section-title">Трансмиссия</div>
-        </div>
-      </div>
-      <div class="machines__section table-head">
-        <div class="machines__row">
-          <div class="machines__section-title">Ведущий мост</div>
-        </div>
-      </div>
-      <div class="machines__section table-head">
-        <div class="machines__row">
-          <div class="machines__section-title">Управляемый мост</div>
-        </div>
-      </div>
-      <div class="machines__section table-head">
-        <div class="machines__row">
-          <div class="machines__section-title">Договор и Отгрузка</div>
-        </div>
-      </div>
-      <div class="machines__section table-head">
-        <div class="machines__row">
-          <div class="machines__section-title">Грузополучатель</div>
-        </div>
-      </div>
-      <div class="machines__section table-head">
-        <div class="machines__row">
-          <div class="machines__section-title">Дополнительно</div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
 
     <div class="machines__content">
@@ -117,7 +84,7 @@
 
     {% for m in machines %}
 
-    <a class="machines__content data" href="#">
+    <a class="machines__content data" href="{% m.get_absolute_url %}">
       <div class="machines__section">
         <div class="machines__row">
           <div class="machines__col">{{m.modelMachine}}</div>
