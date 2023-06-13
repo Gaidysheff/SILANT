@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from .models import Machine
 
@@ -7,7 +7,8 @@ menu = [
     {'title': "О нас", 'url_name': 'about'},
     {'title': "Добавить статью", 'url_name': 'add_page'},
     {'title': "Обратная связь", 'url_name': 'contact'},
-    {'title': "Войти", 'url_name': 'login'}
+    {'title': "Войти", 'url_name': 'login'},
+    {'title': "Главная страница", 'url_name': 'index'},
 
 ]
 
@@ -31,7 +32,16 @@ def index(request):
 
 
 def show_machine(request, machine_id):
-    return HttpResponse(f"Отображение статьи с id = {machine_id}")
+    machine = get_object_or_404(Machine, pk=machine_id)
+
+    context = {
+        'machine': machine,
+        'machine_table_titles': machine_table_titles,
+        # 'machine_table_subtitles': machine_table_subtitles,
+        'menu': menu,
+        'title': f"Машина | зав. № = {machine.serialNumber}"
+    }
+    return render(request, 'crm_app/machine.html', context=context)
 
 
 def about(request):

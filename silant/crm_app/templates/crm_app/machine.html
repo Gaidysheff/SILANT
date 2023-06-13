@@ -3,8 +3,7 @@
 {% block content %}
 <h1>{{ title }}</h1>
 
-<p>MAIN PAGE CONTEXT</p>
-<img src="../../static/crm_app/images/Logotype accent RGB 1.svg" alt="" />
+<br />
 
 <div class="container">
   <div class="machines">
@@ -82,60 +81,57 @@
       </div>
     </div>
 
-    {% for m in machines %}
-
-    <a class="machines__content data" href="{{ m.get_absolute_url }}">
+    <div class="machines__content data">
       <div class="machines__section">
         <div class="machines__row">
-          <div class="machines__col">{{m.modelMachine}}</div>
-          <div class="machines__col">{{m.serialNumber}}</div>
+          <div class="machines__col">{{machine.modelMachine}}</div>
+          <div class="machines__col">{{machine.serialNumber}}</div>
         </div>
       </div>
       <div class="machines__section">
         <div class="machines__row">
-          <div class="machines__col">{{m.modelEngine}}</div>
-          <div class="machines__col">{{m.serialNumberEngine}}</div>
+          <div class="machines__col">{{machine.modelEngine}}</div>
+          <div class="machines__col">{{machine.serialNumberEngine}}</div>
         </div>
       </div>
       <div class="machines__section">
         <div class="machines__row">
-          <div class="machines__col">{{m.modelTransmission}}</div>
-          <div class="machines__col">{{m.serialTransmission}}</div>
+          <div class="machines__col">{{machine.modelTransmission}}</div>
+          <div class="machines__col">{{machine.serialTransmission}}</div>
         </div>
       </div>
       <div class="machines__section">
         <div class="machines__row">
-          <div class="machines__col">{{m.modelDriveAxle}}</div>
-          <div class="machines__col">{{m.serialDriveAxle}}</div>
+          <div class="machines__col">{{machine.modelDriveAxle}}</div>
+          <div class="machines__col">{{machine.serialDriveAxle}}</div>
         </div>
       </div>
       <div class="machines__section">
         <div class="machines__row">
-          <div class="machines__col">{{m.modelSteeringAxle}}</div>
-          <div class="machines__col">{{m.serialSteeringAxle}}</div>
+          <div class="machines__col">{{machine.modelSteeringAxle}}</div>
+          <div class="machines__col">{{machine.serialSteeringAxle}}</div>
         </div>
       </div>
       <div class="machines__section">
         <div class="machines__row">
-          <div class="machines__col">{{m.deliveryContract}}</div>
-          <div class="machines__col">{{m.shipmentDate}}</div>
+          <div class="machines__col">{{machine.deliveryContract}}</div>
+          <div class="machines__col">{{machine.shipmentDate}}</div>
         </div>
       </div>
       <div class="machines__section">
         <div class="machines__row">
-          <div class="machines__col">{{m.consignee}}</div>
-          <div class="machines__col">{{m.deliveryAddress}}</div>
+          <div class="machines__col">{{machine.consignee}}</div>
+          <div class="machines__col">{{machine.deliveryAddress}}</div>
         </div>
       </div>
       <div class="machines__section">
         <div class="machines__row">
-          <div class="machines__col">{{m.additionalOptions}}</div>
-          <div class="machines__col">{{m.client}}</div>
-          <div class="machines__col">{{m.serviceCompany}}</div>
+          <div class="machines__col">{{machine.additionalOptions}}</div>
+          <div class="machines__col">{{machine.client}}</div>
+          <div class="machines__col">{{machine.serviceCompany}}</div>
         </div>
       </div>
-    </a>
-    {% endfor %}
+    </div>
   </div>
 </div>
 
