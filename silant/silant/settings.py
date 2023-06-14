@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crm_app.apps.CrmAppConfig',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

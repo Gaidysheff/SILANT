@@ -1,7 +1,11 @@
+from typing import Any
+from django.db.models.query import QuerySet
+from django.views.generic import ListView
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 
 from .models import Machine
+
 
 menu = [
     {'title': "О нас", 'url_name': 'about'},
@@ -19,16 +23,43 @@ machine_table_titles = ['Машина', 'Двигатель', 'Трансмис�
 #                            'Зав. № управляемого моста', 'Договор поставки №, дата', 'Грузополучатель (конечный потребитель)', 'Адрес поставки (эксплуатации)', 'Комплектация (дополнительные опции)', 'Клиент', 'Сервисная компания']
 
 
-def index(request):
-    machines = Machine.objects.all()
-    context = {
-        'machines': machines,
-        'machine_table_titles': machine_table_titles,
-        # 'machine_table_subtitles': machine_table_subtitles,
-        'menu': menu,
-        'title': 'Главная страница'
-    }
-    return render(request, 'crm_app/index.html', context=context)
+class MachinesHomePage(ListView):
+    model = Machine
+    template_name = 'crm_app/index.html'
+    context_object_name = 'machines'
+    allow_empty = False
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu
+        context['machine_table_titles'] = machine_table_titles
+        context['title'] = 'Главная страница'
+        return context
+
+    def get_queryset(self):
+        return Machine.objects.all()
+
+
+# def index(request):
+#     machines = Machine.objects.all()
+#     context = {
+#         'machines': machines,
+#         'machine_table_titles': machine_table_titles,
+#         'menu': menu,
+#         'title': 'Главная страница'
+#     }
+#     return render(request, 'crm_app/index.html', context=context)
+
+def search_machine(request):
+    if request.method == 'POST':
+        searched = request.POST.get('searched', 'my_default_value')
+        machine = Machine.objects.filter(serialNumber__contains=searched)
+        return render(request, 'crm_app/search_machine.html', {
+            'searched': searched,
+            'machine': machine,
+        })
+    else:
+        return render(request, 'crm_app/search_machine.html', {})
 
 
 def show_machine(request, machine_id):

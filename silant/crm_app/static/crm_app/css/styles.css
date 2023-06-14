@@ -111,3 +111,64 @@ hr {
   border: #163e6c 2px solid;
   border-radius: 10px;
 }
+
+/* =================== Search Form ======================== */
+
+.machine__search-form {
+  margin: 20px auto;
+  max-width: 500px;
+}
+.machine__search-input {
+  width: 79%;
+  height: 40px;
+  padding: 10px;
+  color: #d20a11;
+  background: #f1f1f1;
+  border-radius: 10px;
+  font-size: 1rem;
+  border: 1px solid grey;
+}
+.machine__search-input:hover {
+  border: 1px solid #d20a11;
+}
+
+.machine__search-btn {
+  width: 20%;
+  height: 40px;
+  padding: 10px;
+  color: #ebe6d6;
+  background: #163e6c;
+  border-radius: 10px;
+  font-size: 1rem;
+  border: 1px solid grey;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.machine__search-btn:hover {
+  background: #d20a11;
+  color: #ebe6d6;
+  transform: scale(1.1);
+}
+
+/* .machine__search-btn::after {
+  content: "";
+  clear: both;
+  display: table;
+} */
+
+/*! ================================== 530 ================================ */
+@media (max-width: 530px) {
+  .machine__search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .machine__search-input {
+    margin: 10px 0px 5px 0px;
+  }
+
+  .machine__search-btn {
+    margin: 5px 0px 10px 0px;
+  }
+}
