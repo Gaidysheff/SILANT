@@ -1,14 +1,36 @@
-{% extends 'crm_app/base.html' %}
-<br />
-{% block content %}
-<h1>{{ title }}</h1>
-
-<p>MAIN PAGE CONTEXT</p>
-<img src="../../static/crm_app/images/Logotype accent RGB 1.svg" alt="" />
-
-<!-- ===================== -->
+{% extends 'crm_app/base.html' %} {% block content %}
+<!-- <h1>{{ title }}</h1> -->
 
 <div class="container">
+  <br />
+  <div class="service-book-title">
+    <div class="page-title">Электронная сервисная книжка</div>
+    <div class="text3d-wrap-2">
+      <div class="text3d-2">
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+        <div class="text3d-layer-2"></div>
+      </div>
+    </div>
+  </div>
+  <br />
   <form
     class="machine__search-form"
     method="POST"
@@ -26,138 +48,37 @@
 </div>
 
 <!-- ===================== -->
-
 <div class="container">
-  <div class="machines">
-    <div class="machines__title">
-      {% for heading in machine_table_titles %}
-      <div class="machines__section table-head">
-        <div class="machines__row">
-          <div class="machines__section-title">{{ heading }}</div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-
-    <div class="machines__content">
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col table-subhead">Модель техники</div>
-          <div class="machines__col table-subhead">Зав. № машины</div>
-        </div>
-      </div>
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col table-subhead">Модель двигателя</div>
-          <div class="machines__col table-subhead">Зав. № двигателя</div>
-        </div>
-      </div>
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col table-subhead">Модель трансмиссии</div>
-          <div class="machines__col table-subhead">Зав. № трансмиссии</div>
-        </div>
-      </div>
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col table-subhead">Модель ведущего моста</div>
-          <div class="machines__col table-subhead">Зав. № ведущего моста</div>
-        </div>
-      </div>
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col table-subhead">
-            Модель управляемого моста
-          </div>
-          <div class="machines__col table-subhead">
-            Зав. № управляемого моста
-          </div>
-        </div>
-      </div>
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col table-subhead">
-            Договор поставки №, дата
-          </div>
-          <div class="machines__col table-subhead">Дата отгрузки с завода</div>
-        </div>
-      </div>
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col table-subhead">
-            Грузополучатель (конечный потребитель)
-          </div>
-          <div class="machines__col table-subhead">
-            Адрес поставки (эксплуатации)
-          </div>
-        </div>
-      </div>
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col table-subhead">
-            Комплектация (дополнительные опции)
-          </div>
-          <div class="machines__col table-subhead">Клиент</div>
-          <div class="machines__col table-subhead">Сервисная компания</div>
-        </div>
-      </div>
-    </div>
-
-    {% for m in machines %}
-
-    <a class="machines__content data" href="{{ m.get_absolute_url }}">
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col">{{m.modelMachine}}</div>
-          <div class="machines__col">{{m.serialNumber}}</div>
-        </div>
-      </div>
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col">{{m.modelEngine}}</div>
-          <div class="machines__col">{{m.serialNumberEngine}}</div>
-        </div>
-      </div>
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col">{{m.modelTransmission}}</div>
-          <div class="machines__col">{{m.serialTransmission}}</div>
-        </div>
-      </div>
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col">{{m.modelDriveAxle}}</div>
-          <div class="machines__col">{{m.serialDriveAxle}}</div>
-        </div>
-      </div>
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col">{{m.modelSteeringAxle}}</div>
-          <div class="machines__col">{{m.serialSteeringAxle}}</div>
-        </div>
-      </div>
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col">{{m.deliveryContract}}</div>
-          <div class="machines__col">{{m.shipmentDate}}</div>
-        </div>
-      </div>
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col">{{m.consignee}}</div>
-          <div class="machines__col">{{m.deliveryAddress}}</div>
-        </div>
-      </div>
-      <div class="machines__section">
-        <div class="machines__row">
-          <div class="machines__col">{{m.additionalOptions}}</div>
-          <div class="machines__col">{{m.client}}</div>
-          <div class="machines__col">{{m.serviceCompany}}</div>
-        </div>
-      </div>
-    </a>
-    {% endfor %}
+  <div class="search-inner">
+    <div class="search-title">Результат поиска:</div>
+    {% include 'crm_app/search_machine.html' %}
   </div>
 </div>
+<!-- ===================== -->
+
+<section class="bottom">
+  <div class="container">
+    <div class="bottom__contact">
+      <div class="bottom__content">Get in touch with our experts</div>
+      <div class="bottom__map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61178.11837320009!2d47.27152798335624!3d56.1081939229559!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x415a36efdd5791bb%3A0x9871b9a03e0335ee!2z0KfQtdCx0L7QutGB0LDRgNGB0LrQuNC5INC30LDQstC-0LQg0YHQuNC70L7QstGL0YUg0LDQs9GA0LXQs9Cw0YLQvtCy!5e0!3m2!1sru!2sru!4v1686826525218!5m2!1sru!2sru"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="bottom__image">
+    <img
+      src="../../static/crm_app/images/repair_workshop.png"
+      alt="photo of repair workshop"
+    />
+  </div>
+</section>
 
 {% endblock content %}

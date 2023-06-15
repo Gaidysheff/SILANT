@@ -8,11 +8,11 @@ from .models import Machine
 
 
 menu = [
-    {'title': "О нас", 'url_name': 'about'},
+    {'title': "Главная страница", 'url_name': 'index'},
     {'title': "Добавить статью", 'url_name': 'add_page'},
+    {'title': "О нас", 'url_name': 'about'},
     {'title': "Обратная связь", 'url_name': 'contact'},
     {'title': "Войти", 'url_name': 'login'},
-    {'title': "Главная страница", 'url_name': 'index'},
 
 ]
 
@@ -51,15 +51,21 @@ class MachinesHomePage(ListView):
 #     return render(request, 'crm_app/index.html', context=context)
 
 def search_machine(request):
+    context = {
+        'menu': menu,
+        'title': 'Главная страница'
+    }
     if request.method == 'POST':
         searched = request.POST.get('searched', 'my_default_value')
         machine = Machine.objects.filter(serialNumber__contains=searched)
-        return render(request, 'crm_app/search_machine.html', {
-            'searched': searched,
-            'machine': machine,
-        })
-    else:
-        return render(request, 'crm_app/search_machine.html', {})
+        if machine:
+            context['searched'] = searched
+            context['machine'] = machine
+            return render(request, 'crm_app/index.html', context=context)
+        else:
+            context['searched'] = 'В базе данных НИЧЕГО НЕ НАЙДЕНО !!!'
+            return render(request, 'crm_app/index.html', context=context)
+        # return render(request, 'crm_app/search_machine.html', context=context)
 
 
 def show_machine(request, machine_id):

@@ -1,49 +1,45 @@
-{% extends 'crm_app/base.html' %}
-<br />
-{% block content %}
-<h1>{{ title }}</h1>
+{% block content %} {% if searched %}
+<div class="search">
+  <div class="search_result">Найдено: {{ searched }}</div>
 
-{% if searched %}
-<h1>Результат поиска: {{ searched }}</h1>
-<br />
-{% for m in machine %}
-<a href="{{ m.get_absolute_url }}">{{ m }}</a>
-<br />
-1-{{ m.modelMachine }}
-<br />
-2-{{ m.serialNumber }}
-<br />
-3-{{ m.modelEngine }}
-<br />
-4-{{ m.serialNumberEngine }}
-<br />
-5-{{ m.modelTransmission }}
-<br />
-5-{{ m.serialTransmission }}
-<br />
-5-{{ m.modelDriveAxle }}
-<br />
-5-{{ m.serialDriveAxle }}
-<br />
-5-{{ m.modelSteeringAxle }}
-<br />
-5-{{ m.serialSteeringAxle }}
-<br />
-5-{{ m.deliveryContract }}
-<br />
-5-{{ m.shipmentDate }}
-<br />
-5-{{ m.consignee }}
-<br />
-5-{{ m.deliveryAddress }}
-<br />
-5-{{ m.additionalOptions }}
-<br />
-5-{{ m.client }}
-<br />
-{{ m.serviceCompany }}
-<br />{% endfor %} {% else %}
-<h1>Вы забыли ввести данные для поиска</h1>
-{% endif %}
-<br />
-{% endblock content %}
+  <br />
+  {% for m in machine %}
+  <a href="{{ m.get_absolute_url }}">{{ m }}</a>
+  <br />
+  1-{{ m.modelMachine }}
+  <br />
+  2-{{ m.serialNumber }}
+  <br />
+  3-{{ m.modelEngine }}
+  <br />
+  4-{{ m.serialNumberEngine }}
+  <br />
+  5-{{ m.modelTransmission }}
+  <br />
+  5-{{ m.serialTransmission }}
+  <br />
+  5-{{ m.modelDriveAxle }}
+  <br />
+  5-{{ m.serialDriveAxle }}
+  <br />
+  5-{{ m.modelSteeringAxle }}
+  <br />
+  5-{{ m.serialSteeringAxle }}
+  <br />
+  5-{{ m.deliveryContract }}
+  <br />
+  5-{{ m.shipmentDate }}
+  <br />
+  5-{{ m.consignee }}
+  <br />
+  5-{{ m.deliveryAddress }}
+  <br />
+  5-{{ m.additionalOptions }}
+  <br />
+  5-{{ m.client }}
+  <br />
+  {{ m.serviceCompany }}
+  <br />{% endfor %} {% else %}
+  <div class="search_result">Вы забыли ввести данные для поиска</div>
+</div>
+{% endif %} {% endblock content %}

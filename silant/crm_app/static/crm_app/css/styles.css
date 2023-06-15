@@ -1,5 +1,6 @@
 @import "./reset.css";
 @import "./fonts.css";
+@import "./text3d.css";
 
 /*! ============================== GLOBAL ============================== */
 
@@ -13,15 +14,31 @@ body {
 }
 
 .wrapper {
-  min-height: 100%;
+  /* min-height: 90%; */
   width: 100%;
   overflow: hidden;
 }
 
 .container {
-  max-width: 1920px;
+  max-width: 1960px;
   margin: 0px auto;
+  padding: 0px 20px;
   height: auto;
+}
+
+.page-title {
+  font-size: 4rem;
+  color: #ebe6d6;
+  line-height: 160%;
+  text-align: center;
+  text-shadow: 0px 4px 3px rgba(9, 164, 211, 0.623),
+    0px 8px 13px rgba(6, 151, 199, 0.59),
+    0px 18px 23px rgba(10, 187, 211, 0.671);
+}
+
+.service-book-title {
+  border-radius: 20px;
+  background-color: #163e6c;
 }
 
 /*! ============================================================ */
@@ -31,27 +48,202 @@ h1 {
   background: #163e6c;
 }
 
-h2 {
-  color: rgb(101, 15, 221);
-  background: #d20a11;
-}
-
-h3 {
-  color: rgb(101, 15, 221);
-  background: #ebe6d6;
-}
-
-svg {
-  fill: #dde546;
-}
-
-hr {
+/* hr {
   background-color: #ee0202;
   height: 2px;
   width: 300px;
+} */
+
+/*! ======================= HEADER ===================================== */
+
+.header {
+  background: #163e6c;
+  color: #ebe6d6;
 }
 
-/*! ======================= TABLES ===================================== */
+.header_inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo:hover {
+  transform: scale(1.2);
+  transition: all 0.5s;
+}
+
+.header__logo path {
+  transition: all 0.5s;
+}
+
+.header__logo:hover path {
+  fill: #ee0202;
+}
+
+.header__menu-list {
+  display: flex;
+  color: #ebe6d6;
+  font-size: 1.5rem;
+  align-items: center;
+}
+
+.header__menu-item {
+  margin-right: 20px;
+  position: relative;
+  margin-left: 40px;
+}
+
+.header__menu-item:hover {
+  color: #ee0202;
+  transform: scale(1.1);
+  transition: all 0.5s;
+}
+
+.header__menu-item:last-child {
+  margin-right: 0;
+  text-align: center;
+  padding: 5px 0;
+  width: 120px;
+  height: 40px;
+  border: 1px solid #ebe6d6;
+  border-radius: 5px;
+}
+
+.header__menu-item:last-child:hover {
+  color: #ebe6d6;
+  border: none;
+  box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18,
+    inset -6px -6px 8px 0 #3185d5, -5px -5px 10px #3185d5,
+    inset 5px 5px 8px -4px #3185d5, inset 6px 6px 8px 0 #c9c9c9;
+}
+
+/*! ======================= FOOTER ===================================== */
+
+.footer {
+  background: #163e6c;
+  color: #ebe6d6;
+}
+
+.footer_inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer__logo > svg {
+  width: 70%;
+  height: 70%;
+  align-content: center;
+}
+
+.footer__logo:hover {
+  transform: scale(1.2);
+  transition: all 0.5s;
+}
+
+.footer__logo path {
+  transition: all 0.5s;
+}
+
+.footer__logo:hover path {
+  fill: #ee0202;
+}
+
+.footer__menu-list {
+  display: flex;
+  color: #ebe6d6;
+  font-size: 1.2rem;
+  align-items: center;
+}
+
+.footer__menu-item {
+  margin-right: 100px;
+  position: relative;
+  margin-left: 40px;
+}
+
+.footer__menu-item:hover {
+  color: #ee0202;
+  transform: scale(1.1);
+  transition: all 0.5s;
+}
+
+.footer__menu-item:last-child {
+  margin-right: 0;
+  text-align: right;
+}
+
+.footer__menu-item:last-child:hover {
+  color: #ebe6d6;
+  transform: scale(1);
+  transition: all 0.5s;
+}
+
+/*! =============== SECTION BOTTOM on the Main Page ================= */
+.bottom {
+}
+
+.bottom__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bottom__content {
+}
+.bottom__map {
+  margin-bottom: -200px;
+  width: 80%;
+  height: 512px;
+}
+iframe {
+  width: 100%;
+  height: 100%;
+  -webkit-filter: grayscale(75%);
+  -moz-filter: grayscale(75%);
+  -ms-filter: grayscale(75%);
+  -o-filter: grayscale(75%);
+  filter: grayscale(75%);
+}
+
+.bottom__image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bottom__image > img {
+  width: 100%;
+  height: auto;
+}
+
+/*! =============== SEARCH RESULT on the Main Page ================= */
+
+.search-inner {
+  border: 2px solid #163e6c;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.search-title {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 0px 4px 3px rgba(9, 164, 211, 0.623),
+    0px 8px 13px rgba(6, 151, 199, 0.59),
+    0px 18px 23px rgba(10, 187, 211, 0.671);
+  margin: 30px 0;
+}
+
+.search_result {
+  background-color: #ee0202;
+  color: #ebe6d6;
+  text-align: center;
+  font-size: 1.5rem;
+  opacity: 0.8;
+  padding: 10px;
+  box-shadow: 0 0 10px 5px #ee0202;
+}
+
+/*! ======================= TABLES ================================== */
 /* _______________________ Machines __________________________________ */
 
 .machines__title,

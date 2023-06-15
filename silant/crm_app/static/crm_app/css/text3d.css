@@ -1,0 +1,134 @@
+.text3d-wrap-2 {
+  background-color: #163e6c;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+.text3d-2 {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 160px;
+  perspective: 2000px;
+  transform-style: preserve-3d;
+}
+.text3d-layer-2 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: rotateY(20deg) rotateX(35deg) translateZ(0);
+  animation: text3d-anim-2 2s infinite alternate linear;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+.text3d-layer-2:after {
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 100px;
+  content: "Мой Силант";
+  letter-spacing: 2px;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 58px;
+  color: #fff;
+  text-shadow: 4px 0 10px rgba(0, 0, 0, 0.13);
+}
+.text3d-layer-2:nth-child(1):after {
+  transform: translateZ(0px);
+}
+.text3d-layer-2:nth-child(2):after {
+  transform: translateZ(-1.5px);
+}
+.text3d-layer-2:nth-child(3):after {
+  transform: translateZ(-3px);
+}
+.text3d-layer-2:nth-child(4):after {
+  transform: translateZ(-4.5px);
+}
+.text3d-layer-2:nth-child(5):after {
+  transform: translateZ(-6px);
+}
+.text3d-layer-2:nth-child(6):after {
+  transform: translateZ(-7.5px);
+}
+.text3d-layer-2:nth-child(7):after {
+  transform: translateZ(-9px);
+}
+.text3d-layer-2:nth-child(8):after {
+  transform: translateZ(-10.5px);
+}
+.text3d-layer-2:nth-child(9):after {
+  transform: translateZ(-12px);
+}
+.text3d-layer-2:nth-child(10):after {
+  transform: translateZ(-13.5px);
+}
+.text3d-layer-2:nth-child(11):after {
+  transform: translateZ(-15px);
+}
+.text3d-layer-2:nth-child(12):after {
+  transform: translateZ(-16.5px);
+}
+.text3d-layer-2:nth-child(13):after {
+  transform: translateZ(-18px);
+}
+.text3d-layer-2:nth-child(14):after {
+  transform: translateZ(-19.5px);
+}
+.text3d-layer-2:nth-child(15):after {
+  transform: translateZ(-21px);
+}
+.text3d-layer-2:nth-child(16):after {
+  transform: translateZ(-22.5px);
+}
+.text3d-layer-2:nth-child(17):after {
+  transform: translateZ(-24px);
+}
+.text3d-layer-2:nth-child(18):after {
+  transform: translateZ(-25.5px);
+}
+.text3d-layer-2:nth-child(19):after {
+  transform: translateZ(-27px);
+}
+.text3d-layer-2:nth-child(20):after {
+  transform: translateZ(-28.5px);
+}
+.text3d-layer-2:nth-child(n + 10):after {
+  -webkit-text-stroke: 3px rgba(0, 0, 0, 0.25);
+}
+.text3d-layer-2:nth-child(n + 11):after {
+  -webkit-text-stroke: 15px #bfe2ff;
+  text-shadow: 6px 0 6px #00366b, 5px 5px 5px #002951, 0 6px 6px #00366b;
+}
+.text3d-layer-2:nth-child(n + 12):after {
+  -webkit-text-stroke: 15px #68baff;
+}
+.text3d-layer-2:last-child:after {
+  -webkit-text-stroke: 17px rgba(0, 0, 0, 0.1);
+}
+.text3d-layer-2:first-child:after {
+  color: #fff;
+  text-shadow: none;
+}
+.text3d-wrap-2:hover .text3d-layer-2 {
+  animation-play-state: running;
+}
+@media (max-width: 767px) {
+  .text3d-2 .text3d-layer-2:after {
+    font-size: 60px;
+  }
+}
+@keyframes text3d-anim-2 {
+  0% {
+    transform: rotateY(20deg) rotateX(35deg) translateZ(0);
+  }
+  50% {
+    transform: rotateY(0) rotateX(-20deg) translateZ(0);
+  }
+  100% {
+    transform: rotateY(-20deg) rotateX(35deg) translateZ(0);
+  }
+}
