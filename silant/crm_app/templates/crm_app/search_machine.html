@@ -1,45 +1,105 @@
 {% block content %} {% if searched %}
 <div class="search">
-  <div class="search_result">Найдено: {{ searched }}</div>
-
-  <br />
+  <div class="search__result-positive">Найдено: {{ searched }}</div>
   {% for m in machine %}
-  <a href="{{ m.get_absolute_url }}">{{ m }}</a>
-  <br />
-  1-{{ m.modelMachine }}
-  <br />
-  2-{{ m.serialNumber }}
-  <br />
-  3-{{ m.modelEngine }}
-  <br />
-  4-{{ m.serialNumberEngine }}
-  <br />
-  5-{{ m.modelTransmission }}
-  <br />
-  5-{{ m.serialTransmission }}
-  <br />
-  5-{{ m.modelDriveAxle }}
-  <br />
-  5-{{ m.serialDriveAxle }}
-  <br />
-  5-{{ m.modelSteeringAxle }}
-  <br />
-  5-{{ m.serialSteeringAxle }}
-  <br />
-  5-{{ m.deliveryContract }}
-  <br />
-  5-{{ m.shipmentDate }}
-  <br />
-  5-{{ m.consignee }}
-  <br />
-  5-{{ m.deliveryAddress }}
-  <br />
-  5-{{ m.additionalOptions }}
-  <br />
-  5-{{ m.client }}
-  <br />
-  {{ m.serviceCompany }}
-  <br />{% endfor %} {% else %}
-  <div class="search_result">Вы забыли ввести данные для поиска</div>
+  <div class="search__link-to-machine"> 
+  <a class="search__button" href="{{ m.get_absolute_url }}">{{ m }} | Посмотреть всю сопутствующую информацию</a>
+  </div>
+  <div class="search__set">
+    <div class="search__set-title">МАШИНА</div>
+    <div class="search__grid">
+      <div class="search__col col-left">Модель техники</div>
+      <div class="search__col col-right">{{ m.modelMachine }}</div>
+    </div>
+    <div class="search__grid">
+      <div class="search__col col-left">Зав. № машины</div>
+      <div class="search__col col-right">{{ m.serialNumber }}</div>
+    </div>
+  </div>
+  <div class="search__set">
+    <div class="search__set-title">ДВИГАТЕЛЬ</div>
+    <div class="search__grid">
+      <div class="search__col col-left">Модель двигателя</div>
+      <div class="search__col col-right">{{ m.modelEngine }}</div>
+    </div>
+    <div class="search__grid">
+      <div class="search__col col-left">Зав. № двигателя</div>
+      <div class="search__col col-right">{{ m.serialNumberEngine }}</div>
+    </div>
+  </div>
+
+  <div class="search__set">
+    <div class="search__set-title">ТРАНСМИССИЯ</div>
+    <div class="search__grid">
+      <div class="search__col col-left">Модель трансмиссии</div>
+      <div class="search__col col-right">{{ m.modelTransmission }}</div>
+    </div>
+    <div class="search__grid">
+      <div class="search__col col-left">Зав. № ведущего моста</div>
+      <div class="search__col col-right">{{ m.serialTransmission }}</div>
+    </div>
+  </div>
+  <div class="search__set">
+    <div class="search__set-title">ВУДУЩИЙ МОСТ</div>
+    <div class="search__grid">
+      <div class="search__col col-left">Модель ведущего моста</div>
+      <div class="search__col col-right">{{ m.modelDriveAxle }}</div>
+    </div>
+    <div class="search__grid">
+      <div class="search__col col-left">Зав. № ведущего моста</div>
+      <div class="search__col col-right">{{ m.serialDriveAxle }}</div>
+    </div>
+  </div>
+  <div class="search__set">
+    <div class="search__set-title">УПРАВЛЯЕМЫЙ МОСТ</div>
+    <div class="search__grid">
+      <div class="search__col col-left">Модель управляемого моста</div>
+      <div class="search__col col-right">{{ m.modelSteeringAxle }}</div>
+    </div>
+    <div class="search__grid">
+      <div class="search__col col-left">Зав. № управляемого моста</div>
+      <div class="search__col col-right">{{ m.serialSteeringAxle }}</div>
+    </div>
+  </div>
+  <div class="search__set">
+    <div class="search__set-title">ДОГОВОР И ОТГРУЗКА</div>
+    <div class="search__grid">
+      <div class="search__col col-left">Договор поставки №, дата</div>
+      <div class="search__col col-right">{{ m.deliveryContract }}</div>
+    </div>
+    <div class="search__grid">
+      <div class="search__col col-left">Дата отгрузки с завода</div>
+      <div class="search__col col-right">{{ m.shipmentDate }}</div>
+    </div>
+  </div>
+  <div class="search__set">
+    <div class="search__set-title">ГРУЗОПОЛУЧАТЕЛЬ</div>
+    <div class="search__grid">
+      <div class="search__col col-left">Грузополучатель <br> (конечный потребитель)</div>
+      <div class="search__col col-right">{{ m.consignee }}</div>
+    </div>
+    <div class="search__grid">
+      <div class="search__col col-left">Адрес поставки <br> (эксплуатации)</div>
+      <div class="search__col col-right">{{ m.deliveryAddress }}</div>
+    </div>
+  </div>
+  <div class="search__set">
+    <div class="search__set-title">ДОПОЛНИТЕЛЬНО</div>
+    <div class="search__grid">
+      <div class="search__col col-left">Комплектация <br> (дополнительные опции)</div>
+      <div class="search__col col-right">{{ m.additionalOptions }}</div>
+    </div>
+    <div class="search__grid">
+      <div class="search__col col-left">Клиент</div>
+      <div class="search__col col-right">{{ m.client }}</div>
+    </div>
+    <div class="search__grid">
+      <div class="search__col col-left">Сервисная компания</div>
+      <div class="search__col col-right">{{ m.serviceCompany }}</div>
+    </div>
+  </div>
+</div>
+{% endfor %} {% else %}
+  <div class="search__result-negative">Вы забыли ввести данные для поиска</div>
 </div>
 {% endif %} {% endblock content %}
