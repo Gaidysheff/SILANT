@@ -1,0 +1,63 @@
+@import "./login3d.css";
+
+.auth__wrapper {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+.auth__card {
+  width: 800px;
+
+  background: #163e6c;
+  border-radius: 30px;
+  margin: 0px auto;
+}
+
+.auth__head {
+  min-height: 300px;
+}
+
+.auth__login-form {
+  margin: 50px auto;
+  padding: 50px;
+  margin-top: 0;
+  padding-top: 0;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #163e6c;
+}
+.auth__login-input {
+  height: 60px;
+  padding: 10px;
+  margin-bottom: 50px;
+  color: #d20a11;
+  background: #f1f1f1;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  border: 1px solid #163e6c;
+}
+.auth__login-input:hover,
+.auth__login-input:focus {
+  border: 1px solid #d20a11;
+  box-shadow: 3px 3px 5px #3f0d0d, inset -3px -3px 4px -2px #501111,
+    -3px -3px 5px #d53131, inset 3px 3px 4px -2px #d53131;
+}
+
+.auth__login-btn {
+  height: 60px;
+  padding: 10px;
+  color: #ebe6d6;
+  background: #163e6c;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  border: 2px solid #ebe6d6;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.auth__login-btn:hover {
+  background: #d20a11;
+  color: #ebe6d6;
+  transform: scale(1.03);
+}

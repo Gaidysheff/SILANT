@@ -12,7 +12,7 @@ menu = [
     {'title': "Добавить статью", 'url_name': 'add_page'},
     {'title': "О нас", 'url_name': 'about'},
     {'title': "Обратная связь", 'url_name': 'contact'},
-    {'title': "Войти", 'url_name': 'login'},
+    # {'title': "Войти", 'url_name': 'login'},
 ]
 
 

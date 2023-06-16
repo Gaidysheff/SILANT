@@ -11,6 +11,11 @@
       rel="stylesheet"
       href="{% static 'crm_app/css/styles.css' %}"
     />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{% static 'members/css/styles.css' %}"
+    />
     <title>{{ title }}</title>
   </head>
   <body>
@@ -49,23 +54,30 @@
               </svg>
             </a>
             <ul class="header__menu-list">
-              {% block mainmenu %} {% for m in menu %} {% if not forloop.last %}
+              {% block mainmenu %} {% for m in menu %}
               <li class="header__menu-item">
                 <a href="{% url m.url_name %}">{{m.title}}</a>
+              </li>
+              {% endfor %} {% if request.user.is_authenticated %}
+              <li class="header__menu-item">{{ request.user }} |</li>
+              <li class="header__menu-item">
+                <a href="{% url 'logout' %}">Выйти</a>
               </li>
               {% else %}
               <li class="header__menu-item">
-                <a href="{% url m.url_name %}">{{m.title}}</a>
+                <a href="{% url 'login' %}">Войти</a>
               </li>
-              {% endif %} {% endfor %} {% endblock mainmenu %}
+              {% endif %} {% endblock mainmenu %}
             </ul>
           </div>
         </div>
       </div>
-
-      <div>
-        {% if messages %} {% for message in messages %} <br />
-        {{ message }}{% endfor%}{% endif %}
+      <br />
+      <div class="container">
+        <div class="message">
+          {% if messages %} {% for message in messages %}
+          {{message}}{%endfor%}{% endif %}
+        </div>
       </div>
 
       <!-- ======================================================== -->
@@ -105,13 +117,12 @@
               </svg>
             </a>
             <ul class="footer__menu-list">
-              {% for m in menu %} {% if not forloop.last %}
+              {% for m in menu %}
               <li class="footer__menu-item">
                 <a href="{% url m.url_name %}">{{m.title}}</a>
               </li>
-              {% else %}
+              {% endfor %}
               <li class="footer__menu-item">@ Copyright 2023</li>
-              {% endif %} {% endfor %}
             </ul>
           </div>
         </div>

@@ -1,26 +1,53 @@
 {% extends 'crm_app/base.html' %}
 <br />
-
 {% block content %}
-<h1>{{ title }}</h1>
 <br />
-<h1>LOGIN PAGE</h1>
 
-<form class="machine__search-form" method="POST" action="">
-  {% csrf_token %}
-  <input
-    class="machine__search-input"
-    type="text"
-    placeholder="Введите username"
-    name="username"
-  />
-  <input
-    class="machine__search-input"
-    type="password"
-    placeholder="Password"
-    name="password"
-  />
-  <button class="machine__search-btn" type="submit"><i>Войти</i></button>
-</form>
-
+<div class="auth__wrapper">
+  <div class="auth__card">
+    <div class="auth__head">
+      <div class="login3d-wrap-2">
+        <div class="login3d-2">
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+          <div class="login3d-layer-2"></div>
+        </div>
+      </div>
+    </div>
+    <form class="auth__login-form" method="POST" action="">
+      {% csrf_token %}
+      <input
+        class="auth__login-input"
+        type="text"
+        placeholder="Введите Ваш логин ..."
+        name="username"
+      />
+      <input
+        class="auth__login-input"
+        type="password"
+        placeholder="Введите Ваш пароль ..."
+        name="password"
+      />
+      <button class="auth__login-btn" type="submit"><i>Войти</i></button>
+    </form>
+  </div>
+</div>
+<br />
 {% endblock content %}
