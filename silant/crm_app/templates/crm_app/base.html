@@ -62,6 +62,12 @@
           </div>
         </div>
       </div>
+
+      <div>
+        {% if messages %} {% for message in messages %} <br />
+        {{ message }}{% endfor%}{% endif %}
+      </div>
+
       <!-- ======================================================== -->
       <main>{% block content %} {% endblock content %}</main>
       <!-- ======================================================== -->

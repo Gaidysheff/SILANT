@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crm_app.apps.CrmAppConfig',
     'django_filters',
+    'members',
 ]
 
 MIDDLEWARE = [

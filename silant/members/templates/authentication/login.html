@@ -1,0 +1,26 @@
+{% extends 'crm_app/base.html' %}
+<br />
+
+{% block content %}
+<h1>{{ title }}</h1>
+<br />
+<h1>LOGIN PAGE</h1>
+
+<form class="machine__search-form" method="POST" action="">
+  {% csrf_token %}
+  <input
+    class="machine__search-input"
+    type="text"
+    placeholder="Введите username"
+    name="username"
+  />
+  <input
+    class="machine__search-input"
+    type="password"
+    placeholder="Password"
+    name="password"
+  />
+  <button class="machine__search-btn" type="submit"><i>Войти</i></button>
+</form>
+
+{% endblock content %}
