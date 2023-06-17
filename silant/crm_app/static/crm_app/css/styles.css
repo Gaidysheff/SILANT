@@ -33,6 +33,7 @@ main {
 
 .page-title {
   font-size: 4rem;
+  padding: 0px 10px;
   color: #ebe6d6;
   line-height: 160%;
   text-align: center;
@@ -157,6 +158,7 @@ h1 {
 .footer__logo > svg {
   width: 70%;
   height: 70%;
+  display: flex;
   align-content: center;
 }
 
@@ -528,6 +530,10 @@ iframe {
   .bottom__map {
     margin-bottom: -80px;
   }
+
+  .page-title {
+    font-size: 3rem;
+  }
 }
 
 /* ======================= 800 ========================== */
@@ -550,6 +556,10 @@ iframe {
     padding: 0;
   }
 
+  .footer__menu-item:last-child {
+    font-size: 0.5rem;
+  }
+
   .header__logo > svg {
     width: 70%;
     height: 70%;
@@ -558,6 +568,10 @@ iframe {
   .footer__logo > svg {
     width: 50%;
     height: 50%;
+  }
+
+  .page-title {
+    font-size: 2.5rem;
   }
 }
 
@@ -569,6 +583,29 @@ iframe {
   }
 }
 /* ======================= 630 ========================== */
+
+@media (max-width: 1300px) {
+  .page-title {
+    font-size: 2rem;
+  }
+}
+
+/* ======================= 590 ========================== */
+@media (max-width: 590px) {
+  .footer__menu-item {
+    font-size: 0.5rem;
+  }
+  .footer__menu-item:last-child {
+    font-size: 0.3rem;
+  }
+  .footer__logo {
+    width: 60px;
+  }
+  .footer__logo > svg {
+    width: 100%;
+    height: 100%;
+  }
+}
 
 /* ======================= 530 ========================== */
 @media (max-width: 530px) {
@@ -588,5 +625,47 @@ iframe {
 
   .bottom__map {
     margin-bottom: -40px;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* ======================= 455 ========================== */
+@media (max-width: 455px) {
+}
+
+/* ======================= 400 ========================== */
+@media (max-width: 400px) {
+  .page-title {
+    font-size: 1.2rem;
+  }
+  .footer__logo {
+    width: 30px;
+  }
+  .footer__logo > svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ======================= 370 ========================== */
+  @media (max-width: 400px) {
+    .footer__menu-item {
+      font-size: 0.3rem;
+    }
+
+    .footer__menu-item:last-child {
+      font-size: 0.2rem;
+    }
+
+    .footer__logo {
+      width: 25px;
+    }
+
+    .footer__logo > svg {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
