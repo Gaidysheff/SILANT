@@ -2,9 +2,14 @@
 <div class="search">
   <div class="search__result-positive">Найдено: {{ searched }}</div>
   {% for m in machine %}
-  <div class="search__link-to-machine"> 
-  <a class="search__button" href="{{ m.get_absolute_url }}">{{ m }} | Посмотреть всю сопутствующую информацию</a>
-  </div>
+
+  <a class="search__button" href="{{ m.get_absolute_url }}">
+    <div class="search__button-machine">{{ m }}</div>
+    <div class="search__button-goto">
+      Посмотреть всю сопутствующую информацию
+    </div>
+  </a>
+
   <div class="search__set">
     <div class="search__set-title">МАШИНА</div>
     <div class="search__grid">
@@ -75,18 +80,22 @@
   <div class="search__set">
     <div class="search__set-title">ГРУЗОПОЛУЧАТЕЛЬ</div>
     <div class="search__grid">
-      <div class="search__col col-left">Грузополучатель <br> (конечный потребитель)</div>
+      <div class="search__col col-left">
+        Грузополучатель (конечный потребитель)
+      </div>
       <div class="search__col col-right">{{ m.consignee }}</div>
     </div>
     <div class="search__grid">
-      <div class="search__col col-left">Адрес поставки <br> (эксплуатации)</div>
+      <div class="search__col col-left">Адрес поставки (эксплуатации)</div>
       <div class="search__col col-right">{{ m.deliveryAddress }}</div>
     </div>
   </div>
   <div class="search__set">
     <div class="search__set-title">ДОПОЛНИТЕЛЬНО</div>
     <div class="search__grid">
-      <div class="search__col col-left">Комплектация <br> (дополнительные опции)</div>
+      <div class="search__col col-left">
+        Комплектация (дополнительные опции)
+      </div>
       <div class="search__col col-right">{{ m.additionalOptions }}</div>
     </div>
     <div class="search__grid">
@@ -98,8 +107,8 @@
       <div class="search__col col-right">{{ m.serviceCompany }}</div>
     </div>
   </div>
-</div>
-{% endfor %} {% else %}
+
+  {% endfor %} {% else %}
   <div class="search__result-negative">Данные для поиска не введены !</div>
 </div>
 {% endif %} {% endblock content %}
