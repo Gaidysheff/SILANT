@@ -118,11 +118,6 @@
 .login3d-wrap-2:hover .login3d-layer-2 {
   animation-play-state: running;
 }
-@media (max-width: 767px) {
-  .login3d-2 .login3d-layer-2:after {
-    font-size: 60px;
-  }
-}
 @keyframes text3d-anim-2 {
   0% {
     transform: rotateY(20deg) rotateX(35deg) translateZ(0);
@@ -132,5 +127,43 @@
   }
   100% {
     transform: rotateY(-20deg) rotateX(35deg) translateZ(0);
+  }
+}
+
+/* ======================= 767 ========================== */
+
+@media (max-width: 767px) {
+  .login3d-2 .login3d-layer-2:after {
+    font-size: 60px;
+  }
+
+  .login3d-wrap-2 {
+    height: auto;
+  }
+}
+
+/* ======================= 550 ========================== */
+
+@media (max-width: 550px) {
+  .login3d-2 .login3d-layer-2:after {
+    font-size: 40px;
+  }
+}
+
+/* ======================= 350 ========================== */
+
+@media (max-width: 350px) {
+  /* .login3d-2 .login3d-layer-2:after {
+    font-size: 40px;
+  } */
+
+  .login3d-2 {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .login3d-layer-2:after {
+    line-height: 130%;
+    top: 20px;
   }
 }
