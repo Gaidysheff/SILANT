@@ -50,8 +50,20 @@
 <div class="search-wrapper">
   <div class="container">
     <div class="search-inner">
+      {% if user.is_authenticated %}
       <div class="search-title">Результат поиска:</div>
-      {% include 'crm_app/search_machine.html' %}
+      {% else %}
+      <div class="search-title">Результат поиска*:</div>
+      {% endif %} {% include 'crm_app/search_machine.html' %}
+      <br />
+      {% if not user.is_authenticated %}
+      <div class="search__offer_to_login">
+        <a href="{% url 'login' %}">
+          * Если Вы хотите получить полную информацию о машине, <br />
+          Вам необходимо войти в систему под своим логином
+        </a>
+      </div>
+      {% endif %}
     </div>
   </div>
 </div>

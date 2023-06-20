@@ -66,6 +66,9 @@
       <div class="search__col col-right">{{ m.serialSteeringAxle }}</div>
     </div>
   </div>
+
+  {% if user.is_authenticated %}
+
   <div class="search__set">
     <div class="search__set-title">ДОГОВОР И ОТГРУЗКА</div>
     <div class="search__grid">
@@ -108,7 +111,7 @@
     </div>
   </div>
 
-  {% endfor %} {% else %}
+  {% endif %} {% endfor %} {% else %}
   <div class="search__result-negative">Данные для поиска не введены !</div>
 </div>
 {% endif %} {% endblock content %}

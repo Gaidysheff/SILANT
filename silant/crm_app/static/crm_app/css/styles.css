@@ -329,6 +329,12 @@ iframe {
   box-shadow: 0 0 10px 5px #ee0202;
 }
 
+.search__offer_to_login {
+  color: #ee0202;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
 .search__button {
   display: flex;
   flex-direction: column;
@@ -825,6 +831,10 @@ iframe {
     font-size: 1.6rem;
   }
 
+  .search__offer_to_login {
+    font-size: 1.2rem;
+  }
+
   .search__result-positive,
   .search__result-negative {
     font-size: 1.2rem;
@@ -979,6 +989,11 @@ iframe {
   .machine__search-btn {
     width: 100%;
   }
+
+  .search__offer_to_login {
+    font-size: 1rem;
+    line-height: 120%;
+  }
 }
 
 /* ======================= 530 ========================== */
@@ -1006,6 +1021,11 @@ iframe {
   .page-title {
     font-size: 1.5rem;
   }
+
+  .search__offer_to_login {
+    font-size: 0.9rem;
+    line-height: 110%;
+  }
 }
 
 /* ======================= 450 ========================== */
@@ -1020,6 +1040,11 @@ iframe {
 
   .search__button-goto {
     font-size: 1rem;
+  }
+
+  .search__offer_to_login {
+    font-size: 0.8rem;
+    line-height: 100%;
   }
 }
 
@@ -1071,5 +1096,10 @@ iframe {
   .search__result-negative {
     font-size: 0.6rem;
     padding: 0;
+  }
+
+  .search__offer_to_login {
+    width: 80%;
+    margin: 0 auto;
   }
 }

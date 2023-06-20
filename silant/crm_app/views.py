@@ -62,7 +62,7 @@ def search_machine(request):
             context['machine'] = machine
             return render(request, 'crm_app/index.html', context=context)
         else:
-            context['searched'] = 'В базе данных НИЧЕГО НЕ НАЙДЕНО !!!'
+            context['searched'] = 'Данных о машине с таким заводским номером в системе нет !!!'
             return render(request, 'crm_app/index.html', context=context)
         # return render(request, 'crm_app/search_machine.html', context=context)
 
