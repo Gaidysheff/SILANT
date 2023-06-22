@@ -493,8 +493,10 @@ iframe {
 .tab {
   overflow: hidden;
   border: 1px solid #163e6c;
-  background-color: rgba(22, 61, 106, 0.2);
+  /* background-color: rgba(22, 61, 106, 0.2); */
   width: 100%;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .tab button {
@@ -508,16 +510,19 @@ iframe {
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
+  color: #ee0202;
   transition: 0.3s;
 }
 
 .tab button:hover {
-  background-color: #163e6c;
+  /* background-color: #163e6c; */
+  background-color: #ee0202;
   color: #ebe6d6;
 }
 
 .tab button.active {
-  background-color: #163e6c;
+  /* background-color: #163e6c; */
+  background-color: #ee0202;
   color: #ebe6d6;
 }
 
@@ -525,17 +530,59 @@ iframe {
   display: none;
   /* padding: 10px 0; */
   border: 1px solid #163e6c;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   border-top: none;
+  margin-bottom: 50px;
 }
 /* _____________ Table in the Tabs Content ________________ */
 
-.tab__grid-head {
+.subtitle_in_tabs {
+  font-size: 2rem;
+  line-height: 1.8;
+  padding: 50px 20px;
+  text-shadow: 0px 4px 3px rgba(9, 164, 211, 0.623),
+    0px 8px 13px rgba(6, 151, 199, 0.59),
+    0px 18px 23px rgba(10, 187, 211, 0.671);
+  text-align: center;
+}
+
+.subtitle_in_tabs span {
+  font-size: 2rem;
+  font-weight: bolder;
+  color: #ee0202;
+  border: 1px solid red;
+  padding: 5px 20px 10px 20px;
+  border-radius: 5px;
+  text-shadow: none;
+}
+
+.tab2__grid-head {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 80px;
+}
+
+.tab2__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(auto, 30px);
+}
+
+.tab3__grid-head {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: 80px;
 }
 
-.tab__col-head {
+.tab3__grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(auto, 30px);
+}
+
+.tab3__col-head,
+.tab2__col-head {
   background: #163e6c;
   color: #ebe6d6;
   padding: 10px 0;
@@ -547,49 +594,25 @@ iframe {
   border: 1px solid #ebe6d6;
 }
 
-.tab__grid {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(auto, 30px);
+.tab3__col-head:first-child,
+.tab2__col-head:first-child {
+  border-left: none;
 }
 
-.tab__col {
-  padding: 10px 0;
+.tab3__col-head:last-child,
+.tab2__col-head:last-child {
+  border-right: none;
+}
+
+.tab3__col,
+.tab2__col {
+  padding: 10px 5px;
   text-align: center;
   border: 1px solid #ebe6d6;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   border: 1px dashed rgba(22, 62, 108, 0.4);
-}
-
-.tab__list {
-  display: flex;
-}
-.tab__row {
-  width: 100%;
-}
-.tab_head {
-  min-height: 70px;
-  background: #163e6c;
-  color: #ebe6d6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border: 1px solid #ebe6d6;
-}
-
-.tab_field {
-  height: 70px;
-  /* background: rgb(153, 207, 255); */
-  border: 1px dashed rgba(22, 62, 108, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  overflow: clip;
-  /* overflow: ellipsis; */
 }
 
 /* =================== Search Form ======================== */
@@ -927,12 +950,21 @@ iframe {
 /* ======================= 950 ========================== */
 
 @media (max-width: 950px) {
-  .tab__grid-head {
+  .tab3__grid-head,
+  .tab2__grid-head {
     grid-template-rows: 60px;
     line-height: 100%;
   }
-  .tab__col-head {
+
+  .tab3__col-head,
+  .tab2__col-head {
     padding: 0;
+    font-size: 0.8rem;
+  }
+
+  .tab3__col,
+  .tab2__col {
+    padding: 5px 5px;
     font-size: 0.8rem;
   }
 }
@@ -1042,12 +1074,22 @@ iframe {
     font-size: 1.5rem;
   }
 
-  .tab__grid-head {
+  .tab3__grid-head,
+  .tab2__grid-head {
     grid-template-rows: 40px;
+  }
+
+  .tab3__col-head,
+  .tab3__col,
+  .tab2__col-head,
+  .tab2__col {
+    font-size: 0.6rem;
     line-height: 100%;
   }
-  .tab__col-head {
-    font-size: 0.6rem;
+
+  .subtitle_in_tabs,
+  .subtitle_in_tabs span {
+    font-size: 1.5rem;
   }
 }
 /* ======================= 700 ========================== */
@@ -1133,12 +1175,22 @@ iframe {
     line-height: 120%;
   }
 
-  .tab__grid-head {
+  .tab3__grid-head,
+  .tab2__grid-head {
     grid-template-rows: 30px;
-    line-height: 50%;
   }
-  .tab__col-head {
+
+  .tab3__col-head,
+  .tab3__col,
+  .tab2__col-head,
+  .tab2__col {
+    /* line-height: 80%; */
     font-size: 0.4rem;
+  }
+
+  .subtitle_in_tabs,
+  .subtitle_in_tabs span {
+    font-size: 1.2rem;
   }
 }
 
@@ -1176,6 +1228,15 @@ iframe {
     height: 60px;
     font-size: 1rem;
   }
+
+  .subtitle_in_tabs {
+    font-size: 1rem;
+  }
+
+  .subtitle_in_tabs span {
+    padding: 3px 10px 5px 10px;
+    font-size: 1rem;
+  }
 }
 
 /* ======================= 450 ========================== */
@@ -1201,6 +1262,11 @@ iframe {
     height: 50px;
     font-size: 0.8rem;
   }
+
+  .subtitle_in_tabs,
+  .subtitle_in_tabs span {
+    font-size: 0.8rem;
+  }
 }
 
 /* ======================= 400 ========================== */
@@ -1218,15 +1284,17 @@ iframe {
 
   .tab button {
     width: 100%;
-    /* height: 40px; */
+    height: 40px;
     /* font-size: 0.5rem; */
   }
 
-  .tab__grid-head {
+  .tab3__grid-head,
+  .tab2__grid-head {
     grid-template-rows: 30px;
     line-height: 40%;
   }
-  .tab__col-head {
+  .tab3__col-head,
+  .tab2__col-head {
     font-size: 0.3rem;
   }
 }
@@ -1270,5 +1338,35 @@ iframe {
   .search__offer_to_login {
     width: 80%;
     margin: 0 auto;
+  }
+}
+
+/* ======================= 330 ========================== */
+@media (max-width: 330px) {
+  .tab3__grid-head,
+  .tab2__grid-head {
+    display: grid;
+    grid-template-rows: 15px;
+  }
+
+  .tab3__col-head,
+  .tab2__col-head {
+    padding: 5px 0;
+    text-align: center;
+    display: flex;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .tab3__grid,
+  .tab2__grid {
+    grid-template-rows: repeat(auto, 15px);
+  }
+
+  .tab3__col,
+  .tab2__col {
+    padding: 3px 0;
   }
 }

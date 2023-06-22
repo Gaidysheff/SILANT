@@ -69,8 +69,8 @@ def search_machine(request):
 
 def show_machine(request, machine_id):
     machine = get_object_or_404(Machine, pk=machine_id)
-    maintenance = Maintenance.objects.filter(machine_id=machine_id)
     claims = Claims.objects.filter(machine_id=machine_id)
+    maintenance = Maintenance.objects.filter(machine_id=machine_id)
 
     context = {
         'machine': machine,
