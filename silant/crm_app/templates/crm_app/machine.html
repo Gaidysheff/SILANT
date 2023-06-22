@@ -30,76 +30,88 @@
 
   <!------------------- Tab content ------------------->
   <div id="General_Info" class="tabcontent">
-    <h3>Общая информация</h3>
-    <p>Здесь будет таблица с общей информацией о машине</p>
+    <h3>
+      Общая информация о машине с Зав. №
+      <span>{{ machine.serialNumber}}</span>
+    </h3>
 
     <div class="search">
-      {#{% for m in machine %}#}
-
       <div class="search__set">
         <div class="search__set-title">МАШИНА</div>
         <div class="search__grid">
           <div class="search__col col-left">Модель техники</div>
-          <div class="search__col col-right">{{ m.modelMachine }}</div>
+          <div class="search__col col-right">{{ machine.modelMachine }}</div>
         </div>
         <div class="search__grid">
           <div class="search__col col-left">Зав. № машины</div>
-          <div class="search__col col-right">{{ m.serialNumber }}</div>
+          <div class="search__col col-right">{{ machine.serialNumber }}</div>
         </div>
       </div>
       <div class="search__set">
         <div class="search__set-title">ДВИГАТЕЛЬ</div>
         <div class="search__grid">
           <div class="search__col col-left">Модель двигателя</div>
-          <div class="search__col col-right">{{ m.modelEngine }}</div>
+          <div class="search__col col-right">{{ machine.modelEngine }}</div>
         </div>
         <div class="search__grid">
           <div class="search__col col-left">Зав. № двигателя</div>
-          <div class="search__col col-right">{{ m.serialNumberEngine }}</div>
+          <div class="search__col col-right">
+            {{ machine.serialNumberEngine }}
+          </div>
         </div>
       </div>
       <div class="search__set">
         <div class="search__set-title">ТРАНСМИССИЯ</div>
         <div class="search__grid">
           <div class="search__col col-left">Модель трансмиссии</div>
-          <div class="search__col col-right">{{ m.modelTransmission }}</div>
+          <div class="search__col col-right">
+            {{ machine.modelTransmission }}
+          </div>
         </div>
         <div class="search__grid">
           <div class="search__col col-left">Зав. № ведущего моста</div>
-          <div class="search__col col-right">{{ m.serialTransmission }}</div>
+          <div class="search__col col-right">
+            {{ machine.serialTransmission }}
+          </div>
         </div>
       </div>
       <div class="search__set">
         <div class="search__set-title">ВУДУЩИЙ МОСТ</div>
         <div class="search__grid">
           <div class="search__col col-left">Модель ведущего моста</div>
-          <div class="search__col col-right">{{ m.modelDriveAxle }}</div>
+          <div class="search__col col-right">{{ machine.modelDriveAxle }}</div>
         </div>
         <div class="search__grid">
           <div class="search__col col-left">Зав. № ведущего моста</div>
-          <div class="search__col col-right">{{ m.serialDriveAxle }}</div>
+          <div class="search__col col-right">{{ machine.serialDriveAxle }}</div>
         </div>
       </div>
       <div class="search__set">
         <div class="search__set-title">УПРАВЛЯЕМЫЙ МОСТ</div>
         <div class="search__grid">
           <div class="search__col col-left">Модель управляемого моста</div>
-          <div class="search__col col-right">{{ m.modelSteeringAxle }}</div>
+          <div class="search__col col-right">
+            {{ machine.modelSteeringAxle }}
+          </div>
         </div>
         <div class="search__grid">
           <div class="search__col col-left">Зав. № управляемого моста</div>
-          <div class="search__col col-right">{{ m.serialSteeringAxle }}</div>
+          <div class="search__col col-right">
+            {{ machine.serialSteeringAxle }}
+          </div>
         </div>
       </div>
       <div class="search__set">
         <div class="search__set-title">ДОГОВОР И ОТГРУЗКА</div>
         <div class="search__grid">
           <div class="search__col col-left">Договор поставки №, дата</div>
-          <div class="search__col col-right">{{ m.deliveryContract }}</div>
+          <div class="search__col col-right">
+            {{ machine.deliveryContract }}
+          </div>
         </div>
         <div class="search__grid">
           <div class="search__col col-left">Дата отгрузки с завода</div>
-          <div class="search__col col-right">{{ m.shipmentDate }}</div>
+          <div class="search__col col-right">{{ machine.shipmentDate }}</div>
         </div>
       </div>
       <div class="search__set">
@@ -108,11 +120,11 @@
           <div class="search__col col-left">
             Грузополучатель (конечный потребитель)
           </div>
-          <div class="search__col col-right">{{ m.consignee }}</div>
+          <div class="search__col col-right">{{ machine.consignee }}</div>
         </div>
         <div class="search__grid">
           <div class="search__col col-left">Адрес поставки (эксплуатации)</div>
-          <div class="search__col col-right">{{ m.deliveryAddress }}</div>
+          <div class="search__col col-right">{{ machine.deliveryAddress }}</div>
         </div>
       </div>
       <div class="search__set">
@@ -121,35 +133,65 @@
           <div class="search__col col-left">
             Комплектация (дополнительные опции)
           </div>
-          <div class="search__col col-right">{{ m.additionalOptions }}</div>
+          <div class="search__col col-right">
+            {{ machine.additionalOptions }}
+          </div>
         </div>
         <div class="search__grid">
           <div class="search__col col-left">Клиент</div>
-          <div class="search__col col-right">{{ m.client }}</div>
+          <div class="search__col col-right">{{ machine.client }}</div>
         </div>
         <div class="search__grid">
           <div class="search__col col-left">Сервисная компания</div>
-          <div class="search__col col-right">{{ m.serviceCompany }}</div>
+          <div class="search__col col-right">{{ machine.serviceCompany }}</div>
         </div>
       </div>
-
-      {#{% endfor %}#}
     </div>
   </div>
 
   <div id="Maintenance" class="tabcontent">
-    <h3>ТехОбслуживание</h3>
-    <p>Здесь будет таблица с информацией о ТО</p>
+    <h3>
+      Данные о Техническом Обслуживании машины с Зав. №
+      <span>{{ machine.serialNumber}}</span>
+    </h3>
+    <p>
+      Здесь будет таблица с информацией о ТО {% for m in maintenance %}
+      <br />{{ m.maintenanceDate }} <br />{{ m.operatingTime }} <br /><br />
+      {{m.workOrder }} <br />{{ m.workOrderDate }} <br />{{ m.executor }}
+      <br />{{m.serviceCompany_id }} {% endfor %}
+    </p>
   </div>
 
   <div id="Claims" class="tabcontent">
-    <h3>Рекламации</h3>
-    <p>Здесь будет таблица с информацией о Рекламациях</p>
-  </div>
+    <h3>
+      Рекламации о машине с Зав. №
+      <span>{{ machine.serialNumber}}</span>
+    </h3>
 
-  <br />
-  <br />
-  <br />
+    <div class="tab__grid-head">
+      <div class="tab__col-head">Дата отказа</div>
+      <div class="tab__col-head">Наработка, м/час</div>
+      <div class="tab__col-head">Узел отказа</div>
+      <div class="tab__col-head">Описание отказа</div>
+      <div class="tab__col-head">Используемые запасные части</div>
+      <div class="tab__col-head">Дата восстановления</div>
+      <div class="tab__col-head">Время простоя техники</div>
+      <div class="tab__col-head">Сервисная компания</div>
+    </div>
+
+    {% for c in claims %}
+    <div class="tab__grid">
+      <div class="tab__col">{{c.breakdownDate}}</div>
+      <div class="tab__col">{{c.operatingTime}}</div>
+      <div class="tab__col">{{c.breakdownDescription}}</div>
+      <div class="tab__col">{{c.usedSpareParts}}</div>
+      <div class="tab__col">{{c.usedSpareParts}}</div>
+      <div class="tab__col">{{c.recoverDate}}</div>
+      <div class="tab__col">{{c.downtime}}</div>
+      <div class="tab__col">{{c.serviceCompany}}</div>
+    </div>
+    {% endfor %}
+  </div>
 </div>
 
 <script>

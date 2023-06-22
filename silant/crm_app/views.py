@@ -4,7 +4,7 @@ from django.views.generic import ListView
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 
-from .models import Machine
+from .models import Machine, Maintenance, Claims
 
 
 menu = [
@@ -69,9 +69,13 @@ def search_machine(request):
 
 def show_machine(request, machine_id):
     machine = get_object_or_404(Machine, pk=machine_id)
+    maintenance = Maintenance.objects.filter(machine_id=machine_id)
+    claims = Claims.objects.filter(machine_id=machine_id)
 
     context = {
         'machine': machine,
+        'maintenance': maintenance,
+        'claims': claims,
         'machine_table_titles': machine_table_titles,
         # 'machine_table_subtitles': machine_table_subtitles,
         'menu': menu,
