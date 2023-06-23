@@ -1,8 +1,14 @@
 {% block content %} {% if searched %}
 <div class="search">
   <div class="search__result-positive">Найдено: {{ searched }}</div>
-  {% for m in machine %}
 
+  <!-- <h1>Logged in User => {{user}}</h1>
+  {% for machine in machine %}
+  <h1>Machine's client => {{machine.client}}</h1>
+  {% endfor%} -->
+
+  <br />
+  {% for m in machine %}
   <a class="search__button" href="{{ m.get_absolute_url }}">
     <div class="search__button-machine">{{ m }}</div>
     <div class="search__button-goto">

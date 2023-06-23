@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse 
 
 
+
 class Machine(models.Model):
     modelMachine = models.ForeignKey(
         'ModelMachine', on_delete=models.CASCADE, related_name='modelMachines', verbose_name='Модель техники')
@@ -85,6 +86,12 @@ class Claims(models.Model):
 
     def __str__(self):
         return f'{self.breakdownDescription[:20]}...'
+    
+    # @property
+    # def downtime(self):
+    #     if (self.breakdownDate != None):
+    #         downtime = self.recoverDate - self.breakdownDate
+    #         return downtime
 
 # =============================== Reference Tables =============================
 

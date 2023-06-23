@@ -9,4 +9,5 @@ urlpatterns = [
     path('addpage/', addpage, name='add_page'),
     path('contact/', contact, name='contact'),
     path('search_machine/', search_machine, name='search_machine'),
+    path('you_db/', page_after_authorization, name='page_after_authorization'),
 ]

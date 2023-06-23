@@ -3,8 +3,9 @@ from django.db.models.query import QuerySet
 from django.views.generic import ListView
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
+# from django.db.models import Q
 
-from .models import Machine, Maintenance, Claims
+from .models import Machine, Maintenance, Claims, ServiceCompany
 
 
 menu = [
@@ -56,7 +57,7 @@ def search_machine(request):
     }
     if request.method == 'POST':
         searched = request.POST.get('searched', 'my_default_value')
-        machine = Machine.objects.filter(serialNumber__contains=searched)
+        machine = Machine.objects.filter(serialNumber__icontains=searched)
         if machine:
             context['searched'] = searched
             context['machine'] = machine
@@ -82,6 +83,30 @@ def show_machine(request, machine_id):
         'title': f"Машина | зав. № = {machine.serialNumber}"
     }
     return render(request, 'crm_app/machine.html', context=context)
+
+
+def page_after_authorization(request):
+    user = request.user
+    machines = Machine.objects.filter(client=user)
+    if not machines:
+        user = request.user.last_name
+        service = ServiceCompany.objects.get(name=user)
+        machines = Machine.objects.filter(serviceCompany=service)
+
+    # machines = Machine.objects.filter(Q(client=user) | Q(serviceCompany=user))
+    # claims = Claims.objects.filter(machine_id=machine_id)
+    # maintenance = Maintenance.objects.filter(machine_id=machine_id)
+    context = {
+        'machines': machines,
+        # 'maintenance': maintenance,
+        # 'claims': claims,
+        # 'machine_table_titles': machine_table_titles,
+        # 'machine_table_subtitles': machine_table_subtitles,
+        'menu': menu,
+        'title': "Ваша база данных"
+    }
+
+    return render(request, 'crm_app/page_after_authorization.html', context=context)
 
 
 def about(request):

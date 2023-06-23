@@ -21,7 +21,7 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            return redirect('page_after_authorization')
         else:
             messages.success(
                 request, ('Проблема с логином или паролем, попробуйте ещё раз ...'))
