@@ -82,6 +82,23 @@ main {
     0px 18px 23px #d8161646;
 }
 
+.page-authorized-title {
+  background-color: #163e6c;
+  font-size: 2rem;
+  font-weight: bold;
+  font-style: italic;
+  line-height: 1.6;
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  color: #ebe6d6;
+  text-align: center;
+  text-shadow: 0px 4px 3px rgba(9, 164, 211, 0.623),
+    0px 8px 13px rgba(6, 151, 199, 0.59),
+    0px 18px 23px rgba(10, 187, 211, 0.671);
+  box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18;
+}
+
 /*! ============================================================ */
 
 h1 {
@@ -593,7 +610,6 @@ tr:nth-child(even) {
 
 tr:nth-child(odd) {
   background-color: rgba(22, 62, 108, 0.1);
-  /* color: #ebe6d6; */
 }
 
 /* ___________________________________________________________________ */
@@ -653,6 +669,16 @@ tr:nth-child(odd) {
   white-space: nowrap;
   overflow: hidden;
   border: 1px dashed rgba(22, 62, 108, 0.4);
+}
+
+.tab2__col:nth-child(even),
+.tab3__col:nth-child(even) {
+  background-color: #ebe6d6;
+}
+
+.tab2__col:nth-child(odd),
+.tab3__col:nth-child(odd) {
+  background-color: rgba(22, 62, 108, 0.1);
 }
 
 /* =================== Search Form ======================== */
@@ -790,6 +816,16 @@ tr:nth-child(odd) {
 
   .search__col {
     font-size: 1.2rem;
+  }
+}
+
+/* ======================= 1070 ========================== */
+
+@media (max-width: 1070px) {
+  .page-authorized-title {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    padding: 20px 30px;
   }
 }
 
@@ -1007,6 +1043,11 @@ tr:nth-child(odd) {
     padding: 5px 5px;
     font-size: 0.8rem;
   }
+
+  .page-authorized-title {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
 }
 
 /* ======================= 850 ========================== */
@@ -1131,6 +1172,10 @@ tr:nth-child(odd) {
   .subtitle_in_tabs span {
     font-size: 1.5rem;
   }
+
+  .page-authorized-title {
+    font-size: 1.2rem;
+  }
 }
 /* ======================= 700 ========================== */
 
@@ -1139,6 +1184,21 @@ tr:nth-child(odd) {
     margin-bottom: -60px;
   }
 }
+
+/* ======================= 650 ========================== */
+
+@media (max-width: 650px) {
+  .page-authorized-title {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .subtitle_in_tabs,
+  .subtitle_in_tabs span {
+    font-size: 1.2rem;
+  }
+}
+
 /* ======================= 630 ========================== */
 
 @media (max-width: 630px) {
@@ -1227,11 +1287,6 @@ tr:nth-child(odd) {
     /* line-height: 80%; */
     font-size: 0.4rem;
   }
-
-  .subtitle_in_tabs,
-  .subtitle_in_tabs span {
-    font-size: 1.2rem;
-  }
 }
 
 /* ======================= 530 ========================== */
@@ -1306,6 +1361,11 @@ tr:nth-child(odd) {
   .subtitle_in_tabs,
   .subtitle_in_tabs span {
     font-size: 0.8rem;
+  }
+
+  .page-authorized-title {
+    font-size: 0.8rem;
+    line-height: 1.2;
   }
 }
 

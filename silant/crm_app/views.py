@@ -86,20 +86,31 @@ def show_machine(request, machine_id):
 
 
 def page_after_authorization(request):
-    user = request.user
-    machines = Machine.objects.filter(client=user)
+    user_client = request.user
+    user_service = request.user.last_name
+
+    machines = Machine.objects.filter(client=user_client)
     if not machines:
-        user = request.user.last_name
-        service = ServiceCompany.objects.get(name=user)
+        service = ServiceCompany.objects.get(name=user_service)
         machines = Machine.objects.filter(serviceCompany=service)
+
+    # maintenance = Maintenance.objects.filter(client=user_client)
+    # if not maintenance:
+    service = ServiceCompany.objects.get(name=user_service)
+    maintenance = Maintenance.objects.filter(serviceCompany=service)
+
+    # claims = Claims.objects.filter(client=user_client)
+    # if not claims:
+    service = ServiceCompany.objects.get(name=user_service)
+    claims = Claims.objects.filter(serviceCompany=service)
 
     # machines = Machine.objects.filter(Q(client=user) | Q(serviceCompany=user))
     # claims = Claims.objects.filter(machine_id=machine_id)
     # maintenance = Maintenance.objects.filter(machine_id=machine_id)
     context = {
         'machines': machines,
-        # 'maintenance': maintenance,
-        # 'claims': claims,
+        'maintenance': maintenance,
+        'claims': claims,
         # 'machine_table_titles': machine_table_titles,
         # 'machine_table_subtitles': machine_table_subtitles,
         'menu': menu,

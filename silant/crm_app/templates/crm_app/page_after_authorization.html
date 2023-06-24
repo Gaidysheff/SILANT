@@ -1,20 +1,21 @@
 {% extends 'crm_app/base.html' %}
 <br />
 {% block content %}
-<div>Вы авторизовались как: {{user.last_name}}</div>
-<h1>Информация о комплектации и технических характеристиках Вашей техники</h1>
-
-<p>Test:</p>
-{% for m in machines %}
-<p>{{m.modelMachine}}</p>
-<p>{{m.serialNumber}}</p>
-<p>{{m.modelEngine}}</p>
-<p>{{m.serialNumberEngine}}</p>
-{% endfor %} <br />
 
 <!-- ================================================================ -->
 
 <div class="container">
+  <div class="subtitle_in_tabs">
+    Вы авторизовались как:
+    <span>{{user.last_name}}</span>
+  </div>
+  <div class="page-authorized-title">
+    Информация о комплектации, технических характеристиках, <br />
+    техническом обслуживании Вашей техники <br />
+    и рекламациях на неё.
+  </div>
+  <br />
+
   <!------------------- Tab links ------------------->
   <div class="tab">
     <button
@@ -34,10 +35,7 @@
 
   <!------------------- Tab content ------------------->
   <div id="General_Info" class="tabcontent">
-    <div class="subtitle_in_tabs">
-      Список техники клиента / сервисной компании:
-      <span>{{user.last_name}}</span>
-    </div>
+    <div class="subtitle_in_tabs">Список Вашей техники</div>
 
     <div style="overflow-x: auto">
       <table>
@@ -86,9 +84,7 @@
   </div>
   <div id="Maintenance" class="tabcontent">
     <div class="subtitle_in_tabs">
-      Данные о Техническом Обслуживании <br />
-      машины с Зав. №
-      <span>{{ machine.serialNumber}}</span>
+      Данные о Техническом Обслуживании Вашей техники
     </div>
 
     <div class="tab2__grid-head">
@@ -114,10 +110,7 @@
   </div>
 
   <div id="Claims" class="tabcontent">
-    <div class="subtitle_in_tabs">
-      Рекламации о машине с Зав. №
-      <span>{{ machine.serialNumber}}</span>
-    </div>
+    <div class="subtitle_in_tabs">Рекламации на Вашу технику</div>
     <div class="tab3__grid-head">
       <div class="tab3__col-head">Дата отказа</div>
       <div class="tab3__col-head">Наработка, м/час</div>
