@@ -10,4 +10,8 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('search_machine/', search_machine, name='search_machine'),
     path('you_db/', page_after_authorization, name='page_after_authorization'),
+    path('directory_model_machines/', DirectoryModelMachineList.as_view(),
+         name='directory_model_machine'),
+    path('directory_model_machines/<int:modelMachine_pk>/',
+         DirectoryModelMachine.as_view(), name='directory_model_machine'),
 ]

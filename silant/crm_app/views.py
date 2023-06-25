@@ -1,11 +1,11 @@
 from typing import Any
 from django.db.models.query import QuerySet
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 # from django.db.models import Q
 
-from .models import Machine, Maintenance, Claims, ServiceCompany
+from .models import Machine, Maintenance, Claims, ServiceCompany, ModelMachine
 
 
 menu = [
@@ -122,6 +122,36 @@ def page_after_authorization(request):
     return render(request, 'crm_app/page_after_authorization.html', context=context)
 
 
+# ======================== Directories ========================
+
+def directory_model_machine(request):
+    pass
+
+class DirectoryModelMachine(DetailView):
+    model = ModelMachine
+    template_name = 'crm_app/directoryModelMachine.html'
+    pk_url_kwarg = 'modelMachine_pk'
+    context_object_name = 'model'
+
+class DirectoryModelMachineList(ListView):
+    # model = ModelMachine
+    queryset = ModelMachine.objects.order_by('name')
+    template_name = 'crm_app/directoryModelMachineList.html'
+    allow_empty = False
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu
+        context['machine_table_titles'] = machine_table_titles
+        context['title'] = 'СПРАВОЧНИК "Модели машин"'
+        return context
+
+    def get_queryset(self):
+        return ModelMachine.objects.all()
+
+# =============================================================
+
+
 def about(request):
     return render(request, 'crm_app/about.html', {'menu': menu, 'title': 'О нас'})
 
@@ -134,5 +164,5 @@ def contact(request):
     return HttpResponse("Обратная связь")
 
 
-def login(request):
-    return HttpResponse("Авторизация")
+# def login(request):
+#     return HttpResponse("Авторизация")

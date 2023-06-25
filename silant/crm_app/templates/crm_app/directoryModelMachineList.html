@@ -1,0 +1,9 @@
+{% extends 'crm_app/base.html' %}
+<br />
+{% block content %}
+<h1>{{ title }}</h1>
+<p>LIST OF MODELS</p>
+
+{% for object in object_list %}
+<br />{{object.name}} <br />{{object.description}} <br />{% endfor %} <br />
+{% endblock content %}

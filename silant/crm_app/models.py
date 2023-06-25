@@ -113,6 +113,9 @@ class ModelMachine(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self): 
+        return reverse('modelMachine', kwargs={'modelMachine_id': self.pk}) 
 
 
 class ModelEngine(models.Model):
