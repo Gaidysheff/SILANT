@@ -1,25 +1,26 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse 
+from django.contrib import admin
 
 
 
 class Machine(models.Model):
     modelMachine = models.ForeignKey(
         'ModelMachine', on_delete=models.CASCADE, related_name='modelMachines', verbose_name='Модель техники')
-    serialNumber = models.CharField(max_length=255, verbose_name='Зав. № машины')
+    serialNumber = models.CharField(max_length=255, unique=True, verbose_name='Зав. № машины')
     modelEngine = models.ForeignKey(
         'ModelEngine', on_delete=models.CASCADE, related_name='modelEngines', verbose_name='Модель двигателя')
-    serialNumberEngine = models.CharField(max_length=255, verbose_name='Зав. № двигателя')
+    serialNumberEngine = models.CharField(max_length=255, unique=True, verbose_name='Зав. № двигателя')
     modelTransmission = models.ForeignKey(
         'ModelTransmission', on_delete=models.CASCADE, related_name='modelTransmissions', verbose_name='Модель трансмиссии')
-    serialTransmission = models.CharField(max_length=255, verbose_name='Зав. № трансмиссии')
+    serialTransmission = models.CharField(max_length=255, unique=True, verbose_name='Зав. № трансмиссии')
     modelDriveAxle = models.ForeignKey(
         'ModelDriveAxle', on_delete=models.CASCADE, related_name='modelDriveAxles', verbose_name='Модель ведущего моста')
-    serialDriveAxle = models.CharField(max_length=255, verbose_name='Зав. № ведущего моста')
+    serialDriveAxle = models.CharField(max_length=255, unique=True, verbose_name='Зав. № ведущего моста')
     modelSteeringAxle = models.ForeignKey(
         'ModelSteeringAxle', on_delete=models.CASCADE, related_name='modelSteeringAxles', verbose_name='Модель управляемого моста')
-    serialSteeringAxle = models.CharField(max_length=255, verbose_name='Зав. № управляемого моста')
+    serialSteeringAxle = models.CharField(max_length=255, unique=True, verbose_name='Зав. № управляемого моста')
     deliveryContract = models.CharField(max_length=255, verbose_name='Договор поставки №, дата')
     shipmentDate = models.DateField(verbose_name='Дата отгрузки с завода')
     consignee = models.CharField(max_length=255, verbose_name='Грузополучатель (конечный потребитель)')
@@ -53,6 +54,8 @@ class Maintenance(models.Model):
     executor = models.CharField(max_length=255, verbose_name='Орг-ция, проводившая ТО')
     machine = models.ForeignKey(
         'ModelMachine', on_delete=models.CASCADE, verbose_name='Машина')
+    client = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name='Клиент')
     serviceCompany = models.ForeignKey(
         'ServiceCompany', on_delete=models.CASCADE, verbose_name='Сервисная компания')
     
@@ -74,9 +77,11 @@ class Claims(models.Model):
         'RecoveryMethod', on_delete=models.CASCADE, related_name='recoveryMethods', verbose_name='Способ восстановления')
     usedSpareParts = models.TextField(verbose_name='Используемые запасные части')
     recoverDate = models.DateField(verbose_name='Дата восстановления')
-    downtime = models.IntegerField(verbose_name='Время простоя техники')
+    # downtime = models.IntegerField(verbose_name='Время простоя техники')
     machine = models.ForeignKey(
         'ModelMachine', on_delete=models.CASCADE, verbose_name='Mашина')
+    client = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name='Клиент')
     serviceCompany = models.ForeignKey(
         'ServiceCompany', on_delete=models.CASCADE, verbose_name='Сервисная компания')
     
@@ -87,11 +92,14 @@ class Claims(models.Model):
     def __str__(self):
         return f'{self.breakdownDescription[:20]}...'
     
-    # @property
-    # def downtime(self):
-    #     if (self.breakdownDate != None):
-    #         downtime = self.recoverDate - self.breakdownDate
-    #         return downtime
+    @property
+    @admin.display(description='Время простоя')
+    def downtime(self):
+        if (self.breakdownDate != None):
+            down = self.recoverDate - self.breakdownDate
+            downtime = str(down).split(' ', 1)[0] + ' дней'
+            return downtime
+    
 
 # =============================== Reference Tables =============================
 

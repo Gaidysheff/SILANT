@@ -89,24 +89,26 @@ def page_after_authorization(request):
     user_client = request.user
     user_service = request.user.last_name
 
-    machines = Machine.objects.filter(client=user_client)
+    machines = Machine.objects.filter(
+        client=user_client).order_by('modelMachine')
     if not machines:
         service = ServiceCompany.objects.get(name=user_service)
-        machines = Machine.objects.filter(serviceCompany=service)
+        machines = Machine.objects.filter(
+            serviceCompany=service).order_by('modelMachine')
 
-    # maintenance = Maintenance.objects.filter(client=user_client)
-    # if not maintenance:
-    service = ServiceCompany.objects.get(name=user_service)
-    maintenance = Maintenance.objects.filter(serviceCompany=service)
+    maintenance = Maintenance.objects.filter(
+        client=user_client).order_by('type')
+    if not maintenance:
+        service = ServiceCompany.objects.get(name=user_service)
+        maintenance = Maintenance.objects.filter(
+            serviceCompany=service).order_by('type')
 
-    # claims = Claims.objects.filter(client=user_client)
-    # if not claims:
-    service = ServiceCompany.objects.get(name=user_service)
-    claims = Claims.objects.filter(serviceCompany=service)
+    claims = Claims.objects.filter(client=user_client).order_by('machine')
+    if not claims:
+        service = ServiceCompany.objects.get(name=user_service)
+        claims = Claims.objects.filter(
+            serviceCompany=service).order_by('machine')
 
-    # machines = Machine.objects.filter(Q(client=user) | Q(serviceCompany=user))
-    # claims = Claims.objects.filter(machine_id=machine_id)
-    # maintenance = Maintenance.objects.filter(machine_id=machine_id)
     context = {
         'machines': machines,
         'maintenance': maintenance,

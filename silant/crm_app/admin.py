@@ -36,42 +36,41 @@ class MachineAdmin(admin.ModelAdmin):
 @admin.register(Maintenance)
 class MaintenanceAdmin(admin.ModelAdmin):
     list_display = ('id', 'type', 'maintenanceDate', 'operatingTime', 'workOrder',
-                    'workOrderDate', 'executor', 'machine', 'serviceCompany',)
+                    'workOrderDate', 'executor', 'machine', 'client', 'serviceCompany',)
     list_display_links = ('id', 'type', 'maintenanceDate', 'operatingTime',
-                          'workOrder', 'workOrderDate', 'executor', 'machine', 'serviceCompany',)
+                          'workOrder', 'workOrderDate', 'executor', 'machine', 'client', 'serviceCompany',)
     search_fields = ('workOrder', 'executor', 'machine')
-    list_filter = ('executor', 'machine', 'serviceCompany',)
+    list_filter = ('executor', 'machine', 'client', 'serviceCompany',)
     
     fieldsets = (
          ('ИНФОРМАЦИЯ О ТЕХНИЧЕСКОМ ОБСЛУЖИВАНИИ:', 
           {'classes': ('wide', 'extrapretty'), 'fields': ('type', 'maintenanceDate', 'operatingTime', 'workOrder',
                     'workOrderDate', 'executor')}),
          ('МАШИНА И СЕРВИСНАЯ КОМПАНИЯ:', 
-          {'classes': ('wide', 'extrapretty'), 'fields': ('machine', 'serviceCompany')}),
+          {'classes': ('wide', 'extrapretty'), 'fields': ('machine', 'client', 'serviceCompany')}),
         )
     
-
 
 
 @admin.register(Claims)
 class ClaimsAdmin(admin.ModelAdmin):
     list_display = ('id', 'breakdownDate', 'operatingTime', 'breakdownNode', 'breakdownDescription',
-                    'recoveryMethod', 'usedSpareParts', 'recoverDate', 'downtime', 'machine', 'serviceCompany',)
+                    'recoveryMethod', 'usedSpareParts', 'recoverDate', 'machine', 'downtime', 'client', 'serviceCompany',)
     list_display_links = ('id', 'breakdownDate', 'operatingTime', 'breakdownNode', 'breakdownDescription',
-                          'recoveryMethod', 'usedSpareParts', 'recoverDate', 'downtime', 'machine', 'serviceCompany',)
+                          'recoveryMethod', 'usedSpareParts', 'recoverDate', 'machine', 'downtime', 'client', 'serviceCompany',)
     search_fields = ('breakdownNode', 'breakdownDescription',
-                     'recoveryMethod', 'usedSpareParts', 'machine', 'serviceCompany')
-    list_filter = ('machine', 'serviceCompany',)
+                     'recoveryMethod', 'usedSpareParts', 'machine', 'downtime', 'client', 'serviceCompany')
+    list_filter = ('machine', 'client', 'serviceCompany',)
 
     fieldsets = (
          ('ОТКАЗ / НЕИСПРАВНОСТЬ:', 
           {'classes': ('wide', 'extrapretty'), 'fields': ('breakdownDate', 'operatingTime', 'breakdownNode', 'breakdownDescription')}),
          ('ВОССТАНОВЛЕНИЕ:', 
-          {'classes': ('wide', 'extrapretty'), 'fields': ('recoveryMethod', 'usedSpareParts', 'recoverDate', 'downtime')}),
+          {'classes': ('wide', 'extrapretty'), 'fields': ('recoveryMethod', 'usedSpareParts', 'recoverDate')}),
          ('МАШИНА И СЕРВИСНАЯ КОМПАНИЯ:', 
-          {'classes': ('wide', 'extrapretty'), 'fields': ('machine', 'serviceCompany')}),
+          {'classes': ('wide', 'extrapretty'), 'fields': ('machine', 'client', 'serviceCompany')}),
         )
-
+    
 
 @admin.register(ModelMachine)
 class ModelMachineAdmin(admin.ModelAdmin):
