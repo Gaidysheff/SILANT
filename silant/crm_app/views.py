@@ -3,27 +3,15 @@ from django.db.models.query import QuerySet
 from django.views.generic import ListView, DetailView
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
+
+from .utilities import *
 # from django.db.models import Q
 
 from .models import Machine, Maintenance, Claims, ServiceCompany, ModelMachine
 
 
-menu = [
-    {'title': "Главная страница", 'url_name': 'index'},
-    {'title': "Добавить статью", 'url_name': 'add_page'},
-    {'title': "О нас", 'url_name': 'about'},
-    {'title': "Обратная связь", 'url_name': 'contact'},
-    # {'title': "Войти", 'url_name': 'login'},
-]
 
-
-machine_table_titles = ['Машина', 'Двигатель', 'Трансмиссия', 'Ведущий мост',
-                        'Управляемый мост', 'Договор и Отгрузка', 'Грузополучатель', 'Дополнительно']
-# machine_table_subtitles = ['Модель техники', 'Зав. № машины', 'Модель двигател', 'Зав. № двигателя', 'Модель трансмиссии', 'Зав. № трансмиссии', 'Модель ведущего моста', 'Зав. № ведущего моста', 'Модель управляемого моста',
-#                            'Зав. № управляемого моста', 'Договор поставки №, дата', 'Грузополучатель (конечный потребитель)', 'Адрес поставки (эксплуатации)', 'Комплектация (дополнительные опции)', 'Клиент', 'Сервисная компания']
-
-
-class MachinesHomePage(ListView):
+class MachinesHomePage(DataMixin, ListView):
     model = Machine
     template_name = 'crm_app/index.html'
     context_object_name = 'machines'
@@ -31,11 +19,9 @@ class MachinesHomePage(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = menu
-        context['machine_table_titles'] = machine_table_titles
-        context['title'] = 'Главная страница'
-        return context
-
+        c_def = self.get_user_context(title='Главная страница')
+        return dict(list(context.items()) + list(c_def.items()))
+    
     def get_queryset(self):
         return Machine.objects.all()
 
@@ -124,30 +110,27 @@ def page_after_authorization(request):
 
 # ======================== Directories ========================
 
-def directory_model_machine(request):
-    pass
 
-class DirectoryModelMachine(DetailView):
+class DirectoryModelMachine(DataMixin, DetailView):
     model = ModelMachine
     template_name = 'crm_app/directoryModelMachine.html'
     pk_url_kwarg = 'modelMachine_pk'
     context_object_name = 'model'
 
-class DirectoryModelMachineList(ListView):
-    # model = ModelMachine
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='СПРАВОЧНИК "Модель Вашей машины"')
+        return dict(list(context.items()) + list(c_def.items()))
+
+class DirectoryModelMachineList(DataMixin, ListView):
     queryset = ModelMachine.objects.order_by('name')
     template_name = 'crm_app/directoryModelMachineList.html'
     allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = menu
-        context['machine_table_titles'] = machine_table_titles
-        context['title'] = 'СПРАВОЧНИК "Модели машин"'
-        return context
-
-    def get_queryset(self):
-        return ModelMachine.objects.all()
+        c_def = self.get_user_context(title='СПРАВОЧНИК "Модели техники"')
+        return dict(list(context.items()) + list(c_def.items()))
 
 # =============================================================
 
