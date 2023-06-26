@@ -2,7 +2,8 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.views.generic import ListView, DetailView
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
+
 
 from .utilities import *
 # from django.db.models import Q
@@ -74,6 +75,9 @@ def show_machine(request, machine_id):
 def page_after_authorization(request):
     user_client = request.user
     user_service = request.user.last_name
+
+    if request.user.is_staff == True:
+        return redirect('index')
 
     machines = Machine.objects.filter(
         client=user_client).order_by('modelMachine')

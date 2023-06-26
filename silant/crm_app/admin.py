@@ -12,6 +12,7 @@ class MachineAdmin(admin.ModelAdmin):
                      'modelSteeringAxle', 'serialSteeringAxle', 'deliveryContract', 'client', 'serviceCompany',)
     list_filter = ('modelMachine', 'modelEngine', 'modelTransmission',
                    'modelDriveAxle', 'modelSteeringAxle', 'consignee', 'serviceCompany',)
+    save_on_top = True
     
     fieldsets = (
         ('Машина', 

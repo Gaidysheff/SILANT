@@ -5,5 +5,12 @@
 <p>LIST OF MODELS</p>
 
 {% for object in object_list %}
-<br />{{object.name}} <br />{{object.description}} <br />{% endfor %} <br />
+<br />{{object.name}} <br />
+
+{% autoescape off %} {{object.description|linebreaks}}
+<br />
+{% endautoescape %}
+
+<br />{% endfor %}
+<br />
 {% endblock content %}
