@@ -1,8 +1,8 @@
 {% extends 'crm_app/base.html' %} {% block content %}
 
-<h1>{{ title }}</h1>
-<h1>title</h1>
-<br />
+<div class="directory-head">
+  <div class="directory-head__title">СПРАВОЧНИК <br />{{ title }}</div>
+</div>
 
 <div class="container">
   <div class="directory">
@@ -22,12 +22,16 @@
         </div>
         <div class="directory__description">
           <div class="directory__description-title">Описание:</div>
-          <div class="directory__description-db">{{model.description}}</div>
+          {% autoescape off %}
+          <div class="directory__description-db">
+            {{model.description|linebreaks}}
+          </div>
+          {% endautoescape %}
         </div>
       </div>
       <div class="directory__buttons">
-        <div class="directory__button btn">Вернуться назад</div>
-        <div class="directory__button btn">
+        <div class="directory__button btn back">Вернуться назад</div>
+        <div class="directory__button btn forward">
           Больше моделей <br />в Справочнике
         </div>
       </div>

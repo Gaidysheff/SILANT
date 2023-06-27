@@ -11,7 +11,6 @@ from .utilities import *
 from .models import Machine, Maintenance, Claims, ServiceCompany, ModelMachine
 
 
-
 class MachinesHomePage(DataMixin, ListView):
     model = Machine
     template_name = 'crm_app/index.html'
@@ -22,7 +21,7 @@ class MachinesHomePage(DataMixin, ListView):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title='Главная страница')
         return dict(list(context.items()) + list(c_def.items()))
-    
+
     def get_queryset(self):
         return Machine.objects.all()
 
@@ -123,8 +122,10 @@ class DirectoryModelMachine(DataMixin, DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='СПРАВОЧНИК "Модель Вашей машины"')
+        c_def = self.get_user_context(
+            title='"Модель Вашей машины"')
         return dict(list(context.items()) + list(c_def.items()))
+
 
 class DirectoryModelMachineList(DataMixin, ListView):
     queryset = ModelMachine.objects.order_by('name')
@@ -133,7 +134,7 @@ class DirectoryModelMachineList(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='СПРАВОЧНИК "Модели техники"')
+        c_def = self.get_user_context(title='"Модели техники"')
         return dict(list(context.items()) + list(c_def.items()))
 
 # =============================================================

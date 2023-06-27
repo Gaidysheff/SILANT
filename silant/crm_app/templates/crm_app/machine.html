@@ -1,202 +1,212 @@
-{% extends 'crm_app/base.html' %}
-<br />
-{% block content %}
+{% extends 'crm_app/base.html' %} {% block content %}
 
 <div class="container">
-  <!------------------- Tab links ------------------->
-  <div class="tab">
-    <button
-      class="tablinks"
-      onclick="openTable(event, 'General_Info')"
-      id="defaultOpen"
-    >
-      Общая информация
-    </button>
-    <button class="tablinks" onclick="openTable(event, 'Maintenance')">
-      Техническое Обслуживание
-    </button>
-    <button class="tablinks" onclick="openTable(event, 'Claims')">
-      Рекламации
-    </button>
-  </div>
-
-  <!------------------- Tab content ------------------->
-  <div id="General_Info" class="tabcontent">
-    <div class="subtitle_in_tabs">
-      Общая информация о машине с Зав. №
-      <span>{{ machine.serialNumber}}</span>
+  <div class="container-inner">
+    <!------------------- Tab links ------------------->
+    <div class="tab">
+      <button
+        class="tablinks"
+        onclick="openTable(event, 'General_Info')"
+        id="defaultOpen"
+      >
+        Общая информация
+      </button>
+      <button class="tablinks" onclick="openTable(event, 'Maintenance')">
+        Техническое Обслуживание
+      </button>
+      <button class="tablinks" onclick="openTable(event, 'Claims')">
+        Рекламации
+      </button>
     </div>
 
-    <div class="search">
-      <div class="search__set">
-        <div class="search__set-title">МАШИНА</div>
-        <div class="search__grid">
-          <div class="search__col col-left">Модель техники</div>
-          <div class="search__col col-right">{{ machine.modelMachine }}</div>
-        </div>
-        <div class="search__grid">
-          <div class="search__col col-left">Зав. № машины</div>
-          <div class="search__col col-right">{{ machine.serialNumber }}</div>
-        </div>
+    <!------------------- Tab content ------------------->
+    <div id="General_Info" class="tabcontent">
+      <div class="subtitle_in_tabs">
+        Общая информация о машине с Зав. №
+        <span>{{ machine.serialNumber}}</span>
       </div>
-      <div class="search__set">
-        <div class="search__set-title">ДВИГАТЕЛЬ</div>
-        <div class="search__grid">
-          <div class="search__col col-left">Модель двигателя</div>
-          <div class="search__col col-right">{{ machine.modelEngine }}</div>
-        </div>
-        <div class="search__grid">
-          <div class="search__col col-left">Зав. № двигателя</div>
-          <div class="search__col col-right">
-            {{ machine.serialNumberEngine }}
-          </div>
-        </div>
-      </div>
-      <div class="search__set">
-        <div class="search__set-title">ТРАНСМИССИЯ</div>
-        <div class="search__grid">
-          <div class="search__col col-left">Модель трансмиссии</div>
-          <div class="search__col col-right">
-            {{ machine.modelTransmission }}
-          </div>
-        </div>
-        <div class="search__grid">
-          <div class="search__col col-left">Зав. № ведущего моста</div>
-          <div class="search__col col-right">
-            {{ machine.serialTransmission }}
-          </div>
-        </div>
-      </div>
-      <div class="search__set">
-        <div class="search__set-title">ВУДУЩИЙ МОСТ</div>
-        <div class="search__grid">
-          <div class="search__col col-left">Модель ведущего моста</div>
-          <div class="search__col col-right">{{ machine.modelDriveAxle }}</div>
-        </div>
-        <div class="search__grid">
-          <div class="search__col col-left">Зав. № ведущего моста</div>
-          <div class="search__col col-right">{{ machine.serialDriveAxle }}</div>
-        </div>
-      </div>
-      <div class="search__set">
-        <div class="search__set-title">УПРАВЛЯЕМЫЙ МОСТ</div>
-        <div class="search__grid">
-          <div class="search__col col-left">Модель управляемого моста</div>
-          <div class="search__col col-right">
-            {{ machine.modelSteeringAxle }}
-          </div>
-        </div>
-        <div class="search__grid">
-          <div class="search__col col-left">Зав. № управляемого моста</div>
-          <div class="search__col col-right">
-            {{ machine.serialSteeringAxle }}
-          </div>
-        </div>
-      </div>
-      <div class="search__set">
-        <div class="search__set-title">ДОГОВОР И ОТГРУЗКА</div>
-        <div class="search__grid">
-          <div class="search__col col-left">Договор поставки №, дата</div>
-          <div class="search__col col-right">
-            {{ machine.deliveryContract }}
-          </div>
-        </div>
-        <div class="search__grid">
-          <div class="search__col col-left">Дата отгрузки с завода</div>
-          <div class="search__col col-right">{{ machine.shipmentDate }}</div>
-        </div>
-      </div>
-      <div class="search__set">
-        <div class="search__set-title">ГРУЗОПОЛУЧАТЕЛЬ</div>
-        <div class="search__grid">
-          <div class="search__col col-left">
-            Грузополучатель (конечный потребитель)
-          </div>
-          <div class="search__col col-right">{{ machine.consignee }}</div>
-        </div>
-        <div class="search__grid">
-          <div class="search__col col-left">Адрес поставки (эксплуатации)</div>
-          <div class="search__col col-right">{{ machine.deliveryAddress }}</div>
-        </div>
-      </div>
-      <div class="search__set">
-        <div class="search__set-title">ДОПОЛНИТЕЛЬНО</div>
-        <div class="search__grid">
-          <div class="search__col col-left">
-            Комплектация (дополнительные опции)
-          </div>
-          <div class="search__col col-right">
-            {{ machine.additionalOptions }}
-          </div>
-        </div>
-        <div class="search__grid">
-          <div class="search__col col-left">Клиент</div>
-          <div class="search__col col-right">{{ machine.client }}</div>
-        </div>
-        <div class="search__grid">
-          <div class="search__col col-left">Сервисная компания</div>
-          <div class="search__col col-right">{{ machine.serviceCompany }}</div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div id="Maintenance" class="tabcontent">
-    <div class="subtitle_in_tabs">
-      Данные о Техническом Обслуживании <br />
-      машины с Зав. №
-      <span>{{ machine.serialNumber}}</span>
+      <div class="search">
+        <div class="search__set">
+          <div class="search__set-title">МАШИНА</div>
+          <div class="search__grid">
+            <div class="search__col col-left">Модель техники</div>
+            <div class="search__col col-right">{{ machine.modelMachine }}</div>
+          </div>
+          <div class="search__grid">
+            <div class="search__col col-left">Зав. № машины</div>
+            <div class="search__col col-right">{{ machine.serialNumber }}</div>
+          </div>
+        </div>
+        <div class="search__set">
+          <div class="search__set-title">ДВИГАТЕЛЬ</div>
+          <div class="search__grid">
+            <div class="search__col col-left">Модель двигателя</div>
+            <div class="search__col col-right">{{ machine.modelEngine }}</div>
+          </div>
+          <div class="search__grid">
+            <div class="search__col col-left">Зав. № двигателя</div>
+            <div class="search__col col-right">
+              {{ machine.serialNumberEngine }}
+            </div>
+          </div>
+        </div>
+        <div class="search__set">
+          <div class="search__set-title">ТРАНСМИССИЯ</div>
+          <div class="search__grid">
+            <div class="search__col col-left">Модель трансмиссии</div>
+            <div class="search__col col-right">
+              {{ machine.modelTransmission }}
+            </div>
+          </div>
+          <div class="search__grid">
+            <div class="search__col col-left">Зав. № ведущего моста</div>
+            <div class="search__col col-right">
+              {{ machine.serialTransmission }}
+            </div>
+          </div>
+        </div>
+        <div class="search__set">
+          <div class="search__set-title">ВУДУЩИЙ МОСТ</div>
+          <div class="search__grid">
+            <div class="search__col col-left">Модель ведущего моста</div>
+            <div class="search__col col-right">
+              {{ machine.modelDriveAxle }}
+            </div>
+          </div>
+          <div class="search__grid">
+            <div class="search__col col-left">Зав. № ведущего моста</div>
+            <div class="search__col col-right">
+              {{ machine.serialDriveAxle }}
+            </div>
+          </div>
+        </div>
+        <div class="search__set">
+          <div class="search__set-title">УПРАВЛЯЕМЫЙ МОСТ</div>
+          <div class="search__grid">
+            <div class="search__col col-left">Модель управляемого моста</div>
+            <div class="search__col col-right">
+              {{ machine.modelSteeringAxle }}
+            </div>
+          </div>
+          <div class="search__grid">
+            <div class="search__col col-left">Зав. № управляемого моста</div>
+            <div class="search__col col-right">
+              {{ machine.serialSteeringAxle }}
+            </div>
+          </div>
+        </div>
+        <div class="search__set">
+          <div class="search__set-title">ДОГОВОР И ОТГРУЗКА</div>
+          <div class="search__grid">
+            <div class="search__col col-left">Договор поставки №, дата</div>
+            <div class="search__col col-right">
+              {{ machine.deliveryContract }}
+            </div>
+          </div>
+          <div class="search__grid">
+            <div class="search__col col-left">Дата отгрузки с завода</div>
+            <div class="search__col col-right">{{ machine.shipmentDate }}</div>
+          </div>
+        </div>
+        <div class="search__set">
+          <div class="search__set-title">ГРУЗОПОЛУЧАТЕЛЬ</div>
+          <div class="search__grid">
+            <div class="search__col col-left">
+              Грузополучатель (конечный потребитель)
+            </div>
+            <div class="search__col col-right">{{ machine.consignee }}</div>
+          </div>
+          <div class="search__grid">
+            <div class="search__col col-left">
+              Адрес поставки (эксплуатации)
+            </div>
+            <div class="search__col col-right">
+              {{ machine.deliveryAddress }}
+            </div>
+          </div>
+        </div>
+        <div class="search__set">
+          <div class="search__set-title">ДОПОЛНИТЕЛЬНО</div>
+          <div class="search__grid">
+            <div class="search__col col-left">
+              Комплектация (дополнительные опции)
+            </div>
+            <div class="search__col col-right">
+              {{ machine.additionalOptions }}
+            </div>
+          </div>
+          <div class="search__grid">
+            <div class="search__col col-left">Клиент</div>
+            <div class="search__col col-right">{{ machine.client }}</div>
+          </div>
+          <div class="search__grid">
+            <div class="search__col col-left">Сервисная компания</div>
+            <div class="search__col col-right">
+              {{ machine.serviceCompany }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="tab2__grid-head">
-      <div class="tab2__col-head">Вид ТО</div>
-      <div class="tab2__col-head">Дата проведения ТО</div>
-      <div class="tab2__col-head">Наработка, м/час</div>
-      <div class="tab2__col-head">№ заказ-наряда</div>
-      <div class="tab2__col-head">Дата заказ-наряда</div>
-      <div class="tab2__col-head">Орг-ция, проводившая ТО</div>
-      <div class="tab2__col-head">Сервисная компания</div>
-    </div>
-    {% for m in maintenance %}
-    <div class="tab2__grid">
-      <div class="tab2__col">{{m.type}}</div>
-      <div class="tab2__col">{{m.maintenanceDate}}</div>
-      <div class="tab2__col">{{m.operatingTime}}</div>
-      <div class="tab2__col">{{m.workOrder}}</div>
-      <div class="tab2__col">{{m.workOrderDate}}</div>
-      <div class="tab2__col">{{m.executor}}</div>
-      <div class="tab2__col">{{m.serviceCompany}}</div>
-    </div>
-    {% endfor %}
-  </div>
+    <div id="Maintenance" class="tabcontent">
+      <div class="subtitle_in_tabs">
+        Данные о Техническом Обслуживании <br />
+        машины с Зав. №
+        <span>{{ machine.serialNumber}}</span>
+      </div>
 
-  <div id="Claims" class="tabcontent">
-    <div class="subtitle_in_tabs">
-      Рекламации о машине с Зав. №
-      <span>{{ machine.serialNumber}}</span>
+      <div class="tab2__grid-head">
+        <div class="tab2__col-head">Вид ТО</div>
+        <div class="tab2__col-head">Дата проведения ТО</div>
+        <div class="tab2__col-head">Наработка, м/час</div>
+        <div class="tab2__col-head">№ заказ-наряда</div>
+        <div class="tab2__col-head">Дата заказ-наряда</div>
+        <div class="tab2__col-head">Орг-ция, проводившая ТО</div>
+        <div class="tab2__col-head">Сервисная компания</div>
+      </div>
+      {% for m in maintenance %}
+      <div class="tab2__grid">
+        <div class="tab2__col">{{m.type}}</div>
+        <div class="tab2__col">{{m.maintenanceDate}}</div>
+        <div class="tab2__col">{{m.operatingTime}}</div>
+        <div class="tab2__col">{{m.workOrder}}</div>
+        <div class="tab2__col">{{m.workOrderDate}}</div>
+        <div class="tab2__col">{{m.executor}}</div>
+        <div class="tab2__col">{{m.serviceCompany}}</div>
+      </div>
+      {% endfor %}
     </div>
-    <div class="tab3__grid-head">
-      <div class="tab3__col-head">Дата отказа</div>
-      <div class="tab3__col-head">Наработка, м/час</div>
-      <div class="tab3__col-head">Узел отказа</div>
-      <div class="tab3__col-head">Описание отказа</div>
-      <div class="tab3__col-head">Используемые запасные части</div>
-      <div class="tab3__col-head">Дата восстановления</div>
-      <div class="tab3__col-head">Время простоя техники</div>
-      <div class="tab3__col-head">Сервисная компания</div>
+
+    <div id="Claims" class="tabcontent">
+      <div class="subtitle_in_tabs">
+        Рекламации о машине с Зав. №
+        <span>{{ machine.serialNumber}}</span>
+      </div>
+      <div class="tab3__grid-head">
+        <div class="tab3__col-head">Дата отказа</div>
+        <div class="tab3__col-head">Наработка, м/час</div>
+        <div class="tab3__col-head">Узел отказа</div>
+        <div class="tab3__col-head">Описание отказа</div>
+        <div class="tab3__col-head">Используемые запасные части</div>
+        <div class="tab3__col-head">Дата восстановления</div>
+        <div class="tab3__col-head">Время простоя техники</div>
+        <div class="tab3__col-head">Сервисная компания</div>
+      </div>
+      {% for c in claims %}
+      <div class="tab3__grid">
+        <div class="tab3__col">{{c.breakdownDate}}</div>
+        <div class="tab3__col">{{c.operatingTime}}</div>
+        <div class="tab3__col">{{c.breakdownDescription}}</div>
+        <div class="tab3__col">{{c.usedSpareParts}}</div>
+        <div class="tab3__col">{{c.usedSpareParts}}</div>
+        <div class="tab3__col">{{c.recoverDate}}</div>
+        <div class="tab3__col">{{c.downtime}}</div>
+        <div class="tab3__col">{{c.serviceCompany}}</div>
+      </div>
+      {% endfor %}
     </div>
-    {% for c in claims %}
-    <div class="tab3__grid">
-      <div class="tab3__col">{{c.breakdownDate}}</div>
-      <div class="tab3__col">{{c.operatingTime}}</div>
-      <div class="tab3__col">{{c.breakdownDescription}}</div>
-      <div class="tab3__col">{{c.usedSpareParts}}</div>
-      <div class="tab3__col">{{c.usedSpareParts}}</div>
-      <div class="tab3__col">{{c.recoverDate}}</div>
-      <div class="tab3__col">{{c.downtime}}</div>
-      <div class="tab3__col">{{c.serviceCompany}}</div>
-    </div>
-    {% endfor %}
   </div>
 </div>
 

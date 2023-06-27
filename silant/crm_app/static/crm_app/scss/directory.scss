@@ -1,3 +1,34 @@
+.directory-head {
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__image {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  &__title {
+    font-size: 4rem;
+    padding: 0px 10px;
+    color: #163e6c;
+    line-height: 160%;
+    text-align: center;
+    align-items: center;
+    text-shadow: 0px 4px 3px rgba(9, 164, 211, 0.623),
+      0px 8px 13px rgba(6, 151, 199, 0.59),
+      0px 18px 23px rgba(10, 187, 211, 0.671);
+  }
+}
+
+// ========================== DIRECTORY with Selected item ===========================
+
 .btn {
   font-size: 1.4rem;
   width: 300px;
@@ -8,7 +39,8 @@
   text-align: center;
   background: #163e6c;
   color: #ebe6d6;
-  margin: 50px;
+  position: relative;
+  margin: -100px 50px 50px 50px;
   box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18,
     -5px -5px 10px #3185d5, inset 5px 5px 8px -4px #3185d5;
   cursor: pointer;
@@ -21,10 +53,36 @@
   }
 }
 
+.back::before {
+  content: "";
+  background: url("../../crm_app/images/icons_buttons/back.png") no-repeat;
+  width: 50px;
+  height: 32px;
+  display: block;
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  left: 5%;
+}
+
+.forward::after {
+  content: "";
+  background: url("../../crm_app/images/icons_buttons/forward.png") no-repeat;
+  width: 50px;
+  height: 32px;
+  display: block;
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  right: 3%;
+}
+
+// ================================================================
+
 .directory {
-  background: url("../images/directories/wave.svg") bottom no-repeat;
-  height: 70vh;
+  height: auto;
   border: 2px solid #163e6c;
+  margin-bottom: 70px;
 
   &__inner {
     height: 100%;
@@ -34,6 +92,7 @@
   &__content {
     height: 70%;
     display: flex;
+    background: url("../images/directories/wave.svg") bottom no-repeat;
   }
   &__set {
     padding: 50px;
@@ -88,15 +147,391 @@
   &__description-db {
     font-size: 1.2rem;
     padding: 10px 20px;
-    height: 80%;
+    height: auto;
+    margin-bottom: 300px;
     border: 1px solid #163e6c;
     border-top: 2px solid #163e6c;
     border-left: 2px solid #163e6c;
     box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18;
+
+    p,
+    ul,
+    ol {
+      margin-bottom: 10px;
+    }
+
+    ol li {
+      margin-left: 100px;
+    }
+
+    ul li {
+      list-style-type: square;
+      margin-left: 120px;
+    }
   }
   &__buttons {
     display: flex;
+    background: #163e6c;
   }
-  &__button {
+}
+
+// ============================ DIRECTORY with all items =============================
+
+.directories {
+  border: 2px solid #163e6c;
+
+  &__row {
+    th:nth-child(1),
+    td:nth-child(1) {
+      width: 20%;
+      text-align: center;
+    }
+
+    th {
+      font-size: 1.5rem;
+      font-weight: bold;
+      font-variant-caps: petite-caps;
+    }
+
+    td:nth-child(1) {
+      font-weight: bold;
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 80%;
+    }
+  }
+
+  &__head {
+  }
+
+  &__col {
+    line-height: 1.2;
+    padding-right: 10px;
+    white-space: pre-line;
+
+    p,
+    ul,
+    ol {
+      margin-bottom: 10px;
+    }
+
+    ol {
+      margin-left: 100px;
+    }
+
+    ul li {
+      list-style-type: square;
+      margin-left: 120px;
+    }
+  }
+}
+
+.navigate-to {
+  height: 300px;
+  width: 100%;
+  padding-left: 100px;
+  display: flex;
+  align-items: end;
+  position: relative;
+  margin: -85px 0 -20px 0;
+  position: relative;
+
+  .btn {
+    margin-bottom: 65px;
+  }
+
+  .empty {
+    justify-content: start;
+    &::after {
+      content: "";
+      background: url("../images/directories/wave(3).png") bottom / cover;
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+  }
+}
+
+/* ======================================================= */
+/* ==================== ADAPTATION ======================= */
+/* ======================================================= */
+
+@media (max-width: 1500px) {
+  .directory {
+    &__image {
+      width: 270px;
+      align-self: center;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    &__description-db {
+      font-size: 1rem;
+      margin-bottom: 200px;
+    }
+  }
+}
+
+// ================================================================
+
+@media (max-width: 1320px) {
+  .directory-head {
+    &__image {
+      width: 250px;
+    }
+    &__title {
+      font-size: 3.5rem;
+    }
+  }
+
+  .navigate-to .btn:after {
+    left: -20%;
+  }
+
+  .directories {
+    th {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+// ================================================================
+
+@media (max-width: 1250px) {
+  .directory {
+    &__description {
+      padding-left: 0;
+    }
+  }
+
+  .btn {
+    margin-top: -20px;
+  }
+}
+
+// ================================================================
+
+@media (max-width: 1030px) {
+  .directory {
+    &__content {
+      flex-direction: column;
+    }
+
+    &__set {
+      width: 100%;
+      padding-bottom: 0;
+    }
+
+    &__name {
+      margin-top: 50px;
+    }
+
+    &__description {
+      width: 100%;
+      margin-bottom: 20px;
+      padding-left: 50px;
+    }
+
+    &__description-db {
+      font-size: 1rem;
+      margin-bottom: 150px;
+    }
+  }
+}
+
+// ================================================================
+
+@media (max-width: 900px) {
+  .directory-head {
+    &__title {
+      font-size: 3rem;
+    }
+  }
+
+  .navigate-to .btn:after {
+    left: -40%;
+  }
+
+  .directories {
+    td:nth-child(2) {
+      font-size: 0.8rem;
+      padding: 0;
+      padding-right: 10px;
+    }
+  }
+}
+
+// ================================================================
+
+@media (max-width: 800px) {
+  .directory {
+    &__description-db {
+      margin-bottom: 80px;
+      font-size: 0.8rem;
+      line-height: 1.2;
+    }
+
+    &__set {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    &__description {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  .directories {
+    th {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+  }
+
+  .navigate-to {
+    padding-left: 0;
+    justify-content: center;
+  }
+
+  .btn {
+    &:active {
+      font-size: 0.95rem;
+    }
+  }
+}
+
+// ================================================================
+
+@media (max-width: 700px) {
+  .navigate-to {
+    .btn:after {
+      left: -44%;
+    }
+  }
+
+  .directory {
+    &__buttons {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .btn {
+      margin: 0 auto 50px auto;
+    }
+  }
+
+  .directory {
+    &__image {
+      width: 200px;
+    }
+  }
+
+  .directories {
+    &__col {
+      ol,
+      ul li {
+        margin-left: 30px;
+      }
+    }
+  }
+}
+
+// ================================================================
+
+@media (max-width: 600px) {
+  .directory-head {
+    &__title {
+      font-size: 2rem;
+    }
+  }
+  .directories {
+    &__row {
+      th:nth-child(1) {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      td:nth-child(odd) {
+        white-space: nowrap;
+        text-overflow: clip;
+        font-size: 0.9rem;
+        font-weight: normal;
+        transform: rotate(-90deg);
+      }
+
+      th:nth-child(1),
+      td:nth-child(1) {
+        width: 15%;
+      }
+
+      th:nth-child(2),
+      td:nth-child(2) {
+        width: 85%;
+      }
+    }
+  }
+
+  .directory {
+    &__description-db {
+      ol li,
+      ul li {
+        margin-left: 30px;
+      }
+    }
+  }
+}
+
+// ================================================================
+
+@media (max-width: 450px) {
+  .directory-head {
+    &__image {
+      width: 150px;
+    }
+    &__title {
+      font-size: 1.5rem;
+    }
+  }
+
+  .directory {
+    &__name-title,
+    &__description-title {
+      font-size: 1.1rem;
+    }
+  }
+
+  .btn {
+    width: 250px;
+  }
+}
+
+// ================================================================
+
+@media (max-width: 350px) {
+  .directory-head {
+    &__title {
+      font-size: 1rem;
+    }
+  }
+
+  .back {
+    width: 220px;
+    padding-left: 30px;
+  }
+
+  .forward {
+    width: 220px;
+    padding-right: 30px;
   }
 }

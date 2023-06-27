@@ -1,16 +1,35 @@
-{% extends 'crm_app/base.html' %}
-<br />
-{% block content %}
-<h1>{{ title }}</h1>
-<p>LIST OF MODELS</p>
+{% extends 'crm_app/base.html' %} {% block content %}
 
-{% for object in object_list %}
-<br />{{object.name}} <br />
+<div class="container">
+  <div class="directory-head">
+    <div class="directory-head__image">
+      <img src="../../static/crm_app/images/directories/machines.png" alt="" />
+    </div>
+    <div class="directory-head__title">СПРАВОЧНИК <br />{{ title }}</div>
+  </div>
+  <table class="directories">
+    <thead>
+      <tr class="directories__row">
+        {% for d in directories %}
+        <th class="directories__head">{{d}}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for object in object_list %}
+      <tr class="directories__row">
+        <td class="directories__col">{{object.name}}</td>
+        {% autoescape off %}
+        <td class="directories__col">{{object.description|linebreaks}}</td>
+        {% endautoescape %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="navigate-to">
+  <span class="empty"></span>
+  <div class="btn back">Назад</div>
+</div>
 
-{% autoescape off %} {{object.description|linebreaks}}
-<br />
-{% endautoescape %}
-
-<br />{% endfor %}
-<br />
 {% endblock content %}
