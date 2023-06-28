@@ -37,46 +37,50 @@
   <div id="General_Info" class="tabcontent">
     <div class="subtitle_in_tabs">Список Вашей техники</div>
 
-    <div style="overflow-x: auto">
-      <table>
-        <tr>
-          <th>Модель техники</th>
-          <th>Зав. № машины</th>
-          <th>Модель двигателя</th>
-          <th>Зав. № двигателя</th>
-          <th>Модель трансмиссии</th>
-          <th>Зав. № ведущего моста</th>
-          <th>Модель ведущего моста</th>
-          <th>Зав. № ведущего моста</th>
-          <th>Модель управляемого моста</th>
-          <th>Зав. № управляемого моста</th>
-          <th>Договор поставки №, дата</th>
-          <th>Дата отгрузки с завода</th>
-          <th>Грузополучатель (конечный потребитель)</th>
-          <th>Комплектация (дополнительные опции)</th>
-          <th>Адрес поставки (эксплуатации)</th>
-          <th>Клиент</th>
-          <th>Сервисная компания</th>
+    <div class="tab1">
+      <table class="tab1__table">
+        <tr class="tab1__row">
+          <th class="tab1__head">Модель техники</th>
+          <th class="tab1__head">Зав. № машины</th>
+          <th class="tab1__head">Модель двигателя</th>
+          <th class="tab1__head">Зав. № двигателя</th>
+          <th class="tab1__head">Модель трансмиссии</th>
+          <th class="tab1__head">Зав. № ведущего моста</th>
+          <th class="tab1__head">Модель ведущего моста</th>
+          <th class="tab1__head">Зав. № ведущего моста</th>
+          <th class="tab1__head">Модель управляемого моста</th>
+          <th class="tab1__head">Зав. № управляемого моста</th>
+          <th class="tab1__head">Договор поставки №, дата</th>
+          <th class="tab1__head">Дата отгрузки с завода</th>
+          <th class="tab1__head">Грузополучатель (конечный потребитель)</th>
+          <th class="tab1__head">Комплектация (дополнительные опции)</th>
+          <th class="tab1__head">Адрес поставки (эксплуатации)</th>
+          <th class="tab1__head">Клиент</th>
+          <th class="tab1__head">Сервисная компания</th>
         </tr>
         {% for machine in machines %}
-        <tr>
-          <td>{{machine.modelMachine}}</td>
-          <td>{{machine.serialNumber}}</td>
-          <td>{{machine.modelEngine}}</td>
-          <td>{{machine.serialNumberEngine}}</td>
-          <td>{{machine.modelTransmission}}</td>
-          <td>{{machine.serialTransmission}}</td>
-          <td>{{machine.modelDriveAxle}}</td>
-          <td>{{machine.serialDriveAxle}}</td>
-          <td>{{machine.modelSteeringAxle}}</td>
-          <td>{{machine.serialSteeringAxle}}</td>
-          <td>{{machine.deliveryContract}}</td>
-          <td>{{machine.shipmentDate}}</td>
-          <td>{{machine.consignee}}</td>
-          <td>{{machine.deliveryAddress}}</td>
-          <td>{{machine.additionalOptions}}</td>
-          <td>{{machine.client}}</td>
-          <td>{{machine.serviceCompany}}</td>
+        <tr class="tab1__row">
+          <td class="tab1__col">
+            <a href="{% url 'directory_model_machine' machine.pk %}"
+              >{{ machine.modelMachine }}</a
+            >
+          </td>
+          <td class="tab1__col">{{machine.serialNumber}}</td>
+          <td class="tab1__col">{{machine.modelEngine}}</td>
+          <td class="tab1__col">{{machine.serialNumberEngine}}</td>
+          <td class="tab1__col">{{machine.modelTransmission}}</td>
+          <td class="tab1__col">{{machine.serialTransmission}}</td>
+          <td class="tab1__col">{{machine.modelDriveAxle}}</td>
+          <td class="tab1__col">{{machine.serialDriveAxle}}</td>
+          <td class="tab1__col">{{machine.modelSteeringAxle}}</td>
+          <td class="tab1__col">{{machine.serialSteeringAxle}}</td>
+          <td class="tab1__col">{{machine.deliveryContract}}</td>
+          <td class="tab1__col">{{machine.shipmentDate}}</td>
+          <td class="tab1__col">{{machine.consignee}}</td>
+          <td class="tab1__col">{{machine.deliveryAddress}}</td>
+          <td class="tab1__col">{{machine.additionalOptions}}</td>
+          <td class="tab1__col">{{machine.client}}</td>
+          <td class="tab1__col">{{machine.serviceCompany}}</td>
         </tr>
         {% endfor %}
       </table>

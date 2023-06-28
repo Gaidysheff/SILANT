@@ -138,7 +138,7 @@ class DirectoryModelMachineList(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
 # =============================================================
-
+ 
 
 def about(request):
     return render(request, 'crm_app/about.html', {'menu': menu, 'title': 'О нас'})

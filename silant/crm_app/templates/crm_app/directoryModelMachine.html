@@ -30,10 +30,17 @@
         </div>
       </div>
       <div class="directory__buttons">
-        <div class="directory__button btn back">Вернуться назад</div>
-        <div class="directory__button btn forward">
+        <a
+          href="{% url 'page_after_authorization' %}"
+          class="directory__button btn btn_back"
+          >Вернуться назад</a
+        >
+        <a
+          href="{% url 'directory_model_machines' %}"
+          class="directory__button btn btn_forward"
+        >
           Больше моделей <br />в Справочнике
-        </div>
+        </a>
       </div>
     </div>
   </div>

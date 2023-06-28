@@ -115,7 +115,7 @@ class ModelMachine(models.Model):
         return self.name
     
     def get_absolute_url(self): 
-        return reverse('modelMachine', kwargs={'modelMachine_id': self.pk}) 
+        return reverse('directory_model_machines', kwargs={'modelMachine_id': self.pk}) 
 
 
 class ModelEngine(models.Model):

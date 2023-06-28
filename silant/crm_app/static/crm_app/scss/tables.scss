@@ -126,41 +126,40 @@
 
 /* ================================================================ */
 
-/* tab1__ */
-
-/* ================================================================ */
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  table-layout: fixed;
-}
-
-th {
-  width: 150px;
-  font-weight: normal;
-  background: #163e6c;
-  color: #ebe6d6;
-  padding: 10px 0;
-  border: 1px solid #ebe6d6;
-}
-
-td {
-  height: 60px;
-  text-align: left;
-  padding: 8px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-tr {
-  &:nth-child(even) {
-    background-color: #ebe6d6;
+.tab1 {
+  overflow-x: auto;
+  &__table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
   }
 
-  &:nth-child(odd) {
-    background-color: rgba(22, 62, 108, 0.1);
+  &__row {
+    &:nth-child(even) {
+      background-color: #ebe6d6;
+    }
+
+    &:nth-child(odd) {
+      background-color: rgba(22, 62, 108, 0.1);
+    }
+  }
+
+  &__head {
+    width: 150px;
+    font-weight: normal;
+    background: #163e6c;
+    color: #ebe6d6;
+    padding: 10px 0;
+    border: 1px solid #ebe6d6;
+  }
+
+  &__col {
+    height: 60px;
+    text-align: left;
+    padding: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
 
