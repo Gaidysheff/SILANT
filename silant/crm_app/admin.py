@@ -134,3 +134,5 @@ class ServiceCompanyAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'description')
     list_display_links = ('id', 'name', 'description')
     search_fields = ('name', 'description')
+
+

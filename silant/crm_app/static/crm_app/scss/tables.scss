@@ -128,6 +128,7 @@
 
 .tab1 {
   overflow-x: auto;
+
   &__table {
     border-collapse: collapse;
     width: 100%;
@@ -155,11 +156,23 @@
 
   &__col {
     height: 60px;
-    text-align: left;
+    text-align: center;
     padding: 8px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+
+    a {
+      text-shadow: 0px 4px 3px rgba(9, 164, 211, 0.623),
+        0px 8px 13px rgba(6, 151, 199, 0.59),
+        0px 18px 23px rgba(10, 187, 211, 0.671);
+
+      &:hover {
+        color: #ee0202;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    }
   }
 }
 
@@ -168,13 +181,13 @@
 .tab2 {
   &__grid-head {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     grid-template-rows: 80px;
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(auto, 30px);
   }
 
@@ -200,11 +213,10 @@
   &__col {
     padding: 10px 5px;
     text-align: center;
-    border: 1px solid #ebe6d6;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    border: 1px dashed rgba(22, 62, 108, 0.4);
+    border-top: 1px dashed rgba(22, 62, 108, 0.4);
 
     &:nth-child(even) {
       background-color: #ebe6d6;
@@ -212,6 +224,18 @@
 
     &:nth-child(odd) {
       background-color: rgba(22, 62, 108, 0.1);
+    }
+
+    a {
+      text-shadow: 0px 4px 3px rgba(9, 164, 211, 0.623),
+        0px 8px 13px rgba(6, 151, 199, 0.59),
+        0px 18px 23px rgba(10, 187, 211, 0.671);
+
+      &:hover {
+        color: #ee0202;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
     }
   }
 }
@@ -219,13 +243,13 @@
 .tab3 {
   &__grid-head {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(5, 1fr) 2fr 2fr 2fr 1fr 1fr;
     grid-template-rows: 80px;
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(5, 1fr) 2fr 2fr 2fr 1fr 1fr;
     grid-template-rows: repeat(auto, 30px);
   }
 
@@ -238,6 +262,7 @@
     align-items: center;
     text-align: center;
     border: 1px solid #ebe6d6;
+    overflow: hidden;
 
     &:first-child {
       border-left: none;
@@ -255,7 +280,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    border: 1px dashed rgba(22, 62, 108, 0.4);
+    border-top: 1px dashed rgba(22, 62, 108, 0.4);
 
     &:nth-child(even) {
       background-color: #ebe6d6;
@@ -264,12 +289,32 @@
     &:nth-child(odd) {
       background-color: rgba(22, 62, 108, 0.1);
     }
+
+    a {
+      text-shadow: 0px 4px 3px rgba(9, 164, 211, 0.623),
+        0px 8px 13px rgba(6, 151, 199, 0.59),
+        0px 18px 23px rgba(10, 187, 211, 0.671);
+
+      &:hover {
+        color: #ee0202;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    }
   }
 }
 
 /* ======================================================= */
 /* ==================== ADAPTATION ======================= */
 /* ======================================================= */
+
+@media (max-width: 1200px) {
+  .tab3 {
+    &__col-head {
+      font-size: 0.8rem;
+    }
+  }
+}
 
 /* ======================= 1030 ========================== */
 
@@ -285,7 +330,7 @@
   .tab2 {
     &__grid-head {
       grid-template-rows: 60px;
-      line-height: 100%;
+      line-height: 1;
     }
 
     &__col-head {
@@ -302,17 +347,17 @@
   .tab3 {
     &__grid-head {
       grid-template-rows: 60px;
-      line-height: 100%;
+      line-height: 1;
     }
 
     &__col-head {
       padding: 0;
-      font-size: 0.8rem;
+      font-size: 0.6rem;
     }
 
     &__col {
       padding: 5px 5px;
-      font-size: 0.8rem;
+      font-size: 0.6rem;
     }
   }
 }
@@ -350,7 +395,7 @@
     &__col-head,
     &__col {
       font-size: 0.6rem;
-      line-height: 100%;
+      line-height: 1;
     }
   }
 

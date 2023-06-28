@@ -202,14 +202,19 @@
   }
 
   &__name-db {
-    font-size: 1.2rem;
+    font-size: 2rem;
+    font-style: italic;
     font-weight: bold;
-    color: #ee0202;
+    background: #163e6c;
+    color: #ebe6d6;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
     height: 80%;
+    text-shadow: 3px 4px 4px rgba(59, 177, 213, 0.623),
+      0px 8px 13px rgba(25, 158, 202, 0.59),
+      0px 18px 23px rgba(57, 199, 218, 0.671);
     border: 1px solid #163e6c;
     border-top: 2px solid #163e6c;
     border-left: 2px solid #163e6c;
@@ -330,11 +335,11 @@
 .navigate-to {
   height: 300px;
   width: 100%;
-  padding-left: 100px;
   display: flex;
+  justify-content: center;
   align-items: end;
   position: relative;
-  margin: -20px 0 -20px 0;
+  margin: -10px 0 -20px 0;
   position: relative;
 
   .btn {
@@ -343,10 +348,10 @@
 
   .empty {
     justify-content: start;
-    z-index: -111;
+    z-index: -1;
     &::after {
       content: "";
-      background: url("../images/directories/wave(3).png") bottom / cover;
+      background: url("../images/directories/wave(2).svg") bottom / cover;
       width: 100%;
       height: 100%;
       display: block;
@@ -389,16 +394,6 @@
     }
     &__title {
       font-size: 3.5rem;
-    }
-  }
-
-  .navigate-to .btn:after {
-    left: -20%;
-  }
-
-  .directories {
-    &__head {
-      font-size: 1.2rem;
     }
   }
 }
@@ -456,10 +451,6 @@
     }
   }
 
-  .navigate-to .btn:after {
-    left: -40%;
-  }
-
   .directories {
     &__col {
       &:nth-child(2) {
@@ -498,11 +489,6 @@
       font-size: 1rem;
       font-weight: normal;
     }
-  }
-
-  .navigate-to {
-    padding-left: 0;
-    justify-content: center;
   }
 
   .btn_back_to_list {
@@ -645,8 +631,13 @@
 
   .btn_back_to_list {
     width: 230px;
+    font-size: 1rem;
   }
-
+  .btn {
+    &:active {
+      font-size: 0.95rem;
+    }
+  }
   .forward {
     width: 220px;
     padding-right: 30px;

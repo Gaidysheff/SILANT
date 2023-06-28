@@ -66,13 +66,21 @@
             >
           </td>
           <td class="tab1__col">{{machine.serialNumber}}</td>
-          <td class="tab1__col">{{machine.modelEngine}}</td>
+          <td class="tab1__col">
+            <a href="#">{{machine.modelEngine}}</a>
+          </td>
           <td class="tab1__col">{{machine.serialNumberEngine}}</td>
-          <td class="tab1__col">{{machine.modelTransmission}}</td>
+          <td class="tab1__col">
+            <a href="#">{{machine.modelTransmission}}</a>
+          </td>
           <td class="tab1__col">{{machine.serialTransmission}}</td>
-          <td class="tab1__col">{{machine.modelDriveAxle}}</td>
+          <td class="tab1__col">
+            <a href="#">{{machine.modelDriveAxle}}</a>
+          </td>
           <td class="tab1__col">{{machine.serialDriveAxle}}</td>
-          <td class="tab1__col">{{machine.modelSteeringAxle}}</td>
+          <td class="tab1__col">
+            <a href="#">{{machine.modelSteeringAxle}}</a>
+          </td>
           <td class="tab1__col">{{machine.serialSteeringAxle}}</td>
           <td class="tab1__col">{{machine.deliveryContract}}</td>
           <td class="tab1__col">{{machine.shipmentDate}}</td>
@@ -80,7 +88,9 @@
           <td class="tab1__col">{{machine.deliveryAddress}}</td>
           <td class="tab1__col">{{machine.additionalOptions}}</td>
           <td class="tab1__col">{{machine.client}}</td>
-          <td class="tab1__col">{{machine.serviceCompany}}</td>
+          <td class="tab1__col">
+            <a href="#">{{machine.serviceCompany}}</a>
+          </td>
         </tr>
         {% endfor %}
       </table>
@@ -92,6 +102,7 @@
     </div>
 
     <div class="tab2__grid-head">
+      <div class="tab2__col-head">Машина</div>
       <div class="tab2__col-head">Вид ТО</div>
       <div class="tab2__col-head">Дата проведения ТО</div>
       <div class="tab2__col-head">Наработка, м/час</div>
@@ -102,13 +113,20 @@
     </div>
     {% for m in maintenance %}
     <div class="tab2__grid">
-      <div class="tab2__col">{{m.type}}</div>
+      <div class="tab2__col">
+        <a href="#">{{m.machine}}</a>
+      </div>
+      <div class="tab2__col">
+        <a href="#">{{m.type}}</a>
+      </div>
       <div class="tab2__col">{{m.maintenanceDate}}</div>
       <div class="tab2__col">{{m.operatingTime}}</div>
       <div class="tab2__col">{{m.workOrder}}</div>
       <div class="tab2__col">{{m.workOrderDate}}</div>
       <div class="tab2__col">{{m.executor}}</div>
-      <div class="tab2__col">{{m.serviceCompany}}</div>
+      <div class="tab2__col">
+        <a href="#">{{m.serviceCompany}}</a>
+      </div>
     </div>
     {% endfor %}
   </div>
@@ -116,10 +134,12 @@
   <div id="Claims" class="tabcontent">
     <div class="subtitle_in_tabs">Рекламации на Вашу технику</div>
     <div class="tab3__grid-head">
+      <div class="tab3__col-head">Машина</div>
       <div class="tab3__col-head">Дата отказа</div>
       <div class="tab3__col-head">Наработка, м/час</div>
       <div class="tab3__col-head">Узел отказа</div>
       <div class="tab3__col-head">Описание отказа</div>
+      <div class="tab3__col-head">Способ восстановления</div>
       <div class="tab3__col-head">Используемые запасные части</div>
       <div class="tab3__col-head">Дата восстановления</div>
       <div class="tab3__col-head">Время простоя техники</div>
@@ -127,14 +147,24 @@
     </div>
     {% for c in claims %}
     <div class="tab3__grid">
+      <div class="tab3__col">
+        <a href="#">{{c.machine}}</a>
+      </div>
       <div class="tab3__col">{{c.breakdownDate}}</div>
       <div class="tab3__col">{{c.operatingTime}}</div>
-      <div class="tab3__col">{{c.breakdownDescription}}</div>
-      <div class="tab3__col">{{c.usedSpareParts}}</div>
+      <div class="tab3__col">
+        <a href="#">{{c.breakdownDescription}}</a>
+      </div>
+      <div class="tab3__col">{{c.recoveryMethod}}</div>
+      <div class="tab3__col">
+        <a href="#">{{c.usedSpareParts}}</a>
+      </div>
       <div class="tab3__col">{{c.usedSpareParts}}</div>
       <div class="tab3__col">{{c.recoverDate}}</div>
       <div class="tab3__col">{{c.downtime}}</div>
-      <div class="tab3__col">{{c.serviceCompany}}</div>
+      <div class="tab3__col">
+        <a href="#">{{c.serviceCompany}}</a>
+      </div>
     </div>
     {% endfor %}
   </div>
