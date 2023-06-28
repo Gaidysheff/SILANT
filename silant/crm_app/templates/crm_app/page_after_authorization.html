@@ -67,19 +67,27 @@
           </td>
           <td class="tab1__col">{{machine.serialNumber}}</td>
           <td class="tab1__col">
-            <a href="#">{{machine.modelEngine}}</a>
+            <a href="{% url 'directory_model_engine' machine.pk %}"
+              >{{machine.modelEngine}}</a
+            >
           </td>
           <td class="tab1__col">{{machine.serialNumberEngine}}</td>
           <td class="tab1__col">
-            <a href="#">{{machine.modelTransmission}}</a>
+            <a href="{% url 'directory_model_transmission' machine.pk %}"
+              >{{machine.modelTransmission}}</a
+            >
           </td>
           <td class="tab1__col">{{machine.serialTransmission}}</td>
           <td class="tab1__col">
-            <a href="#">{{machine.modelDriveAxle}}</a>
+            <a href="{% url 'directory_model_drive_axle' machine.pk %}"
+              >{{machine.modelDriveAxle}}</a
+            >
           </td>
           <td class="tab1__col">{{machine.serialDriveAxle}}</td>
           <td class="tab1__col">
-            <a href="#">{{machine.modelSteeringAxle}}</a>
+            <a href="{% url 'directory_model_steering_axle' machine.pk %}"
+              >{{machine.modelSteeringAxle}}</a
+            >
           </td>
           <td class="tab1__col">{{machine.serialSteeringAxle}}</td>
           <td class="tab1__col">{{machine.deliveryContract}}</td>
@@ -89,7 +97,9 @@
           <td class="tab1__col">{{machine.additionalOptions}}</td>
           <td class="tab1__col">{{machine.client}}</td>
           <td class="tab1__col">
-            <a href="#">{{machine.serviceCompany}}</a>
+            <a href="{% url 'directory_service_company' machine.pk %}"
+              >{{machine.serviceCompany}}</a
+            >
           </td>
         </tr>
         {% endfor %}
@@ -114,10 +124,14 @@
     {% for m in maintenance %}
     <div class="tab2__grid">
       <div class="tab2__col">
-        <a href="#">{{m.machine}}</a>
+        <a href="{% url 'directory_model_machine' machine.pk %}"
+          >{{m.machine}}</a
+        >
       </div>
       <div class="tab2__col">
-        <a href="#">{{m.type}}</a>
+        <a href="{% url 'directory_maintenance_type' machine.pk %}"
+          >{{m.type}}</a
+        >
       </div>
       <div class="tab2__col">{{m.maintenanceDate}}</div>
       <div class="tab2__col">{{m.operatingTime}}</div>
@@ -125,7 +139,9 @@
       <div class="tab2__col">{{m.workOrderDate}}</div>
       <div class="tab2__col">{{m.executor}}</div>
       <div class="tab2__col">
-        <a href="#">{{m.serviceCompany}}</a>
+        <a href="{% url 'directory_service_company' machine.pk %}"
+          >{{m.serviceCompany}}</a
+        >
       </div>
     </div>
     {% endfor %}
@@ -148,22 +164,30 @@
     {% for c in claims %}
     <div class="tab3__grid">
       <div class="tab3__col">
-        <a href="#">{{c.machine}}</a>
+        <a href="{% url 'directory_model_machine' machine.pk %}"
+          >{{c.machine}}</a
+        >
       </div>
       <div class="tab3__col">{{c.breakdownDate}}</div>
       <div class="tab3__col">{{c.operatingTime}}</div>
       <div class="tab3__col">
-        <a href="#">{{c.breakdownDescription}}</a>
+        <a href="{% url 'directory_model_breakdown' machine.pk %}"
+          >{{c.breakdownDescription}}</a
+        >
       </div>
-      <div class="tab3__col">{{c.recoveryMethod}}</div>
       <div class="tab3__col">
-        <a href="#">{{c.usedSpareParts}}</a>
+        <a href="{% url 'directory_recovery_method' machine.pk %}"
+          >{{c.recoveryMethod}}</a
+        >
       </div>
+      <div class="tab3__col">{{c.usedSpareParts}}</div>
       <div class="tab3__col">{{c.usedSpareParts}}</div>
       <div class="tab3__col">{{c.recoverDate}}</div>
       <div class="tab3__col">{{c.downtime}}</div>
       <div class="tab3__col">
-        <a href="#">{{c.serviceCompany}}</a>
+        <a href="{% url 'directory_service_company' machine.pk %}"
+          >{{c.serviceCompany}}</a
+        >
       </div>
     </div>
     {% endfor %}

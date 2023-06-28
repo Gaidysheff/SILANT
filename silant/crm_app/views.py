@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from .utilities import *
 # from django.db.models import Q
 
-from .models import Machine, Maintenance, Claims, ServiceCompany, ModelMachine
+from .models import Breakdown, Machine, Maintenance, Claims, MaintenanceType, ModelDriveAxle, ModelEngine, ModelSteeringAxle, ModelTransmission, RecoveryMethod, ServiceCompany, ModelMachine
 
 
 class MachinesHomePage(DataMixin, ListView):
@@ -136,6 +136,206 @@ class DirectoryModelMachineList(DataMixin, ListView):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title='"Модели техники"')
         return dict(list(context.items()) + list(c_def.items()))
+    
+# ---------------------------------------------------------------
+    
+class DirectoryModelEngine(DataMixin, DetailView):
+    model = ModelEngine
+    template_name = 'crm_app/directoryModelEngine.html'
+    pk_url_kwarg = 'modelMachine_pk'
+    context_object_name = 'model'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title='"Модель двигателя"')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class DirectoryModelEngineList(DataMixin, ListView):
+    queryset = ModelEngine.objects.order_by('name')
+    template_name = 'crm_app/directoryModelEngineList.html'
+    allow_empty = False
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='"Модели двигателей"')
+        return dict(list(context.items()) + list(c_def.items()))
+    
+# ---------------------------------------------------------------
+    
+class DirectoryModelTransmission(DataMixin, DetailView):
+    model = ModelTransmission
+    template_name = 'crm_app/directoryModelTransmission.html'
+    pk_url_kwarg = 'modelMachine_pk'
+    context_object_name = 'model'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title='"Модель трансмиссии"')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class DirectoryModelTransmissionList(DataMixin, ListView):
+    queryset = ModelTransmission.objects.order_by('name')
+    template_name = 'crm_app/directoryModelTransmissionList.html'
+    allow_empty = False
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='"Модели трансмиссий"')
+        return dict(list(context.items()) + list(c_def.items()))
+    
+# ---------------------------------------------------------------
+    
+class DirectoryModelDriveAxle(DataMixin, DetailView):
+    model = ModelDriveAxle
+    template_name = 'crm_app/directoryModelDriveAxle.html'
+    pk_url_kwarg = 'modelMachine_pk'
+    context_object_name = 'model'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title='"Модель ведущего моста"')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class DirectoryModelDriveAxleList(DataMixin, ListView):
+    queryset = ModelDriveAxle.objects.order_by('name')
+    template_name = 'crm_app/directoryModelDriveAxleList.html'
+    allow_empty = False
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='"Модели ведущего моста"')
+        return dict(list(context.items()) + list(c_def.items()))
+
+# ---------------------------------------------------------------
+    
+class DirectoryModelSteeringAxle(DataMixin, DetailView):
+    model = ModelSteeringAxle
+    template_name = 'crm_app/directoryModelSteeringAxle.html'
+    pk_url_kwarg = 'modelMachine_pk'
+    context_object_name = 'model'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title='"Модель управляемого моста"')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class DirectoryModelSteeringAxleList(DataMixin, ListView):
+    queryset = ModelSteeringAxle.objects.order_by('name')
+    template_name = 'crm_app/directoryModelSteeringAxleList.html'
+    allow_empty = False
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='"Модели управляемого моста"')
+        return dict(list(context.items()) + list(c_def.items()))    
+
+# ---------------------------------------------------------------
+    
+class DirectoryMaintenanceType(DataMixin, DetailView):
+    model = MaintenanceType
+    template_name = 'crm_app/directoryMaintenanceType.html'
+    pk_url_kwarg = 'modelMachine_pk'
+    context_object_name = 'model'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title='"Вид Технического Обслуживания"')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class DirectoryMaintenanceTypeList(DataMixin, ListView):
+    queryset = MaintenanceType.objects.order_by('name')
+    template_name = 'crm_app/directoryMaintenanceTypeList.html'
+    allow_empty = False
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='"Виды Технического Обслуживания"')
+        return dict(list(context.items()) + list(c_def.items()))
+    # ---------------------------------------------------------------
+    
+class DirectoryBreakdown(DataMixin, DetailView):
+    model = Breakdown
+    template_name = 'crm_app/directoryBreakdown.html'
+    pk_url_kwarg = 'modelMachine_pk'
+    context_object_name = 'model'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title='"Узел отказа"')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class DirectoryBreakdownList(DataMixin, ListView):
+    queryset = Breakdown.objects.order_by('name')
+    template_name = 'crm_app/directoryBreakdownList.html'
+    allow_empty = False
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='"Узлы отказа"')
+        return dict(list(context.items()) + list(c_def.items()))
+    
+# ---------------------------------------------------------------
+    
+class DirectoryRecoveryMethod(DataMixin, DetailView):
+    model = RecoveryMethod
+    template_name = 'crm_app/directoryRecoveryMethod.html'
+    pk_url_kwarg = 'modelMachine_pk'
+    context_object_name = 'model'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title='"Способ восстановления"')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class DirectoryRecoveryMethodList(DataMixin, ListView):
+    queryset = RecoveryMethod.objects.order_by('name')
+    template_name = 'crm_app/directoryRecoveryMethodList.html'
+    allow_empty = False
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='"Способы восстановления"')
+        return dict(list(context.items()) + list(c_def.items()))
+    
+# ---------------------------------------------------------------
+    
+class DirectoryServiceCompany(DataMixin, DetailView):
+    model = ServiceCompany
+    template_name = 'crm_app/directoryServiceCompany.html'
+    pk_url_kwarg = 'modelMachine_pk'
+    context_object_name = 'model'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title='"Сервисная компания"')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class DirectoryServiceCompanyList(DataMixin, ListView):
+    queryset = ServiceCompany.objects.order_by('name')
+    template_name = 'crm_app/directoryServiceCompanyList.html'
+    allow_empty = False
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='"Сервисные компании"')
+        return dict(list(context.items()) + list(c_def.items()))
+    
 
 # =============================================================
  
