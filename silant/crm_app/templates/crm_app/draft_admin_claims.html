@@ -1,0 +1,50 @@
+{% extends 'crm_app/base.html' %}
+<br />
+{% block content %}
+<br /><br /><br />
+
+<div>
+  <div class="subtitle_in_tabs">{{title}}</div>
+  <div class="tab3__grid-head">
+    <div class="tab3__col-head">Машина</div>
+    <div class="tab3__col-head">Дата отказа</div>
+    <div class="tab3__col-head">Наработка, м/час</div>
+    <div class="tab3__col-head">Узел отказа</div>
+    <div class="tab3__col-head">Описание отказа</div>
+    <div class="tab3__col-head">Способ восстановления</div>
+    <div class="tab3__col-head">Используемые запасные части</div>
+    <div class="tab3__col-head">Дата восстановления</div>
+    <div class="tab3__col-head">Время простоя техники</div>
+    <div class="tab3__col-head">Сервисная компания</div>
+  </div>
+  {% for c in claims %}
+  <div class="tab3__grid">
+    <div class="tab3__col">
+      <a href="{% url 'directory_model_machine' c.pk %}">{{c.machine}}</a>
+    </div>
+    <div class="tab3__col">{{c.breakdownDate}}</div>
+    <div class="tab3__col">{{c.operatingTime}}</div>
+    <div class="tab3__col">
+      <a href="{% url 'directory_breakdown' c.pk %}">{{c.breakdownNode}}</a>
+    </div>
+    <div class="tab3__col">{{c.breakdownDescription}}</div>
+    <div class="tab3__col">
+      <a href="{% url 'directory_recovery_method' c.pk %}"
+        >{{c.recoveryMethod}}</a
+      >
+    </div>
+    <div class="tab3__col">{{c.usedSpareParts}}</div>
+    <div class="tab3__col">{{c.recoverDate}}</div>
+    <div class="tab3__col">{{c.downtime}}</div>
+    <div class="tab3__col">
+      <a href="{% url 'directory_service_company' c.pk %}"
+        >{{c.serviceCompany}}</a
+      >
+    </div>
+  </div>
+  {% empty %}
+  <div class="message">Список пуст</div>
+  {% endfor %}
+</divlass=>
+
+{% endblock content %}

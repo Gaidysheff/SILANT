@@ -26,6 +26,8 @@
         <td class="directories__col">{{object.description|linebreaks}}</td>
         {% endautoescape %}
       </tr>
+      {% empty %}
+      <div class="message">Список пуст</div>
       {% endfor %}
     </tbody>
   </table>

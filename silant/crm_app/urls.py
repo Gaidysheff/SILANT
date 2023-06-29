@@ -4,11 +4,23 @@ from crm_app.views import *
 urlpatterns = [
     # path('', index, name='index'),
     path('', MachinesHomePage.as_view(), name='index'),
+    #     ------------------ Эксперимент -----------------------
+    #     path('admin_machines', MachinesForAdmin.as_view(),
+    #          name='admin_machines'),
+    #     path('admin_maintenances', MaintenancesForAdmin.as_view(),
+    #          name='admin_maintenances'),
+    #     path('admin_claims', ClaimsForAdmin.as_view(),
+    #          name='admin_claims'),
+    path('test', MultipleModelView.as_view(), name='test'),
+    #     ----------------------------------------------------------------
     path('machine/<int:machine_id>/', show_machine, name='machine'),
     path('about/', about, name='about'),
     path('addpage/', addpage, name='add_page'),
     path('contact/', contact, name='contact'),
+    #     path('search_machine/', SearchMachine.as_view(), name='search_machine'),
     path('search_machine/', search_machine, name='search_machine'),
+    #     path('you_db/', PageAfterAuthorization.as_view(),
+    #          name='page_after_authorization'),
     path('you_db/', page_after_authorization, name='page_after_authorization'),
     #     ---------------------- Справочники -------------------------------
     path('directory_model_machines/', DirectoryModelMachineList.as_view(),

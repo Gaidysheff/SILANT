@@ -1,3 +1,4 @@
+from django.views.generic import TemplateView
 from typing import Any
 from django.db.models.query import QuerySet
 from django.views.generic import ListView, DetailView
@@ -36,6 +37,73 @@ class MachinesHomePage(DataMixin, ListView):
 #     }
 #     return render(request, 'crm_app/index.html', context=context)
 
+# ================= Эксперимент "INCLUDE" НЕУДАЧНЫЙ============================
+
+# class MachinesForAdmin(DataMixin, ListView):
+#     model = Machine
+#     template_name = 'crm_app/admin_machines.html'
+#     context_object_name = 'machines'
+#     allow_empty = False
+
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         c_def = self.get_user_context(title='Список всех машин')
+#         return dict(list(context.items()) + list(c_def.items()))
+
+#     def get_queryset(self):
+#         return Machine.objects.all()
+
+
+# class MaintenancesForAdmin(DataMixin, ListView):
+#     model = Maintenance
+#     template_name = 'crm_app/admin_maintenances.html'
+#     context_object_name = 'maintenance'
+#     allow_empty = False
+
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         c_def = self.get_user_context(title='Список всех ТО')
+#         return dict(list(context.items()) + list(c_def.items()))
+
+#     def get_queryset(self):
+#         return Maintenance.objects.all()
+
+
+# class ClaimsForAdmin(DataMixin, ListView):
+#     model = Claims
+#     template_name = 'crm_app/admin_claims.html'
+#     context_object_name = 'claims'
+#     allow_empty = False
+
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         c_def = self.get_user_context(
+#             title='Список всех Рекламаций')
+#         return dict(list(context.items()) + list(c_def.items()))
+
+#     def get_queryset(self):
+#         return Claims.objects.all()
+
+
+# ================= Эксперимент ============================
+
+
+class MultipleModelView(DataMixin, TemplateView):
+    template_name = 'crm_app/test.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(MultipleModelView, self).get_context_data(**kwargs)
+        context['machines'] = Machine.objects.all()
+        context['maintenance'] = Maintenance.objects.all()
+        context['claims'] = Claims.objects.all()
+        context['title'] = 'Главная страница'
+        context['menu'] = menu
+        return context
+        # return dict(list(context.items()) + list(data_context.items()))
+
+# ===========================================================
+
+
 def search_machine(request):
     context = {
         'menu': menu,
@@ -70,6 +138,50 @@ def show_machine(request, machine_id):
     }
     return render(request, 'crm_app/machine.html', context=context)
 
+# ===================== DRAFT ===========================================
+
+
+# class PageAfterAuthorization(DataMixin, ListView):
+#     template_name = 'crm_app/page_after_authorization.html'
+
+#     def get_queryset(request):
+#         user_client = request.user
+#         user_service = request.user.last_name
+
+#         if request.user.is_staff == True:
+#             return redirect('index')
+
+#         machines = Machine.objects.filter(
+#             client=user_client).order_by('-shipmentDate')
+#         if not machines:
+#             service = ServiceCompany.objects.get(name=user_service)
+#             machines = Machine.objects.filter(
+#                 serviceCompany=service).order_by('-shipmentDate')
+
+#         maintenance = Maintenance.objects.filter(
+#             client=user_client).order_by('-maintenanceDate')
+#         if not maintenance:
+#             service = ServiceCompany.objects.get(name=user_service)
+#             maintenance = Maintenance.objects.filter(
+#                 serviceCompany=service).order_by('-maintenanceDate')
+
+#         claims = Claims.objects.filter(
+#             client=user_client).order_by('-breakdownDate')
+#         if not claims:
+#             service = ServiceCompany.objects.get(name=user_service)
+#             claims = Claims.objects.filter(
+#                 serviceCompany=service).order_by('-breakdownDate')
+
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title'] = '"Ваша база данных"'
+#         context['machines'] = self.machines
+#         context['maintenance'] = self.maintenance
+#         context['claims'] = self.claims
+#         return context
+
+# ===================== END DRAFT ===========================================
+
 
 def page_after_authorization(request):
     user_client = request.user
@@ -79,24 +191,25 @@ def page_after_authorization(request):
         return redirect('index')
 
     machines = Machine.objects.filter(
-        client=user_client).order_by('modelMachine')
+        client=user_client).order_by('-shipmentDate')
     if not machines:
         service = ServiceCompany.objects.get(name=user_service)
         machines = Machine.objects.filter(
-            serviceCompany=service).order_by('modelMachine')
+            serviceCompany=service).order_by('-shipmentDate')
 
     maintenance = Maintenance.objects.filter(
-        client=user_client).order_by('type')
+        client=user_client).order_by('-maintenanceDate')
     if not maintenance:
         service = ServiceCompany.objects.get(name=user_service)
         maintenance = Maintenance.objects.filter(
-            serviceCompany=service).order_by('type')
+            serviceCompany=service).order_by('-maintenanceDate')
 
-    claims = Claims.objects.filter(client=user_client).order_by('machine')
+    claims = Claims.objects.filter(
+        client=user_client).order_by('-breakdownDate')
     if not claims:
         service = ServiceCompany.objects.get(name=user_service)
         claims = Claims.objects.filter(
-            serviceCompany=service).order_by('machine')
+            serviceCompany=service).order_by('-breakdownDate')
 
     context = {
         'machines': machines,
@@ -136,9 +249,10 @@ class DirectoryModelMachineList(DataMixin, ListView):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title='"Модели техники"')
         return dict(list(context.items()) + list(c_def.items()))
-    
+
 # ---------------------------------------------------------------
-    
+
+
 class DirectoryModelEngine(DataMixin, DetailView):
     model = ModelEngine
     template_name = 'crm_app/directoryModelEngine.html'
@@ -159,11 +273,13 @@ class DirectoryModelEngineList(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='"Модели двигателей"')
+        c_def = self.get_user_context(
+            title='"Модели двигателей"')
         return dict(list(context.items()) + list(c_def.items()))
-    
+
 # ---------------------------------------------------------------
-    
+
+
 class DirectoryModelTransmission(DataMixin, DetailView):
     model = ModelTransmission
     template_name = 'crm_app/directoryModelTransmission.html'
@@ -184,11 +300,13 @@ class DirectoryModelTransmissionList(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='"Модели трансмиссий"')
+        c_def = self.get_user_context(
+            title='"Модели трансмиссий"')
         return dict(list(context.items()) + list(c_def.items()))
-    
+
 # ---------------------------------------------------------------
-    
+
+
 class DirectoryModelDriveAxle(DataMixin, DetailView):
     model = ModelDriveAxle
     template_name = 'crm_app/directoryModelDriveAxle.html'
@@ -209,11 +327,13 @@ class DirectoryModelDriveAxleList(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='"Модели ведущего моста"')
+        c_def = self.get_user_context(
+            title='"Модели ведущего моста"')
         return dict(list(context.items()) + list(c_def.items()))
 
 # ---------------------------------------------------------------
-    
+
+
 class DirectoryModelSteeringAxle(DataMixin, DetailView):
     model = ModelSteeringAxle
     template_name = 'crm_app/directoryModelSteeringAxle.html'
@@ -234,11 +354,13 @@ class DirectoryModelSteeringAxleList(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='"Модели управляемого моста"')
-        return dict(list(context.items()) + list(c_def.items()))    
+        c_def = self.get_user_context(
+            title='"Модели управляемого моста"')
+        return dict(list(context.items()) + list(c_def.items()))
 
 # ---------------------------------------------------------------
-    
+
+
 class DirectoryMaintenanceType(DataMixin, DetailView):
     model = MaintenanceType
     template_name = 'crm_app/directoryMaintenanceType.html'
@@ -259,10 +381,12 @@ class DirectoryMaintenanceTypeList(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='"Виды Технического Обслуживания"')
+        c_def = self.get_user_context(
+            title='"Виды Технического Обслуживания"')
         return dict(list(context.items()) + list(c_def.items()))
     # ---------------------------------------------------------------
-    
+
+
 class DirectoryBreakdown(DataMixin, DetailView):
     model = Breakdown
     template_name = 'crm_app/directoryBreakdown.html'
@@ -285,9 +409,10 @@ class DirectoryBreakdownList(DataMixin, ListView):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title='"Узлы отказа"')
         return dict(list(context.items()) + list(c_def.items()))
-    
+
 # ---------------------------------------------------------------
-    
+
+
 class DirectoryRecoveryMethod(DataMixin, DetailView):
     model = RecoveryMethod
     template_name = 'crm_app/directoryRecoveryMethod.html'
@@ -308,11 +433,13 @@ class DirectoryRecoveryMethodList(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='"Способы восстановления"')
+        c_def = self.get_user_context(
+            title='"Способы восстановления"')
         return dict(list(context.items()) + list(c_def.items()))
-    
+
 # ---------------------------------------------------------------
-    
+
+
 class DirectoryServiceCompany(DataMixin, DetailView):
     model = ServiceCompany
     template_name = 'crm_app/directoryServiceCompany.html'
@@ -333,12 +460,13 @@ class DirectoryServiceCompanyList(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='"Сервисные компании"')
+        c_def = self.get_user_context(
+            title='"Сервисные компании"')
         return dict(list(context.items()) + list(c_def.items()))
-    
+
 
 # =============================================================
- 
+
 
 def about(request):
     return render(request, 'crm_app/about.html', {'menu': menu, 'title': 'О нас'})

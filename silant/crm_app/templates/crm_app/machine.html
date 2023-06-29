@@ -176,6 +176,8 @@
         <div class="tab2__col">{{m.executor}}</div>
         <div class="tab2__col">{{m.serviceCompany}}</div>
       </div>
+      {% empty %}
+      <div class="message">Список пуст</div>
       {% endfor %}
     </div>
 
@@ -205,6 +207,8 @@
         <div class="tab3__col">{{c.downtime}}</div>
         <div class="tab3__col">{{c.serviceCompany}}</div>
       </div>
+      {% empty %}
+      <div class="message">Список пуст</div>
       {% endfor %}
     </div>
   </div>

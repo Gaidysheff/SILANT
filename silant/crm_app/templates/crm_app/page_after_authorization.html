@@ -102,6 +102,8 @@
             >
           </td>
         </tr>
+        {% empty %}
+        <div class="message">Список пуст</div>
         {% endfor %}
       </table>
     </div>
@@ -140,6 +142,8 @@
         >
       </div>
     </div>
+    {% empty %}
+    <div class="message">Список пуст</div>
     {% endfor %}
   </div>
 
@@ -182,6 +186,8 @@
         >
       </div>
     </div>
+    {% empty %}
+    <div class="message">Список пуст</div>
     {% endfor %}
   </div>
 </div>
