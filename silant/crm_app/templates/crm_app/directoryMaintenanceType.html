@@ -1,0 +1,50 @@
+{% extends 'crm_app/base.html' %} {% block content %}
+
+<div class="directory-head">
+  <div class="directory-head__title">СПРАВОЧНИК <br />{{ title }}</div>
+</div>
+
+<div class="container">
+  <div class="directory">
+    <div class="directory__inner">
+      <div class="directory__content">
+        <div class="directory__set">
+          <div class="directory__image">
+            <img
+              src="../../static/crm_app/images/directories/maintenance.png"
+              alt="icon of maintenance"
+            />
+          </div>
+          <div class="directory__name">
+            <div class="directory__name-title">
+              Вид Технического Обслуживания:
+            </div>
+            <div class="directory__name-db">{{model.name}}</div>
+          </div>
+        </div>
+        <div class="directory__description">
+          <div class="directory__description-title">Описание:</div>
+          {% autoescape off %}
+          <div class="directory__description-db">
+            {{model.description|linebreaks}}
+          </div>
+          {% endautoescape %}
+        </div>
+      </div>
+      <div class="directory__buttons">
+        <a
+          href="{% url 'page_after_authorization' %}"
+          class="directory__button btn btn_back"
+          >Вернуться назад</a
+        >
+        <a
+          href="{% url 'directory_maintenance_types' %}"
+          class="directory__button btn btn_forward"
+        >
+          Больше моделей <br />в Справочнике
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

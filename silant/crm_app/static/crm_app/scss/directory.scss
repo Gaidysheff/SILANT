@@ -186,7 +186,7 @@
     flex-direction: column;
   }
   &__image {
-    height: 50%;
+    height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -212,6 +212,7 @@
     align-items: center;
     padding: 10px 20px;
     height: 80%;
+    text-align: center;
     text-shadow: 3px 4px 4px rgba(59, 177, 213, 0.623),
       0px 8px 13px rgba(25, 158, 202, 0.59),
       0px 18px 23px rgba(57, 199, 218, 0.671);
@@ -368,16 +369,6 @@
 
 @media (max-width: 1500px) {
   .directory {
-    &__image {
-      width: 270px;
-      align-self: center;
-
-      img {
-        width: 100%;
-        height: auto;
-      }
-    }
-
     &__description-db {
       font-size: 1rem;
       margin-bottom: 200px;
@@ -402,6 +393,11 @@
 
 @media (max-width: 1250px) {
   .directory {
+    &__image {
+      height: 25%;
+      align-self: center;
+    }
+
     &__description {
       padding-left: 0;
     }
@@ -427,6 +423,10 @@
 
     &__name {
       margin-top: 50px;
+    }
+
+    &__name-db {
+      height: 80px;
     }
 
     &__description {
@@ -530,7 +530,7 @@
 
   .directory {
     &__image {
-      width: 200px;
+      height: 250px;
     }
   }
 
@@ -552,6 +552,7 @@
       font-size: 2rem;
     }
   }
+
   .directories {
     &__head {
       font-size: 0.7rem;
@@ -568,8 +569,6 @@
 
     &__col {
       &:nth-child(odd) {
-        white-space: nowrap;
-        text-overflow: clip;
         font-size: 0.9rem;
         font-weight: normal;
         transform: rotate(-90deg);
@@ -586,6 +585,14 @@
   }
 
   .directory {
+    &__image {
+      height: 220px;
+    }
+
+    &__name-db {
+      font-size: 1.6rem;
+    }
+
     &__description-db {
       ol li,
       ul li {
@@ -608,9 +615,18 @@
   }
 
   .directory {
+    &__image {
+      height: 150px;
+    }
+
     &__name-title,
     &__description-title {
       font-size: 1.1rem;
+    }
+
+    &__name-db {
+      height: 70px;
+      font-size: 1.2rem;
     }
   }
 
@@ -641,5 +657,11 @@
   .forward {
     width: 220px;
     padding-right: 30px;
+  }
+
+  .directory {
+    &__name-db {
+      font-size: 0.9rem;
+    }
   }
 }

@@ -10,6 +10,7 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('search_machine/', search_machine, name='search_machine'),
     path('you_db/', page_after_authorization, name='page_after_authorization'),
+    #     ---------------------- Справочники -------------------------------
     path('directory_model_machines/', DirectoryModelMachineList.as_view(),
          name='directory_model_machines'),
     path('directory_model_machines/<int:modelMachine_pk>/',
@@ -40,10 +41,10 @@ urlpatterns = [
     path('directory_maintenance_types/<int:modelMachine_pk>/',
          DirectoryMaintenanceType.as_view(), name='directory_maintenance_type'),
     #     ----------------------------------------------------------------
-    path('directory_model_breakdowns/', DirectoryBreakdownList.as_view(),
-         name='directory_model_breakdowns'),
-    path('directory_model_breakdowns/<int:modelMachine_pk>/',
-         DirectoryBreakdown.as_view(), name='directory_model_breakdown'),
+    path('directory_breakdowns/', DirectoryBreakdownList.as_view(),
+         name='directory_breakdowns'),
+    path('directory_breakdowns/<int:modelMachine_pk>/',
+         DirectoryBreakdown.as_view(), name='directory_breakdown'),
     #     ----------------------------------------------------------------
     path('directory_recovery_methods/', DirectoryRecoveryMethodList.as_view(),
          name='directory_recovery_methods'),
@@ -51,7 +52,7 @@ urlpatterns = [
          DirectoryRecoveryMethod.as_view(), name='directory_recovery_method'),
     #     ----------------------------------------------------------------
     path('directory_service_companys/', DirectoryServiceCompanyList.as_view(),
-         name='directory_model_engines'),
+         name='directory_service_companies'),
     path('directory_service_companys/<int:modelMachine_pk>/',
          DirectoryServiceCompany.as_view(), name='directory_service_company'),
 ]
