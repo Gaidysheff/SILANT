@@ -4,12 +4,13 @@ from .models import Claims, Machine, Maintenance
 
 
 class MachineFilter(django_filters.FilterSet):
-    modelMachine__name = django_filters.CharFilter(lookup_expr='icontains')
-    modelEngine__name = django_filters.CharFilter(lookup_expr='icontains')
-    modelTransmission__name = django_filters.CharFilter(
+    serialNumber = django_filters.CharFilter(
         lookup_expr='icontains')
-    modelDriveAxle__name = django_filters.CharFilter(lookup_expr='icontains')
-    modelSteeringAxle__name = django_filters.CharFilter(
+    serialNumberEngine = django_filters.CharFilter(lookup_expr='icontains')
+    serialTransmission = django_filters.CharFilter(
+        lookup_expr='icontains')
+    serialDriveAxle = django_filters.CharFilter(lookup_expr='icontains')
+    serialSteeringAxle = django_filters.CharFilter(
         lookup_expr='icontains')
 
     class Meta:
@@ -19,9 +20,8 @@ class MachineFilter(django_filters.FilterSet):
 
 
 class MaintenanceFilter(django_filters.FilterSet):
-    type__name = django_filters.CharFilter(lookup_expr='icontains')
-    machine__name = django_filters.CharFilter(lookup_expr='icontains')
-    serviceCompany__name = django_filters.CharFilter(lookup_expr='icontains')
+    executor = django_filters.CharFilter(lookup_expr='icontains')
+    workOrder = django_filters.CharFilter(lookup_expr='icontains')
 
     class Meta:
         model = Maintenance
@@ -29,9 +29,8 @@ class MaintenanceFilter(django_filters.FilterSet):
 
 
 class ClaimsFilter(django_filters.FilterSet):
-    breakdownNode__name = django_filters.CharFilter(lookup_expr='icontains')
-    recoveryMethod__name = django_filters.CharFilter(lookup_expr='icontains')
-    serviceCompany__name = django_filters.CharFilter(lookup_expr='icontains')
+    breakdownDescription = django_filters.CharFilter(lookup_expr='icontains')
+    usedSpareParts = django_filters.CharFilter(lookup_expr='icontains')
 
     class Meta:
         model = Claims
