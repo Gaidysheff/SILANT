@@ -1,0 +1,245 @@
+{% extends 'crm_app/base.html' %}
+<br />
+{% block content %}
+
+<!-- ================================================================ -->
+
+<div class="container">
+  <div class="subtitle_in_tabs">
+    Вы авторизовались как:
+    <span>{{user.last_name}}</span>
+  </div>
+  <div class="page-authorized-title">
+    Информация о комплектации, технических характеристиках, <br />
+    техническом обслуживании Вашей техники <br />
+    и рекламациях на неё.
+  </div>
+  <br />
+
+  <!------------------- Tab links ------------------->
+  <div class="tab">
+    <button
+      class="tablinks"
+      onclick="openTable(event, 'General_Info')"
+      id="defaultOpen"
+    >
+      Общая информация
+    </button>
+    <button class="tablinks" onclick="openTable(event, 'Maintenance')">
+      Техническое Обслуживание
+    </button>
+    <button class="tablinks" onclick="openTable(event, 'Claims')">
+      Рекламации
+    </button>
+  </div>
+
+  <!------------------- Tab content ------------------->
+  <div id="General_Info" class="tabcontent">
+    <div class="subtitle_in_tabs">Список Вашей техники</div>
+
+    <form method="get">
+      {{ filter_machines.form.as_p }}
+      <input type="submit" />
+    </form>
+
+    <div class="tab1">
+      <table class="tab1__table">
+        <tr class="tab1__row">
+          <th class="tab1__head">Модель техники</th>
+          <th class="tab1__head">Зав. № машины</th>
+          <th class="tab1__head">Модель двигателя</th>
+          <th class="tab1__head">Зав. № двигателя</th>
+          <th class="tab1__head">Модель трансмиссии</th>
+          <th class="tab1__head">Зав. № ведущего моста</th>
+          <th class="tab1__head">Модель ведущего моста</th>
+          <th class="tab1__head">Зав. № ведущего моста</th>
+          <th class="tab1__head">Модель управляемого моста</th>
+          <th class="tab1__head">Зав. № управляемого моста</th>
+          <th class="tab1__head">Договор поставки №, дата</th>
+          <th class="tab1__head">Дата отгрузки с завода</th>
+          <th class="tab1__head">Грузополучатель (конечный потребитель)</th>
+          <th class="tab1__head">Комплектация (дополнительные опции)</th>
+          <th class="tab1__head">Адрес поставки (эксплуатации)</th>
+          <th class="tab1__head">Клиент</th>
+          <th class="tab1__head">Сервисная компания</th>
+        </tr>
+        {% for machine in filter_machines.qs %}
+        <tr class="tab1__row">
+          <td class="tab1__col">
+            <a href="{% url 'directory_model_machine' machine.pk %}"
+              >{{ machine.modelMachine }}</a
+            >
+          </td>
+          <td class="tab1__col">{{machine.serialNumber}}</td>
+          <td class="tab1__col">
+            <a href="{% url 'directory_model_engine' machine.pk %}"
+              >{{machine.modelEngine}}</a
+            >
+          </td>
+          <td class="tab1__col">{{machine.serialNumberEngine}}</td>
+          <td class="tab1__col">
+            <a href="{% url 'directory_model_transmission' machine.pk %}"
+              >{{machine.modelTransmission}}</a
+            >
+          </td>
+          <td class="tab1__col">{{machine.serialTransmission}}</td>
+          <td class="tab1__col">
+            <a href="{% url 'directory_model_drive_axle' machine.pk %}"
+              >{{machine.modelDriveAxle}}</a
+            >
+          </td>
+          <td class="tab1__col">{{machine.serialDriveAxle}}</td>
+          <td class="tab1__col">
+            <a href="{% url 'directory_model_steering_axle' machine.pk %}"
+              >{{machine.modelSteeringAxle}}</a
+            >
+          </td>
+          <td class="tab1__col">{{machine.serialSteeringAxle}}</td>
+          <td class="tab1__col">{{machine.deliveryContract}}</td>
+          <td class="tab1__col">{{machine.shipmentDate}}</td>
+          <td class="tab1__col">{{machine.consignee}}</td>
+          <td class="tab1__col">{{machine.deliveryAddress}}</td>
+          <td class="tab1__col">{{machine.additionalOptions}}</td>
+          <td class="tab1__col">{{machine.client}}</td>
+          <td class="tab1__col">
+            <a href="{% url 'directory_service_company' machine.pk %}"
+              >{{machine.serviceCompany}}</a
+            >
+          </td>
+        </tr>
+        {% empty %}
+        <div class="message">Список пуст</div>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+  <div id="Maintenance" class="tabcontent">
+    <div class="subtitle_in_tabs">
+      Данные о Техническом Обслуживании Вашей техники
+    </div>
+
+    <form method="get">
+      {{ filter_maintenance.form.as_p }}
+      <input type="submit" />
+    </form>
+
+    <div class="tab2__grid-head">
+      <div class="tab2__col-head">Машина</div>
+      <div class="tab2__col-head">Вид ТО</div>
+      <div class="tab2__col-head">Дата проведения ТО</div>
+      <div class="tab2__col-head">Наработка, м/час</div>
+      <div class="tab2__col-head">№ заказ-наряда</div>
+      <div class="tab2__col-head">Дата заказ-наряда</div>
+      <div class="tab2__col-head">Орг-ция, проводившая ТО</div>
+      <div class="tab2__col-head">Сервисная компания</div>
+    </div>
+    {% for maintenance in filter_maintenance.qs %}
+    <div class="tab2__grid">
+      <div class="tab2__col">
+        <a href="{% url 'directory_model_machine' maintenance.pk %}"
+          >{{maintenance.machine}}</a
+        >
+      </div>
+      <div class="tab2__col">
+        <a href="{% url 'directory_maintenance_type' maintenance.pk %}"
+          >{{maintenance.type}}</a
+        >
+      </div>
+      <div class="tab2__col">{{maintenance.maintenanceDate}}</div>
+      <div class="tab2__col">{{maintenance.operatingTime}}</div>
+      <div class="tab2__col">{{maintenance.workOrder}}</div>
+      <div class="tab2__col">{{maintenance.workOrderDate}}</div>
+      <div class="tab2__col">{{maintenance.executor}}</div>
+      <div class="tab2__col">
+        <a href="{% url 'directory_service_company' maintenance.pk %}"
+          >{{maintenance.serviceCompany}}</a
+        >
+      </div>
+    </div>
+    {% empty %}
+    <div class="message">Список пуст</div>
+    {% endfor %}
+  </div>
+
+  <div id="Claims" class="tabcontent">
+    <div class="subtitle_in_tabs">Рекламации на Вашу технику</div>
+
+    <form method="get">
+      {{ filter_claims.form.as_p }}
+      <input type="submit" />
+    </form>
+
+    <div class="tab3__grid-head">
+      <div class="tab3__col-head">Машина</div>
+      <div class="tab3__col-head">Дата отказа</div>
+      <div class="tab3__col-head">Наработка, м/час</div>
+      <div class="tab3__col-head">Узел отказа</div>
+      <div class="tab3__col-head">Описание отказа</div>
+      <div class="tab3__col-head">Способ восстановления</div>
+      <div class="tab3__col-head">Используемые запасные части</div>
+      <div class="tab3__col-head">Дата восстановления</div>
+      <div class="tab3__col-head">Время простоя техники</div>
+      <div class="tab3__col-head">Сервисная компания</div>
+    </div>
+    {% for claim in filter_claims.qs %}
+    <div class="tab3__grid">
+      <div class="tab3__col">
+        <a href="{% url 'directory_model_machine' claim.pk %}"
+          >{{claim.machine}}</a
+        >
+      </div>
+      <div class="tab3__col">{{claim.breakdownDate}}</div>
+      <div class="tab3__col">{{claim.operatingTime}}</div>
+      <div class="tab3__col">
+        <a href="{% url 'directory_breakdown' claim.pk %}"
+          >{{claim.breakdownNode}}</a
+        >
+      </div>
+      <div class="tab3__col">{{claim.breakdownDescription}}</div>
+      <div class="tab3__col">
+        <a href="{% url 'directory_recovery_method' claim.pk %}"
+          >{{claim.recoveryMethod}}</a
+        >
+      </div>
+      <div class="tab3__col">{{claim.usedSpareParts}}</div>
+      <div class="tab3__col">{{claim.recoverDate}}</div>
+      <div class="tab3__col">{{claim.downtime}}</div>
+      <div class="tab3__col">
+        <a href="{% url 'directory_service_company' claim.pk %}"
+          >{{claim.serviceCompany}}</a
+        >
+      </div>
+    </div>
+    {% empty %}
+    <div class="message">Список пуст</div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  // Get the element with id="defaultOpen" and click on it
+  document.getElementById("defaultOpen").click();
+
+  function openTable(evt, tableName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tableName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+</script>
+
+{% endblock content %}

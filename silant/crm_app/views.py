@@ -5,6 +5,8 @@ from django.views.generic import ListView, DetailView
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 
+from .filter import ClaimsFilter, MachineFilter, MaintenanceFilter
+
 
 from .utilities import *
 # from django.db.models import Q
@@ -91,8 +93,14 @@ class MachinesHomePage(DataMixin, ListView):
 class MultipleModelView(DataMixin, TemplateView):
     template_name = 'crm_app/test.html'
 
+    # def get_queryset(self):
+    #     queryset = super().get_queryset()
+    #     self.filterset = MachineFilter(self.request.GET, queryset)
+    #     return self.filterset.qs
+
     def get_context_data(self, **kwargs):
         context = super(MultipleModelView, self).get_context_data(**kwargs)
+        # context['filterset'] = self.filterset
         context['machines'] = Machine.objects.all()
         context['maintenance'] = Maintenance.objects.all()
         context['claims'] = Claims.objects.all()
@@ -100,6 +108,94 @@ class MultipleModelView(DataMixin, TemplateView):
         context['menu'] = menu
         return context
         # return dict(list(context.items()) + list(data_context.items()))
+
+
+def machines_list(request):
+    filter = MachineFilter(request.GET, queryset=Machine.objects.all())
+    return render(request, 'crm_app/test1.html', {'filter': filter})
+    # return render(request, 'test2.html', 'I am a filter')
+
+# ________________________________________________________________
+
+
+def page_after_authorization_test(request):
+    user_client = request.user
+    user_service = request.user.last_name
+
+    if request.user.is_staff == True:
+        return redirect('index')
+
+    filter_machines = MachineFilter(request.GET, queryset=Machine.objects.filter(
+        client=user_client).order_by('-shipmentDate'))
+    if not filter_machines:
+        service = ServiceCompany.objects.get(name=user_service)
+        filter_machines = MachineFilter(request.GET, queryset=Machine.objects.filter(
+            serviceCompany=service).order_by('-shipmentDate'))
+
+    filter_maintenance = MaintenanceFilter(request.GET, queryset=Machine.objects.filter(
+        client=user_client))
+    if not filter_maintenance:
+        service = ServiceCompany.objects.get(name=user_service)
+        filter_maintenance = Maintenance.objects.filter(request.GET, queryset=Machine.objects.filter(
+            serviceCompany=service))
+
+    filter_claims = ClaimsFilter(request.GET, queryset=Machine.objects.filter(
+        client=user_client))
+    if not filter_claims:
+        service = ServiceCompany.objects.get(name=user_service)
+        filter_claims = Claims.objects.filter(request.GET, queryset=Machine.objects.filter(
+            serviceCompany=service))
+
+    context = {
+        'filter_machines': filter_machines,
+        'filter_maintenance': filter_maintenance,
+        'filter_claims': filter_claims,
+        'menu': menu,
+        'title': "Ваша база данных"
+    }
+
+    return render(request, 'crm_app/test_page_after_authorization.html', context=context)
+
+# ________________________ TEST 3 _______________________________
+
+
+def test3(request):
+    user_client = request.user
+    user_service = request.user.last_name
+
+    if request.user.is_staff == True:
+        return redirect('index')
+
+    filter_machines = MachineFilter(request.GET, queryset=Machine.objects.filter(
+        client=user_client).order_by('-shipmentDate'))
+    if not filter_machines:
+        service = ServiceCompany.objects.get(name=user_service)
+        filter_machines = MachineFilter(request.GET, queryset=Machine.objects.filter(
+            serviceCompany=service).order_by('-shipmentDate'))
+
+    filter_maintenance = MaintenanceFilter(request.GET, queryset=Maintenance.objects.filter(
+        client=user_client).order_by('-maintenanceDate'))
+    if not filter_maintenance:
+        service = ServiceCompany.objects.get(name=user_service)
+        filter_maintenance = MaintenanceFilter(request.GET, queryset=Maintenance.objects.filter(
+            serviceCompany=service).order_by('-maintenanceDate'))
+
+    filter_claims = ClaimsFilter(request.GET, queryset=Claims.objects.filter(
+        client=user_client).order_by('-breakdownDate'))
+    if not filter_claims:
+        service = ServiceCompany.objects.get(name=user_service)
+        filter_claims = ClaimsFilter(request.GET, queryset=Claims.objects.filter(
+            serviceCompany=service).order_by('-breakdownDate'))
+
+    context = {
+        'filter_machines': filter_machines,
+        'filter_maintenance': filter_maintenance,
+        'filter_claims': filter_claims,
+        'menu': menu,
+        'title': "Ваша база данных"
+    }
+
+    return render(request, 'crm_app/test3.html', context=context)
 
 # ===========================================================
 
