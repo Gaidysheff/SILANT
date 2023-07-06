@@ -34,12 +34,18 @@
 </div>
 <div class="navigate-to">
   <span class="empty"></span>
+  {% if request.user.is_staff == True %}
+  <a href="{% url 'full_db_list' %}" class="btn btn_back_to_list" id="to_model"
+    >Вернуться в список</a
+  >
+  {% else %}
   <a
     href="{% url 'page_after_authorization' %}"
     class="btn btn_back_to_list"
     id="to_model"
     >Вернуться в список</a
   >
+  {% endif %}
 </div>
 
 {% endblock content %}

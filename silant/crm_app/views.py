@@ -158,13 +158,29 @@ class MachinesHomePage(DataMixin, ListView):
 
 # ===========================================================
 
+def full_db_list(request):
+
+    filter_machines = MachineFilter(request.GET, queryset=Machine.objects.all().order_by('-shipmentDate'))
+    filter_maintenance = MaintenanceFilter(request.GET, queryset=Maintenance.objects.all().order_by('-maintenanceDate'))
+    filter_claims = ClaimsFilter(request.GET, queryset=Claims.objects.all().order_by('-breakdownDate'))
+    
+    context = {
+        'filter_machines': filter_machines,
+        'filter_maintenance': filter_maintenance,
+        'filter_claims': filter_claims,
+        'menu': menu,
+        'title': "Ваша база данных"
+    }
+
+    return render(request, 'crm_app/full_db_list.html', context=context)
+
 
 def page_after_authorization(request):
     user_client = request.user
     user_service = request.user.last_name
 
     if request.user.is_staff == True:
-        return redirect('index')
+        return redirect('full_db_list')
 
     filter_machines = MachineFilter(request.GET, queryset=Machine.objects.filter(
         client=user_client).order_by('-shipmentDate'))
