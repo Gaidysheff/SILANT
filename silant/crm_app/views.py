@@ -1,17 +1,21 @@
-from django.views.generic import TemplateView
 from typing import Any
+
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.query import QuerySet
-from django.views.generic import ListView, DetailView
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, redirect, render
+from django.views.generic import DetailView, ListView
 
 from .filter import ClaimsFilter, MachineFilter, MaintenanceFilter
-
-
+from .models import (Breakdown, Claims, Machine, Maintenance, MaintenanceType,
+                     ModelDriveAxle, ModelEngine, ModelMachine,
+                     ModelSteeringAxle, ModelTransmission, RecoveryMethod,
+                     ServiceCompany)
 from .utilities import *
-# from django.db.models import Q
 
-from .models import Breakdown, Machine, Maintenance, Claims, MaintenanceType, ModelDriveAxle, ModelEngine, ModelSteeringAxle, ModelTransmission, RecoveryMethod, ServiceCompany, ModelMachine
+
+
 
 
 class MachinesHomePage(DataMixin, ListView):
@@ -29,135 +33,7 @@ class MachinesHomePage(DataMixin, ListView):
         return Machine.objects.all()
 
 
-# def index(request):
-#     machines = Machine.objects.all()
-#     context = {
-#         'machines': machines,
-#         'machine_table_titles': machine_table_titles,
-#         'menu': menu,
-#         'title': 'Главная страница'
-#     }
-#     return render(request, 'crm_app/index.html', context=context)
-
-# ================= Эксперимент "INCLUDE" НЕУДАЧНЫЙ============================
-
-# class MachinesForAdmin(DataMixin, ListView):
-#     model = Machine
-#     template_name = 'crm_app/admin_machines.html'
-#     context_object_name = 'machines'
-#     allow_empty = False
-
-#     def get_context_data(self, *, object_list=None, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         c_def = self.get_user_context(title='Список всех машин')
-#         return dict(list(context.items()) + list(c_def.items()))
-
-#     def get_queryset(self):
-#         return Machine.objects.all()
-
-
-# class MaintenancesForAdmin(DataMixin, ListView):
-#     model = Maintenance
-#     template_name = 'crm_app/admin_maintenances.html'
-#     context_object_name = 'maintenance'
-#     allow_empty = False
-
-#     def get_context_data(self, *, object_list=None, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         c_def = self.get_user_context(title='Список всех ТО')
-#         return dict(list(context.items()) + list(c_def.items()))
-
-#     def get_queryset(self):
-#         return Maintenance.objects.all()
-
-
-# class ClaimsForAdmin(DataMixin, ListView):
-#     model = Claims
-#     template_name = 'crm_app/admin_claims.html'
-#     context_object_name = 'claims'
-#     allow_empty = False
-
-#     def get_context_data(self, *, object_list=None, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         c_def = self.get_user_context(
-#             title='Список всех Рекламаций')
-#         return dict(list(context.items()) + list(c_def.items()))
-
-#     def get_queryset(self):
-#         return Claims.objects.all()
-
-
-# ================= Эксперимент ============================
-
-
-# class MultipleModelView(DataMixin, TemplateView):
-#     template_name = 'crm_app/test.html'
-
-#     # def get_queryset(self):
-#     #     queryset = super().get_queryset()
-#     #     self.filterset = MachineFilter(self.request.GET, queryset)
-#     #     return self.filterset.qs
-
-#     def get_context_data(self, **kwargs):
-#         context = super(MultipleModelView, self).get_context_data(**kwargs)
-#         # context['filterset'] = self.filterset
-#         context['machines'] = Machine.objects.all()
-#         context['maintenance'] = Maintenance.objects.all()
-#         context['claims'] = Claims.objects.all()
-#         context['title'] = 'Главная страница'
-#         context['menu'] = menu
-#         return context
-#         # return dict(list(context.items()) + list(data_context.items()))
-
-
-# def machines_list(request):
-#     filter = MachineFilter(request.GET, queryset=Machine.objects.all())
-#     return render(request, 'crm_app/test1.html', {'filter': filter})
-#     # return render(request, 'test2.html', 'I am a filter')
-
-# ________________________________________________________________
-
-
-# def page_after_authorization_test(request):
-#     user_client = request.user
-#     user_service = request.user.last_name
-
-#     if request.user.is_staff == True:
-#         return redirect('index')
-
-#     filter_machines = MachineFilter(request.GET, queryset=Machine.objects.filter(
-#         client=user_client).order_by('-shipmentDate'))
-#     if not filter_machines:
-#         service = ServiceCompany.objects.get(name=user_service)
-#         filter_machines = MachineFilter(request.GET, queryset=Machine.objects.filter(
-#             serviceCompany=service).order_by('-shipmentDate'))
-
-#     filter_maintenance = MaintenanceFilter(request.GET, queryset=Machine.objects.filter(
-#         client=user_client))
-#     if not filter_maintenance:
-#         service = ServiceCompany.objects.get(name=user_service)
-#         filter_maintenance = Maintenance.objects.filter(request.GET, queryset=Machine.objects.filter(
-#             serviceCompany=service))
-
-#     filter_claims = ClaimsFilter(request.GET, queryset=Machine.objects.filter(
-#         client=user_client))
-#     if not filter_claims:
-#         service = ServiceCompany.objects.get(name=user_service)
-#         filter_claims = Claims.objects.filter(request.GET, queryset=Machine.objects.filter(
-#             serviceCompany=service))
-
-#     context = {
-#         'filter_machines': filter_machines,
-#         'filter_maintenance': filter_maintenance,
-#         'filter_claims': filter_claims,
-#         'menu': menu,
-#         'title': "Ваша база данных"
-#     }
-
-#     return render(request, 'crm_app/test_page_after_authorization.html', context=context)
-
-# ===========================================================
-
+@login_required()
 def full_db_list(request):
 
     filter_machines = MachineFilter(request.GET, queryset=Machine.objects.all().order_by('-shipmentDate'))
@@ -175,6 +51,7 @@ def full_db_list(request):
     return render(request, 'crm_app/full_db_list.html', context=context)
 
 
+@login_required()
 def page_after_authorization(request):
     user_client = request.user
     user_service = request.user.last_name
@@ -229,9 +106,9 @@ def search_machine(request):
         else:
             context['searched'] = 'Данных о машине с таким заводским номером в системе нет !!!'
             return render(request, 'crm_app/index.html', context=context)
-        # return render(request, 'crm_app/search_machine.html', context=context)
 
 
+@login_required()
 def show_machine(request, machine_id):
     machine = get_object_or_404(Machine, pk=machine_id)
     claims = Claims.objects.filter(machine_id=machine_id)
@@ -249,53 +126,10 @@ def show_machine(request, machine_id):
     return render(request, 'crm_app/machine.html', context=context)
 
 
-# ===================== OLD Version (without FILTER) ========================
-
-# def page_after_authorization(request):
-#     user_client = request.user
-#     user_service = request.user.last_name
-
-#     if request.user.is_staff == True:
-#         return redirect('index')
-
-#     machines = Machine.objects.filter(
-#         client=user_client).order_by('-shipmentDate')
-#     if not machines:
-#         service = ServiceCompany.objects.get(name=user_service)
-#         machines = Machine.objects.filter(
-#             serviceCompany=service).order_by('-shipmentDate')
-
-#     maintenance = Maintenance.objects.filter(
-#         client=user_client).order_by('-maintenanceDate')
-#     if not maintenance:
-#         service = ServiceCompany.objects.get(name=user_service)
-#         maintenance = Maintenance.objects.filter(
-#             serviceCompany=service).order_by('-maintenanceDate')
-
-#     claims = Claims.objects.filter(
-#         client=user_client).order_by('-breakdownDate')
-#     if not claims:
-#         service = ServiceCompany.objects.get(name=user_service)
-#         claims = Claims.objects.filter(
-#             serviceCompany=service).order_by('-breakdownDate')
-
-#     context = {
-#         'machines': machines,
-#         'maintenance': maintenance,
-#         'claims': claims,
-#         # 'machine_table_titles': machine_table_titles,
-#         # 'machine_table_subtitles': machine_table_subtitles,
-#         'menu': menu,
-#         'title': "Ваша база данных"
-#     }
-
-#     return render(request, 'crm_app/page_after_authorization.html', context=context)
-
-
 # ======================== DIRECTORIES ========================
 
 
-class DirectoryModelMachine(DataMixin, DetailView):
+class DirectoryModelMachine(LoginRequiredMixin, DataMixin, DetailView):
     model = ModelMachine
     template_name = 'crm_app/directoryModelMachine.html'
     pk_url_kwarg = 'modelMachine_pk'
@@ -308,7 +142,7 @@ class DirectoryModelMachine(DataMixin, DetailView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class DirectoryModelMachineList(DataMixin, ListView):
+class DirectoryModelMachineList(LoginRequiredMixin, DataMixin, ListView):
     queryset = ModelMachine.objects.order_by('name')
     template_name = 'crm_app/directoryModelMachineList.html'
     allow_empty = False
@@ -321,7 +155,7 @@ class DirectoryModelMachineList(DataMixin, ListView):
 # ---------------------------------------------------------------
 
 
-class DirectoryModelEngine(DataMixin, DetailView):
+class DirectoryModelEngine(LoginRequiredMixin, DataMixin, DetailView):
     model = ModelEngine
     template_name = 'crm_app/directoryModelEngine.html'
     pk_url_kwarg = 'modelMachine_pk'
@@ -334,7 +168,7 @@ class DirectoryModelEngine(DataMixin, DetailView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class DirectoryModelEngineList(DataMixin, ListView):
+class DirectoryModelEngineList(LoginRequiredMixin, DataMixin, ListView):
     queryset = ModelEngine.objects.order_by('name')
     template_name = 'crm_app/directoryModelEngineList.html'
     allow_empty = False
@@ -348,7 +182,7 @@ class DirectoryModelEngineList(DataMixin, ListView):
 # ---------------------------------------------------------------
 
 
-class DirectoryModelTransmission(DataMixin, DetailView):
+class DirectoryModelTransmission(LoginRequiredMixin, DataMixin, DetailView):
     model = ModelTransmission
     template_name = 'crm_app/directoryModelTransmission.html'
     pk_url_kwarg = 'modelMachine_pk'
@@ -361,7 +195,7 @@ class DirectoryModelTransmission(DataMixin, DetailView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class DirectoryModelTransmissionList(DataMixin, ListView):
+class DirectoryModelTransmissionList(LoginRequiredMixin, DataMixin, ListView):
     queryset = ModelTransmission.objects.order_by('name')
     template_name = 'crm_app/directoryModelTransmissionList.html'
     allow_empty = False
@@ -375,7 +209,7 @@ class DirectoryModelTransmissionList(DataMixin, ListView):
 # ---------------------------------------------------------------
 
 
-class DirectoryModelDriveAxle(DataMixin, DetailView):
+class DirectoryModelDriveAxle(LoginRequiredMixin, DataMixin, DetailView):
     model = ModelDriveAxle
     template_name = 'crm_app/directoryModelDriveAxle.html'
     pk_url_kwarg = 'modelMachine_pk'
@@ -388,7 +222,7 @@ class DirectoryModelDriveAxle(DataMixin, DetailView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class DirectoryModelDriveAxleList(DataMixin, ListView):
+class DirectoryModelDriveAxleList(LoginRequiredMixin, DataMixin, ListView):
     queryset = ModelDriveAxle.objects.order_by('name')
     template_name = 'crm_app/directoryModelDriveAxleList.html'
     allow_empty = False
@@ -402,7 +236,7 @@ class DirectoryModelDriveAxleList(DataMixin, ListView):
 # ---------------------------------------------------------------
 
 
-class DirectoryModelSteeringAxle(DataMixin, DetailView):
+class DirectoryModelSteeringAxle(LoginRequiredMixin, DataMixin, DetailView):
     model = ModelSteeringAxle
     template_name = 'crm_app/directoryModelSteeringAxle.html'
     pk_url_kwarg = 'modelMachine_pk'
@@ -415,7 +249,7 @@ class DirectoryModelSteeringAxle(DataMixin, DetailView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class DirectoryModelSteeringAxleList(DataMixin, ListView):
+class DirectoryModelSteeringAxleList(LoginRequiredMixin, DataMixin, ListView):
     queryset = ModelSteeringAxle.objects.order_by('name')
     template_name = 'crm_app/directoryModelSteeringAxleList.html'
     allow_empty = False
@@ -429,7 +263,7 @@ class DirectoryModelSteeringAxleList(DataMixin, ListView):
 # ---------------------------------------------------------------
 
 
-class DirectoryMaintenanceType(DataMixin, DetailView):
+class DirectoryMaintenanceType(LoginRequiredMixin, DataMixin, DetailView):
     model = MaintenanceType
     template_name = 'crm_app/directoryMaintenanceType.html'
     pk_url_kwarg = 'modelMachine_pk'
@@ -442,7 +276,7 @@ class DirectoryMaintenanceType(DataMixin, DetailView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class DirectoryMaintenanceTypeList(DataMixin, ListView):
+class DirectoryMaintenanceTypeList(LoginRequiredMixin, DataMixin, ListView):
     queryset = MaintenanceType.objects.order_by('name')
     template_name = 'crm_app/directoryMaintenanceTypeList.html'
     allow_empty = False
@@ -455,7 +289,7 @@ class DirectoryMaintenanceTypeList(DataMixin, ListView):
     # ---------------------------------------------------------------
 
 
-class DirectoryBreakdown(DataMixin, DetailView):
+class DirectoryBreakdown(LoginRequiredMixin, DataMixin, DetailView):
     model = Breakdown
     template_name = 'crm_app/directoryBreakdown.html'
     pk_url_kwarg = 'modelMachine_pk'
@@ -468,7 +302,7 @@ class DirectoryBreakdown(DataMixin, DetailView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class DirectoryBreakdownList(DataMixin, ListView):
+class DirectoryBreakdownList(LoginRequiredMixin, DataMixin, ListView):
     queryset = Breakdown.objects.order_by('name')
     template_name = 'crm_app/directoryBreakdownList.html'
     allow_empty = False
@@ -481,7 +315,7 @@ class DirectoryBreakdownList(DataMixin, ListView):
 # ---------------------------------------------------------------
 
 
-class DirectoryRecoveryMethod(DataMixin, DetailView):
+class DirectoryRecoveryMethod(LoginRequiredMixin, DataMixin, DetailView):
     model = RecoveryMethod
     template_name = 'crm_app/directoryRecoveryMethod.html'
     pk_url_kwarg = 'modelMachine_pk'
@@ -494,7 +328,7 @@ class DirectoryRecoveryMethod(DataMixin, DetailView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class DirectoryRecoveryMethodList(DataMixin, ListView):
+class DirectoryRecoveryMethodList(LoginRequiredMixin, DataMixin, ListView):
     queryset = RecoveryMethod.objects.order_by('name')
     template_name = 'crm_app/directoryRecoveryMethodList.html'
     allow_empty = False
@@ -508,7 +342,7 @@ class DirectoryRecoveryMethodList(DataMixin, ListView):
 # ---------------------------------------------------------------
 
 
-class DirectoryServiceCompany(DataMixin, DetailView):
+class DirectoryServiceCompany(LoginRequiredMixin, DataMixin, DetailView):
     model = ServiceCompany
     template_name = 'crm_app/directoryServiceCompany.html'
     pk_url_kwarg = 'modelMachine_pk'
@@ -521,7 +355,7 @@ class DirectoryServiceCompany(DataMixin, DetailView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class DirectoryServiceCompanyList(DataMixin, ListView):
+class DirectoryServiceCompanyList(LoginRequiredMixin, DataMixin, ListView):
     queryset = ServiceCompany.objects.order_by('name')
     template_name = 'crm_app/directoryServiceCompanyList.html'
     allow_empty = False
