@@ -5,7 +5,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.query import QuerySet
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import DetailView, ListView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DeleteView, DetailView, ListView
 
 from .filter import ClaimsFilter, MachineFilter, MaintenanceFilter
 from .models import (Breakdown, Claims, Machine, Maintenance, MaintenanceType,
@@ -13,9 +14,7 @@ from .models import (Breakdown, Claims, Machine, Maintenance, MaintenanceType,
                      ModelSteeringAxle, ModelTransmission, RecoveryMethod,
                      ServiceCompany)
 from .utilities import *
-
-
-
+from .forms import *
 
 
 class MachinesHomePage(DataMixin, ListView):
@@ -36,10 +35,13 @@ class MachinesHomePage(DataMixin, ListView):
 @login_required()
 def full_db_list(request):
 
-    filter_machines = MachineFilter(request.GET, queryset=Machine.objects.all().order_by('-shipmentDate'))
-    filter_maintenance = MaintenanceFilter(request.GET, queryset=Maintenance.objects.all().order_by('-maintenanceDate'))
-    filter_claims = ClaimsFilter(request.GET, queryset=Claims.objects.all().order_by('-breakdownDate'))
-    
+    filter_machines = MachineFilter(
+        request.GET, queryset=Machine.objects.all().order_by('-shipmentDate'))
+    filter_maintenance = MaintenanceFilter(
+        request.GET, queryset=Maintenance.objects.all().order_by('-maintenanceDate'))
+    filter_claims = ClaimsFilter(
+        request.GET, queryset=Claims.objects.all().order_by('-breakdownDate'))
+
     context = {
         'filter_machines': filter_machines,
         'filter_maintenance': filter_maintenance,
@@ -124,6 +126,23 @@ def show_machine(request, machine_id):
         'title': f"Машина | зав. № = {machine.serialNumber}"
     }
     return render(request, 'crm_app/machine.html', context=context)
+
+# =========================== CRUD ===========================
+
+
+class AddMachine(LoginRequiredMixin, DataMixin, CreateView):
+    form_class = AddMachineForm
+    template_name = 'crm_app/crud_add_machine.html'
+    success_url = reverse_lazy('index')
+    # login_url = reverse_lazy('login_user')
+    raise_exception = True
+    # вывести '403 Forbidden' для неавторизованного пользователя
+    # (закоментить строку - тогда перенаправление на 'home')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Добавление Машины")
+        return dict(list(context.items()) + list(c_def.items()))
 
 
 # ======================== DIRECTORIES ========================

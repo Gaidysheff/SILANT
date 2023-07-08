@@ -26,7 +26,9 @@ urlpatterns = [
     #     path('you_db/', PageAfterAuthorization.as_view(),
     #          name='page_after_authorization'),
     path('you_db/', page_after_authorization, name='page_after_authorization'),
-     path('full_db_list/', full_db_list, name='full_db_list'),
+    path('full_db_list/', full_db_list, name='full_db_list'),
+    #     ---------------------- CRUD -------------------------------
+    path('add_machine/', AddMachine.as_view(), name='add_machine'),
     #     ---------------------- Справочники -------------------------------
     path('directory_model_machines/', DirectoryModelMachineList.as_view(),
          name='directory_model_machines'),

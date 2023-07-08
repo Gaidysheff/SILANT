@@ -1,0 +1,309 @@
+.container {
+}
+.crud {
+  padding: 30px 0;
+
+  &__inner {
+    max-width: 700px;
+    margin: 0 auto;
+    border: 2px solid #163e6c;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18;
+  }
+
+  &__header {
+    padding: 30px 20px 30px 100px;
+    background-color: #163e6c;
+    font-size: 3rem;
+    font-weight: bold;
+    font-style: italic;
+    line-height: 1.6;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #ebe6d6;
+    text-align: center;
+    text-shadow: 0px 4px 3px rgba(9, 164, 211, 0.623),
+      0px 8px 13px rgba(6, 151, 199, 0.59),
+      0px 18px 23px rgba(10, 187, 211, 0.671);
+    // box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18;
+  }
+
+  &__content {
+    padding: 30px;
+  }
+
+  &__form {
+  }
+
+  &__data {
+    margin-bottom: 50px;
+  }
+
+  &__form-error {
+    color: red;
+  }
+
+  &__form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 49%);
+    grid-template-rows: auto;
+    gap: 2%;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+
+  &__form-label {
+    text-align: right;
+    line-height: 1;
+  }
+
+  &__form-input {
+    #id_modelMachine,
+    #id_serialNumber,
+    #id_modelEngine,
+    #id_serialNumberEngine,
+    #id_modelTransmission,
+    #id_serialTransmission,
+    #id_modelDriveAxle,
+    #id_serialDriveAxle,
+    #id_modelSteeringAxle,
+    #id_serialSteeringAxle,
+    #id_deliveryContract,
+    #id_shipmentDate,
+    #id_consignee,
+    #id_deliveryAddress,
+    #id_client,
+    #id_serviceCompany {
+      width: 100%;
+      height: 30px;
+      background-color: #163e6c;
+      color: #ebe6d6;
+      padding: 0 10px;
+    }
+    #id_additionalOptions {
+      width: 100%;
+      background-color: #163e6c;
+      color: #ebe6d6;
+      padding: 0 10px;
+    }
+  }
+
+  &__button-area {
+    height: 200px;
+    margin: -30px;
+    position: relative;
+    display: flex;
+    align-items: end;
+    z-index: 11;
+
+    span::after {
+      content: "";
+      background: url("../images/directories/wave(3).svg") bottom / cover;
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &__btn {
+    font-size: 1.4rem;
+    width: 300px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 0 20px 30px;
+    padding-right: 40px;
+    background: #163e6c;
+    color: #ebe6d6;
+    position: relative;
+    box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18,
+      -5px -5px 10px #3185d5, inset 5px 5px 8px -4px #3185d5;
+    text-shadow: 0px 4px 3px rgba(9, 164, 211, 0.623),
+      0px 8px 13px rgba(6, 151, 199, 0.59),
+      0px 18px 23px rgba(10, 187, 211, 0.671);
+    cursor: pointer;
+
+    &:active {
+      box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18,
+        inset -6px -6px 8px 0 #3185d5, -5px -5px 10px #3185d5,
+        inset 5px 5px 8px -4px #3185d5, inset 6px 6px 8px 0 #020d18;
+    }
+
+    &:hover {
+      font-size: 1.5rem;
+    }
+
+    &:active {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__bottom {
+    height: 10px;
+    background-color: #163e6c;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+}
+
+.header-machine {
+  position: relative;
+
+  &::after {
+    content: "";
+    background: url("../../crm_app/images/icons/machine-title.png") no-repeat;
+    width: 120px;
+    height: 85px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 3%;
+  }
+}
+
+.header-maintenance {
+  position: relative;
+
+  &::after {
+    content: "";
+    background: url("../../crm_app/images/icons/maintanance-title.png")
+      no-repeat;
+    width: 115px;
+    height: 114px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 3%;
+  }
+}
+
+.btn-add {
+  &::after {
+    content: "";
+    background: url("../../crm_app/images/icons/add.png") no-repeat;
+    width: 27px;
+    height: 32px;
+    display: block;
+    position: absolute;
+    top: 55%;
+    transform: translateY(-50%);
+    right: 20%;
+  }
+
+  &:hover::after {
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  &:active::after {
+    transform: translateY(-50%) scale(0.9);
+  }
+}
+
+::-webkit-calendar-picker-indicator {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23bbbbbb" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
+}
+
+/* ======================================================= */
+/* ==================== ADAPTATION ======================= */
+/* ======================================================= */
+
+@media (max-width: 750px) {
+  .crud {
+    &__header {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .crud {
+    &__header {
+      font-size: 2rem;
+      padding-left: 150px;
+    }
+
+    &__form-row {
+      font-size: 0.8rem;
+    }
+
+    &__form-input {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .crud {
+    &__header {
+      font-size: 1.6rem;
+      line-height: 1.2;
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  .crud {
+    &__form-row {
+      font-size: 0.6rem;
+      margin-bottom: 2px;
+    }
+
+    &__form-input {
+      font-size: 0.6rem;
+
+      #id_modelMachine,
+      #id_serialNumber,
+      #id_modelEngine,
+      #id_serialNumberEngine,
+      #id_modelTransmission,
+      #id_serialTransmission,
+      #id_modelDriveAxle,
+      #id_serialDriveAxle,
+      #id_modelSteeringAxle,
+      #id_serialSteeringAxle,
+      #id_deliveryContract,
+      #id_shipmentDate,
+      #id_consignee,
+      #id_deliveryAddress,
+      #id_client,
+      #id_serviceCompany {
+        height: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .crud {
+    &__btn {
+      font-size: 1.2rem;
+      width: 200px;
+      height: 60px;
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .crud {
+    &__header {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (max-width: 305px) {
+  .crud {
+    &__btn {
+      font-size: 1rem;
+      width: 150px;
+      height: 60px;
+    }
+  }
+}
