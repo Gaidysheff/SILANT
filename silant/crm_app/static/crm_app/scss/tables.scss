@@ -66,6 +66,16 @@
   width: 100%;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+
+  &__bottom {
+    height: 160px;
+    background: #163e6c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
 }
 
 .tab button {
@@ -321,6 +331,7 @@
   //   &__head,
   //   &__col {
   //     font-size: 0.8rem;
+  //     width: 100px;
   //   }
   // }
 

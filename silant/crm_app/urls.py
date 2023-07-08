@@ -72,8 +72,8 @@ urlpatterns = [
     path('directory_recovery_methods/<int:modelMachine_pk>/',
          DirectoryRecoveryMethod.as_view(), name='directory_recovery_method'),
     #     ----------------------------------------------------------------
-    path('directory_service_companys/', DirectoryServiceCompanyList.as_view(),
+    path('directory_service_companies/', DirectoryServiceCompanyList.as_view(),
          name='directory_service_companies'),
-    path('directory_service_companys/<int:modelMachine_pk>/',
+    path('directory_service_companies/<int:machine_pk>/',
          DirectoryServiceCompany.as_view(), name='directory_service_company'),
 ]

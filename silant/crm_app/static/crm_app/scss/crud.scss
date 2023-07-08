@@ -149,7 +149,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin: 0 0 20px 30px;
     padding-right: 40px;
     background: #163e6c;
     color: #ebe6d6;
@@ -182,6 +181,10 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }
+}
+
+.in-form {
+  margin: 0 0 20px 30px;
 }
 
 // ---------------- Variations of the Headers -----------------

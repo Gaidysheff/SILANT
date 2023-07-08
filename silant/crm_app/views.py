@@ -394,7 +394,7 @@ class DirectoryRecoveryMethodList(LoginRequiredMixin, DataMixin, ListView):
 class DirectoryServiceCompany(LoginRequiredMixin, DataMixin, DetailView):
     model = ServiceCompany
     template_name = 'crm_app/directoryServiceCompany.html'
-    pk_url_kwarg = 'modelMachine_pk'
+    pk_url_kwarg = 'machine_pk'
     context_object_name = 'model'
 
     def get_context_data(self, *, object_list=None, **kwargs):

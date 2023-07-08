@@ -137,6 +137,9 @@ class ModelEngine(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('directory_model_engines', kwargs={'modelEngine_id': self.pk})
+
 
 class ModelTransmission(models.Model):
     name = models.CharField(max_length=255, verbose_name='Модель')
@@ -148,6 +151,9 @@ class ModelTransmission(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('directory_model_transmissions', kwargs={'modelTransmission_id': self.pk})
 
 
 class ModelDriveAxle(models.Model):
@@ -161,6 +167,9 @@ class ModelDriveAxle(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('directory_model_drive_axles', kwargs={'modelDriveAxle_id': self.pk})
+
 
 class ModelSteeringAxle(models.Model):
     name = models.CharField(max_length=255, verbose_name='Модель')
@@ -172,6 +181,9 @@ class ModelSteeringAxle(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('directory_model_steering_axles', kwargs={'modelSteeringAxle_id': self.pk})
 
 
 class MaintenanceType(models.Model):
@@ -185,6 +197,9 @@ class MaintenanceType(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('directory_maintenance_types', kwargs={'maintenanceType_id': self.pk})
+
 
 class Breakdown(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
@@ -196,6 +211,9 @@ class Breakdown(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('directory_breakdowns', kwargs={'breakdown_id': self.pk})
 
 
 class RecoveryMethod(models.Model):
@@ -209,6 +227,9 @@ class RecoveryMethod(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('directory_recovery_methods', kwargs={'recoveryMethod_id': self.pk})
+
 
 class ServiceCompany(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
@@ -220,3 +241,6 @@ class ServiceCompany(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('directory_service_companies', kwargs={'serviceCompany_id': self.pk})
