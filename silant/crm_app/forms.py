@@ -10,13 +10,13 @@ class AddMachineForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['modelMachine'].empty_label = 'модель не выбрана'
-        self.fields['modelEngine'].empty_label = 'модель не выбрана'
-        self.fields['modelTransmission'].empty_label = 'модель не выбрана'
-        self.fields['modelDriveAxle'].empty_label = 'модель не выбрана'
-        self.fields['modelSteeringAxle'].empty_label = 'модель не выбрана'
-        self.fields['client'].empty_label = 'клиент не выбран'
-        self.fields['serviceCompany'].empty_label = 'компания не выбрана'
+        self.fields['modelMachine'].empty_label = 'не выбрано'
+        self.fields['modelEngine'].empty_label = 'не выбрано'
+        self.fields['modelTransmission'].empty_label = 'не выбрано'
+        self.fields['modelDriveAxle'].empty_label = 'не выбрано'
+        self.fields['modelSteeringAxle'].empty_label = 'не выбрано'
+        self.fields['client'].empty_label = 'не выбрано'
+        self.fields['serviceCompany'].empty_label = 'не выбрано'
         self.shipmentDate = forms.DateField(initial=datetime.date.today)
         self.fields['shipmentDate'].widget = forms.widgets.DateInput(
             attrs={
@@ -34,10 +34,10 @@ class AddMaintenanceForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['type'].empty_label = 'вид ТО не выбран'
-        self.fields['machine'].empty_label = 'модель не выбрана'
-        self.fields['client'].empty_label = 'клиент не выбран'
-        self.fields['serviceCompany'].empty_label = 'компания не выбрана'
+        self.fields['type'].empty_label = 'не выбрано'
+        self.fields['machine'].empty_label = 'не выбрано'
+        self.fields['client'].empty_label = 'не выбрано'
+        self.fields['serviceCompany'].empty_label = 'не выбрано'
         self.maintenanceDate = forms.DateField(initial=datetime.date.today)
         self.fields['maintenanceDate'].widget = forms.widgets.DateInput(
             attrs={
@@ -65,11 +65,11 @@ class AddClaimForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['breakdownNode'].empty_label = 'узел не выбран'
-        self.fields['recoveryMethod'].empty_label = 'способ не выбран'
-        self.fields['machine'].empty_label = 'модель не выбрана'
-        self.fields['client'].empty_label = 'клиент не выбран'
-        self.fields['serviceCompany'].empty_label = 'компания не выбрана'
+        self.fields['breakdownNode'].empty_label = 'не выбрано'
+        self.fields['recoveryMethod'].empty_label = 'не выбрано'
+        self.fields['machine'].empty_label = 'не выбрано'
+        self.fields['client'].empty_label = 'не выбрано'
+        self.fields['serviceCompany'].empty_label = 'не выбрано'
         self.breakdownDate = forms.DateField(initial=datetime.date.today)
         self.fields['breakdownDate'].widget = forms.widgets.DateInput(
             attrs={

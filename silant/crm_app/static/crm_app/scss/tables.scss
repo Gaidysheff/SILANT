@@ -131,8 +131,8 @@
 
   &__table {
     border-collapse: collapse;
-    width: 100%;
     table-layout: fixed;
+    width: 100%;
   }
 
   &__row {
@@ -147,6 +147,7 @@
 
   &__head {
     width: 150px;
+    height: 100px;
     font-weight: normal;
     background: #163e6c;
     color: #ebe6d6;
@@ -243,13 +244,13 @@
 .tab3 {
   &__grid-head {
     display: grid;
-    grid-template-columns: repeat(5, 1fr) 2fr 2fr 2fr 1fr 1fr;
+    grid-template-columns: repeat(10, 1fr);
     grid-template-rows: 80px;
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr) 2fr 2fr 2fr 1fr 1fr;
+    grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(auto, 30px);
   }
 
@@ -309,6 +310,20 @@
 /* ======================================================= */
 
 @media (max-width: 1200px) {
+  // .tab1 {
+  //   &__table {
+  //     table-layout: auto;
+  //     width: 100px;
+  //     text-overflow: ellipsis;
+  //     white-space: nowrap;
+  //     overflow: hidden;
+  //   }
+  //   &__head,
+  //   &__col {
+  //     font-size: 0.8rem;
+  //   }
+  // }
+
   .tab3 {
     &__col-head {
       font-size: 0.8rem;

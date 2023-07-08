@@ -136,7 +136,7 @@
     {% for maintenance in filter_maintenance.qs %}
     <div class="tab2__grid">
       <div class="tab2__col">
-        <a href="{% url 'directory_model_machine' maintenance.pk %}"
+        <a href="{% url 'directory_model_machine' maintenance.machine.pk %}"
           >{{maintenance.machine}}</a
         >
       </div>
@@ -184,7 +184,7 @@
     {% for claim in filter_claims.qs %}
     <div class="tab3__grid">
       <div class="tab3__col">
-        <a href="{% url 'directory_model_machine' claim.pk %}"
+        <a href="{% url 'directory_model_machine' claim.machine.pk %}"
           >{{claim.machine}}</a
         >
       </div>

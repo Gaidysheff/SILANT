@@ -164,6 +164,7 @@
         <div class="tab2__col-head">№ заказ-наряда</div>
         <div class="tab2__col-head">Дата заказ-наряда</div>
         <div class="tab2__col-head">Орг-ция, проводившая ТО</div>
+        <div class="tab2__col-head">Клиент</div>
         <div class="tab2__col-head">Сервисная компания</div>
       </div>
       {% for m in maintenance %}
@@ -174,6 +175,7 @@
         <div class="tab2__col">{{m.workOrder}}</div>
         <div class="tab2__col">{{m.workOrderDate}}</div>
         <div class="tab2__col">{{m.executor}}</div>
+        <div class="tab2__col">{{m.client}}</div>
         <div class="tab2__col">{{m.serviceCompany}}</div>
       </div>
       {% empty %}
@@ -191,20 +193,24 @@
         <div class="tab3__col-head">Наработка, м/час</div>
         <div class="tab3__col-head">Узел отказа</div>
         <div class="tab3__col-head">Описание отказа</div>
+        <div class="tab3__col-head">Способ восстановления</div>
         <div class="tab3__col-head">Используемые запасные части</div>
         <div class="tab3__col-head">Дата восстановления</div>
         <div class="tab3__col-head">Время простоя техники</div>
+        <div class="tab3__col-head">Клиент</div>
         <div class="tab3__col-head">Сервисная компания</div>
       </div>
       {% for c in claims %}
       <div class="tab3__grid">
         <div class="tab3__col">{{c.breakdownDate}}</div>
         <div class="tab3__col">{{c.operatingTime}}</div>
+        <div class="tab3__col">{{c.breakdownNode}}</div>
         <div class="tab3__col">{{c.breakdownDescription}}</div>
-        <div class="tab3__col">{{c.usedSpareParts}}</div>
+        <div class="tab3__col">{{c.recoveryMethod}}</div>
         <div class="tab3__col">{{c.usedSpareParts}}</div>
         <div class="tab3__col">{{c.recoverDate}}</div>
         <div class="tab3__col">{{c.downtime}}</div>
+        <div class="tab3__col">{{c.client}}</div>
         <div class="tab3__col">{{c.serviceCompany}}</div>
       </div>
       {% empty %}
