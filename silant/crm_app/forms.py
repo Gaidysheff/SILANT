@@ -47,3 +47,31 @@ class AddMachineForm(forms.ModelForm):
     #         raise ValidationError(
     #             'Длина превышает 200 символов')
     #     return title
+
+
+class AddMaintenanceForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['type'].empty_label = 'вид ТО не выбран'
+        self.fields['machine'].empty_label = 'модель не выбрана'
+        self.fields['client'].empty_label = 'клиент не выбран'
+        self.fields['serviceCompany'].empty_label = 'компания не выбрана'
+        self.maintenanceDate = forms.DateField(initial=datetime.date.today)
+        self.fields['maintenanceDate'].widget = forms.widgets.DateInput(
+            attrs={
+                'type': 'date',
+                'placeholder': 'yyyy-mm-dd (DOB)',
+            }
+        )
+        self.workOrderDate = forms.DateField(initial=datetime.date.today)
+        self.fields['workOrderDate'].widget = forms.widgets.DateInput(
+            attrs={
+                'type': 'date',
+                'placeholder': 'yyyy-mm-dd (DOB)',
+            }
+        )
+
+    class Meta:
+        model = Maintenance
+        fields = '__all__'

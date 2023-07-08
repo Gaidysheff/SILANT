@@ -29,6 +29,7 @@ urlpatterns = [
     path('full_db_list/', full_db_list, name='full_db_list'),
     #     ---------------------- CRUD -------------------------------
     path('add_machine/', AddMachine.as_view(), name='add_machine'),
+    path('add_maintenance/', AddMaintenance.as_view(), name='add_maintenance'),
     #     ---------------------- Справочники -------------------------------
     path('directory_model_machines/', DirectoryModelMachineList.as_view(),
          name='directory_model_machines'),
