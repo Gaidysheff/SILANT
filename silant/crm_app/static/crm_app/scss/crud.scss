@@ -100,6 +100,25 @@
       color: #ebe6d6;
       padding: 0 10px;
     }
+
+    #id_breakdownDate,
+    #id_breakdownNode,
+    #id_recoveryMethod,
+    #id_recoverDate {
+      width: 100%;
+      height: 30px;
+      background-color: #163e6c;
+      color: #ebe6d6;
+      padding: 0 10px;
+    }
+
+    #id_breakdownDescription,
+    #id_usedSpareParts {
+      width: 100%;
+      background-color: #163e6c;
+      color: #ebe6d6;
+      padding: 0 10px;
+    }
   }
 
   &__button-area {
@@ -190,6 +209,22 @@
     background: url("../../crm_app/images/icons/title-maintanance.png")
       no-repeat;
     width: 80px;
+    height: 80px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 3%;
+  }
+}
+
+.header-claim {
+  position: relative;
+
+  &::after {
+    content: "";
+    background: url("../../crm_app/images/icons/title-claim.png") no-repeat;
+    width: 83px;
     height: 80px;
     display: block;
     position: absolute;

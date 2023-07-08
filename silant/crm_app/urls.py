@@ -30,6 +30,7 @@ urlpatterns = [
     #     ---------------------- CRUD -------------------------------
     path('add_machine/', AddMachine.as_view(), name='add_machine'),
     path('add_maintenance/', AddMaintenance.as_view(), name='add_maintenance'),
+    path('add_claim/', AddClaim.as_view(), name='add_claim'),
     #     ---------------------- Справочники -------------------------------
     path('directory_model_machines/', DirectoryModelMachineList.as_view(),
          name='directory_model_machines'),

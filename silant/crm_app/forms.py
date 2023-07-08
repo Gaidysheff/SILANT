@@ -1,6 +1,4 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.core.exceptions import ValidationError
 
 from django.utils.translation import gettext_lazy as _
 
@@ -24,29 +22,12 @@ class AddMachineForm(forms.ModelForm):
             attrs={
                 'type': 'date',
                 'placeholder': 'yyyy-mm-dd (DOB)',
-                # 'class': 'form-control',
             }
         )
 
     class Meta:
         model = Machine
         fields = '__all__'
-
-        # fields = ['author', 'categoryType', 'postCategory',
-        #           'title', 'text', 'photo', 'rating', 'status']
-
-        # widgets = {
-        #     'title': forms.TextInput(attrs={'class': 'form-input', 'size': 58}),
-        #     'slug': forms.URLInput(attrs={'size': 58}),
-        #     'text': forms.Textarea(attrs={'cols': 60, 'rows': 7}),
-        # }
-
-    # def clean_title(self):
-    #     title = self.cleaned_data['title']
-    #     if len(title) > 200:
-    #         raise ValidationError(
-    #             'Длина превышает 200 символов')
-    #     return title
 
 
 class AddMaintenanceForm(forms.ModelForm):
@@ -71,7 +52,42 @@ class AddMaintenanceForm(forms.ModelForm):
                 'placeholder': 'yyyy-mm-dd (DOB)',
             }
         )
+        self.fields['operatingTime'].initial = 0
+        self.operatingTime = forms.FloatField(min_value=0,
+                                              error_messages={'min_value': 'Наработка не может быть меньше нуля!'})
 
     class Meta:
         model = Maintenance
+        fields = '__all__'
+
+
+class AddClaimForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['breakdownNode'].empty_label = 'узел не выбран'
+        self.fields['recoveryMethod'].empty_label = 'способ не выбран'
+        self.fields['machine'].empty_label = 'модель не выбрана'
+        self.fields['client'].empty_label = 'клиент не выбран'
+        self.fields['serviceCompany'].empty_label = 'компания не выбрана'
+        self.breakdownDate = forms.DateField(initial=datetime.date.today)
+        self.fields['breakdownDate'].widget = forms.widgets.DateInput(
+            attrs={
+                'type': 'date',
+                'placeholder': 'yyyy-mm-dd (DOB)',
+            }
+        )
+        self.recoverDate = forms.DateField(initial=datetime.date.today)
+        self.fields['recoverDate'].widget = forms.widgets.DateInput(
+            attrs={
+                'type': 'date',
+                'placeholder': 'yyyy-mm-dd (DOB)',
+            }
+        )
+        self.fields['operatingTime'].initial = 0
+        self.operatingTime = forms.FloatField(min_value=0,
+                                              error_messages={'min_value': 'Наработка не может быть меньше нуля!'})
+
+    class Meta:
+        model = Claims
         fields = '__all__'
