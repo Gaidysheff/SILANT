@@ -261,6 +261,28 @@
   }
 }
 
+.btn-update {
+  &::after {
+    content: "";
+    background: url("../../crm_app/images/icons/update.png") no-repeat;
+    width: 27px;
+    height: 32px;
+    display: block;
+    position: absolute;
+    top: 55%;
+    transform: translateY(-50%);
+    right: 20%;
+  }
+
+  &:hover::after {
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  &:active::after {
+    transform: translateY(-50%) scale(0.9);
+  }
+}
+
 // ---------------- Calendar sign ---------------------------
 
 ::-webkit-calendar-picker-indicator {

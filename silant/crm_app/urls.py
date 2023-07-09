@@ -31,6 +31,12 @@ urlpatterns = [
     path('add_machine/', AddMachine.as_view(), name='add_machine'),
     path('add_maintenance/', AddMaintenance.as_view(), name='add_maintenance'),
     path('add_claim/', AddClaim.as_view(), name='add_claim'),
+    path('machine/<int:pk>/update/',
+         UpdateMachine.as_view(), name='update_machine'),
+    #     path('machine/<int:pk>/maintenance_update/', UpdateMaintenance.as_view(),
+    #          name='update_maintenance'),
+    #     path('machine/<int:pk>/claim_update/',
+    #          UpdateClaim.as_view(), name='update_claim'),
     #     ---------------------- Справочники -------------------------------
     path('directory_model_machines/', DirectoryModelMachineList.as_view(),
          name='directory_model_machines'),

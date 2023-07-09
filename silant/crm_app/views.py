@@ -6,7 +6,7 @@ from django.db.models.query import QuerySet
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, DetailView, ListView
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 from .filter import ClaimsFilter, MachineFilter, MaintenanceFilter
 from .models import (Breakdown, Claims, Machine, Maintenance, MaintenanceType,
@@ -174,6 +174,49 @@ class AddClaim(LoginRequiredMixin, DataMixin, CreateView):
         c_def = self.get_user_context(title="Добавление Рекламации")
         return dict(list(context.items()) + list(c_def.items()))
 
+# --------------------------------------------------------------
+
+
+class UpdateMachine(LoginRequiredMixin, DataMixin, UpdateView):
+    form_class = AddMachineForm
+    model = Machine
+    template_name = 'crm_app/crud_update_machine.html'
+    success_url = reverse_lazy('index')
+    # login_url = reverse_lazy('login_user')
+    raise_exception = True
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Обновление Машины")
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class UpdateMaintenance(LoginRequiredMixin, DataMixin, UpdateView):
+    form_class = AddMaintenanceForm
+    model = Maintenance
+    template_name = 'crm_app/crud_update_maintenance.html'
+    success_url = reverse_lazy('index')
+    # login_url = reverse_lazy('login_user')
+    raise_exception = True
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Обновление ТО")
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class UpdateClaim(LoginRequiredMixin, DataMixin, UpdateView):
+    form_class = AddClaimForm
+    model = Claims
+    template_name = 'crm_app/crud_update_claim.html'
+    success_url = reverse_lazy('index')
+    # login_url = reverse_lazy('login_user')
+    raise_exception = True
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Обновление Рекламации")
+        return dict(list(context.items()) + list(c_def.items()))
 
 # ======================== DIRECTORIES ========================
 

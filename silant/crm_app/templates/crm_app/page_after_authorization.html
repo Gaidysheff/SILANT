@@ -67,31 +67,39 @@
         {% for machine in filter_machines.qs %}
         <tr class="tab1__row">
           <td class="tab1__col">
-            <a href="{% url 'directory_model_machine' machine.pk %}"
+            <a
+              href="{% url 'directory_model_machine' machine.modelMachine_id %}"
               >{{ machine.modelMachine }}</a
             >
           </td>
-          <td class="tab1__col">{{machine.serialNumber}}</td>
           <td class="tab1__col">
-            <a href="{% url 'directory_model_engine' machine.pk %}"
+            <a href="{% url 'machine' machine.machine_id %}"
+              >{{machine.serialNumber}}</a
+            >
+          </td>
+          <td class="tab1__col">
+            <a href="{% url 'directory_model_engine' machine.modelEngine_id %}"
               >{{machine.modelEngine}}</a
             >
           </td>
           <td class="tab1__col">{{machine.serialNumberEngine}}</td>
           <td class="tab1__col">
-            <a href="{% url 'directory_model_transmission' machine.pk %}"
+            <a
+              href="{% url 'directory_model_transmission' machine.modelTransmission_id %}"
               >{{machine.modelTransmission}}</a
             >
           </td>
           <td class="tab1__col">{{machine.serialTransmission}}</td>
           <td class="tab1__col">
-            <a href="{% url 'directory_model_drive_axle' machine.pk %}"
+            <a
+              href="{% url 'directory_model_drive_axle' machine.modelDriveAxle_id %}"
               >{{machine.modelDriveAxle}}</a
             >
           </td>
           <td class="tab1__col">{{machine.serialDriveAxle}}</td>
           <td class="tab1__col">
-            <a href="{% url 'directory_model_steering_axle' machine.pk %}"
+            <a
+              href="{% url 'directory_model_steering_axle' machine.modelSteeringAxle_id %}"
               >{{machine.modelSteeringAxle}}</a
             >
           </td>
@@ -103,7 +111,8 @@
           <td class="tab1__col">{{machine.additionalOptions}}</td>
           <td class="tab1__col">{{machine.client}}</td>
           <td class="tab1__col">
-            <a href="{% url 'directory_service_company' machine.pk %}"
+            <a
+              href="{% url 'directory_service_company' machine.serviceCompany.pk %}"
               >{{machine.serviceCompany}}</a
             >
           </td>
@@ -140,12 +149,12 @@
     {% for maintenance in filter_maintenance.qs %}
     <div class="tab2__grid">
       <div class="tab2__col">
-        <a href="{% url 'directory_model_machine' maintenance.machine.pk %}"
+        <a href="{% url 'machine' maintenance.machine.pk %}"
           >{{maintenance.machine}}</a
         >
       </div>
       <div class="tab2__col">
-        <a href="{% url 'directory_maintenance_type' maintenance.pk %}"
+        <a href="{% url 'directory_maintenance_type' maintenance.type.pk %}"
           >{{maintenance.type}}</a
         >
       </div>
@@ -155,7 +164,8 @@
       <div class="tab2__col">{{maintenance.workOrderDate}}</div>
       <div class="tab2__col">{{maintenance.executor}}</div>
       <div class="tab2__col">
-        <a href="{% url 'directory_service_company' maintenance.pk %}"
+        <a
+          href="{% url 'directory_service_company' maintenance.serviceCompany_id %}"
           >{{maintenance.serviceCompany}}</a
         >
       </div>
@@ -163,6 +173,13 @@
     {% empty %}
     <div class="message">Список пуст</div>
     {% endfor %}
+
+    <div class="tab__bottom">
+      <span></span>
+      <a href="{% url 'add_maintenance' %}" class="crud__btn btn-add"
+        >Добавить</a
+      >
+    </div>
   </div>
 
   <!------------------- Tab3 content ------------------->
@@ -190,20 +207,18 @@
     {% for claim in filter_claims.qs %}
     <div class="tab3__grid">
       <div class="tab3__col">
-        <a href="{% url 'directory_model_machine' claim.machine.pk %}"
-          >{{claim.machine}}</a
-        >
+        <a href="{% url 'machine' claim.machine.pk %}">{{claim.machine}}</a>
       </div>
       <div class="tab3__col">{{claim.breakdownDate}}</div>
       <div class="tab3__col">{{claim.operatingTime}}</div>
       <div class="tab3__col">
-        <a href="{% url 'directory_breakdown' claim.pk %}"
+        <a href="{% url 'directory_breakdown' claim.breakdownNode.pk %}"
           >{{claim.breakdownNode}}</a
         >
       </div>
       <div class="tab3__col">{{claim.breakdownDescription}}</div>
       <div class="tab3__col">
-        <a href="{% url 'directory_recovery_method' claim.pk %}"
+        <a href="{% url 'directory_recovery_method' claim.recoveryMethod.pk %}"
           >{{claim.recoveryMethod}}</a
         >
       </div>
@@ -211,7 +226,7 @@
       <div class="tab3__col">{{claim.recoverDate}}</div>
       <div class="tab3__col">{{claim.downtime}}</div>
       <div class="tab3__col">
-        <a href="{% url 'directory_service_company' claim.pk %}"
+        <a href="{% url 'directory_service_company' claim.serviceCompany_id %}"
           >{{claim.serviceCompany}}</a
         >
       </div>
@@ -219,6 +234,11 @@
     {% empty %}
     <div class="message">Список пуст</div>
     {% endfor %}
+
+    <div class="tab__bottom">
+      <span></span>
+      <a href="{% url 'add_claim' %}" class="crud__btn btn-add">Добавить</a>
+    </div>
   </div>
 </div>
 

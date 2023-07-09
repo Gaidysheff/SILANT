@@ -1,0 +1,41 @@
+{% extends 'crm_app/base.html' %}
+<br />
+{% block content %}
+
+<div class="container">
+  <div class="crud">
+    <div class="crud__inner">
+      <div class="crud__header header-claim">{{title}}</div>
+      <div class="crud__content">
+        <form
+          class="crud__form"
+          action="{% url 'update_claim' claim.machine.pk %}"
+          method="post"
+        >
+          {% csrf_token %}
+          <div class="crud__data">
+            <div class="crud__form-error">{{ form.non_field_errors }}</div>
+            {% for item in form %}
+            <div class="crud__form-row">
+              <label class="crud__form-label" for="{{ item.id_for_label }}"
+                >{{ item.label }}:</label
+              >
+              <div class="crud__form-input">{{ item }}</div>
+            </div>
+            <div class="crud__form-error">{{ item.errors }}</div>
+            {% endfor %}
+          </div>
+          <div class="crud__button-area">
+            <span></span>
+            <button type="submit" class="crud__btn btn-update in-form">
+              Обновить
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="crud__bottom"></div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
