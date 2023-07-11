@@ -19,7 +19,9 @@
       </button>
     </div>
 
-    <!------------------- Tab content ------------------->
+    <!-- ================= TABS CONTENT =============== -->
+    <!------------------- Tab1 content ------------------->
+
     <div id="General_Info" class="tabcontent">
       <div class="subtitle_in_tabs">
         Общая информация о машине с Зав. №
@@ -148,7 +150,19 @@
           </div>
         </div>
       </div>
+
+      <br />
+      <a class="page-title" href="{% url 'update_machine' machine.pk %}"
+        >Обновить эту запись о машине</a
+      >
+      <br />
+      <a class="page-title" href="{% url 'delete_machine' machine.pk %}"
+        >Удалить эту запись о машине из базы данных</a
+      >
+      <br />
     </div>
+
+    <!------------------- Tab2 content ------------------->
 
     <div id="Maintenance" class="tabcontent">
       <div class="subtitle_in_tabs">
@@ -158,30 +172,49 @@
       </div>
 
       <div class="tab2__grid-head">
+        <div class="tab2__col-head"># ID</div>
+        <div class="tab2__col-head">Зав. № машины</div>
         <div class="tab2__col-head">Вид ТО</div>
         <div class="tab2__col-head">Дата проведения ТО</div>
-        <div class="tab2__col-head">Наработка, м/час</div>
+        <div class="tab2__col-head">Нара-<br />ботка,<br />м/час</div>
         <div class="tab2__col-head">№ заказ-наряда</div>
         <div class="tab2__col-head">Дата заказ-наряда</div>
         <div class="tab2__col-head">Орг-ция, проводившая ТО</div>
-        <div class="tab2__col-head">Клиент</div>
         <div class="tab2__col-head">Сервисная компания</div>
       </div>
       {% for m in maintenance %}
       <div class="tab2__grid">
-        <div class="tab2__col">{{m.type}}</div>
+        <div class="tab2__col">
+          <a class="link_to_object tooltip" href="{% url 'maintenance' m.pk %}">
+            {{m.id}}
+            <span class="tooltiptext">Открыть</span>
+          </a>
+        </div>
+        <div class="tab2__col">
+          <a href="{% url 'machine' m.machine.pk %}">{{m.machine}}</a>
+        </div>
+        <div class="tab2__col">
+          <a href="{% url 'directory_maintenance_type' m.type.pk %}"
+            >{{m.type}}</a
+          >
+        </div>
         <div class="tab2__col">{{m.maintenanceDate}}</div>
         <div class="tab2__col">{{m.operatingTime}}</div>
         <div class="tab2__col">{{m.workOrder}}</div>
         <div class="tab2__col">{{m.workOrderDate}}</div>
         <div class="tab2__col">{{m.executor}}</div>
-        <div class="tab2__col">{{m.client}}</div>
-        <div class="tab2__col">{{m.serviceCompany}}</div>
+        <div class="tab2__col">
+          <a href="{% url 'directory_service_company' m.serviceCompany.pk %}"
+            >{{m.serviceCompany}}</a
+          >
+        </div>
       </div>
       {% empty %}
       <div class="message">Список пуст</div>
       {% endfor %}
     </div>
+
+    <!------------------- Tab3 content ------------------->
 
     <div id="Claims" class="tabcontent">
       <div class="subtitle_in_tabs">
@@ -189,29 +222,50 @@
         <span>{{ machine.serialNumber}}</span>
       </div>
       <div class="tab3__grid-head">
+        <div class="tab3__col-head"># ID</div>
+        <div class="tab3__col-head">Зав. № машины</div>
         <div class="tab3__col-head">Дата отказа</div>
-        <div class="tab3__col-head">Наработка, м/час</div>
+        <div class="tab3__col-head">Нара-<br />ботка,<br />м/час</div>
         <div class="tab3__col-head">Узел отказа</div>
         <div class="tab3__col-head">Описание отказа</div>
         <div class="tab3__col-head">Способ восстановления</div>
         <div class="tab3__col-head">Используемые запасные части</div>
         <div class="tab3__col-head">Дата восстановления</div>
         <div class="tab3__col-head">Время простоя техники</div>
-        <div class="tab3__col-head">Клиент</div>
         <div class="tab3__col-head">Сервисная компания</div>
       </div>
       {% for c in claims %}
       <div class="tab3__grid">
+        <div class="tab3__col">
+          <a class="link_to_object tooltip" href="{% url 'claim' c.pk %}">
+            {{c.id}}
+            <span class="tooltiptext">Открыть</span>
+          </a>
+        </div>
+        <div class="tab3__col">
+          <a href="{% url 'machine' c.machine.pk %}">{{c.machine}}</a>
+        </div>
         <div class="tab3__col">{{c.breakdownDate}}</div>
         <div class="tab3__col">{{c.operatingTime}}</div>
-        <div class="tab3__col">{{c.breakdownNode}}</div>
+        <div class="tab3__col">
+          <a href="{% url 'directory_breakdown' c.breakdownNode.pk %}"
+            >{{c.breakdownNode}}</a
+          >
+        </div>
         <div class="tab3__col">{{c.breakdownDescription}}</div>
-        <div class="tab3__col">{{c.recoveryMethod}}</div>
+        <div class="tab3__col">
+          <a href="{% url 'directory_recovery_method' c.recoveryMethod.pk %}"
+            >{{c.recoveryMethod}}</a
+          >
+        </div>
         <div class="tab3__col">{{c.usedSpareParts}}</div>
         <div class="tab3__col">{{c.recoverDate}}</div>
         <div class="tab3__col">{{c.downtime}}</div>
-        <div class="tab3__col">{{c.client}}</div>
-        <div class="tab3__col">{{c.serviceCompany}}</div>
+        <div class="tab3__col">
+          <a href="{% url 'directory_service_company' c.serviceCompany.pk %}"
+            >{{c.serviceCompany}}</a
+          >
+        </div>
       </div>
       {% empty %}
       <div class="message">Список пуст</div>

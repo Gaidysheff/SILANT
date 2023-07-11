@@ -1,0 +1,35 @@
+{% extends 'crm_app/base.html' %}{% block content %}
+<br />
+<h1>{{title}}</h1>
+<br />
+
+{{title}} <br />
+<div class="subtitle_in_tabs">
+  Выбрано Техническое Обслуживание с id
+  <span>{{ maintenance.id}}</span>
+  <br />
+  машины с Зав. №
+  <span>{{ maintenance.machine}}</span>
+</div>
+
+{{ maintenance.machine }} <br />
+{{ maintenance.type }} <br />
+{{ maintenance.maintenanceDate }} <br />
+{{ maintenance.operatingTime }} <br />
+{{ maintenance.workOrder }} <br />
+{{ maintenance.workOrderDate }} <br />
+{{ maintenance.executor }} <br />
+{{ maintenance.client }} <br />
+{{ maintenance.serviceCompany }} <br />
+
+<br />
+<a class="page-title" href="{% url 'update_maintenance' maintenance.pk %}"
+  >Обновить эту запись о техническом обслуживании</a
+>
+<br />
+<a class="page-title" href="{% url 'delete_maintenance' maintenance.pk %}"
+  >Удалить эту запись о техническом обслуживании из базы данных</a
+>
+<br />
+
+{% endblock content %}

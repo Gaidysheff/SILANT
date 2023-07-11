@@ -2,6 +2,7 @@ from typing import Any
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import models
 from django.db.models.query import QuerySet
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -109,6 +110,8 @@ def search_machine(request):
             context['searched'] = 'Данных о машине с таким заводским номером в системе нет !!!'
             return render(request, 'crm_app/index.html', context=context)
 
+# =========================== CRUD ===========================
+
 
 @login_required()
 def show_machine(request, machine_id):
@@ -127,7 +130,35 @@ def show_machine(request, machine_id):
     }
     return render(request, 'crm_app/machine.html', context=context)
 
-# =========================== CRUD ===========================
+
+@login_required()
+def show_maintenance(request, maintenance_id):
+    maintenance = get_object_or_404(Maintenance, pk=maintenance_id)
+
+    context = {
+        'maintenance': maintenance,
+        'machine_table_titles': machine_table_titles,
+        # 'machine_table_subtitles': machine_table_subtitles,
+        'menu': menu,
+        'title': "Выбранное Техническое Обслуживание"
+    }
+    return render(request, 'crm_app/crud_read_maintenance.html', context=context)
+
+
+@login_required()
+def show_claim(request, claim_id):
+    claim = get_object_or_404(Claims, pk=claim_id)
+
+    context = {
+        'claim': claim,
+        'machine_table_titles': machine_table_titles,
+        # 'machine_table_subtitles': machine_table_subtitles,
+        'menu': menu,
+        'title': "Выбранная Рекламация"
+    }
+    return render(request, 'crm_app/crud_read_claim.html', context=context)
+
+# --------------------------------------------------------------
 
 
 class AddMachine(LoginRequiredMixin, DataMixin, CreateView):
@@ -216,6 +247,48 @@ class UpdateClaim(LoginRequiredMixin, DataMixin, UpdateView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title="Обновление Рекламации")
+        return dict(list(context.items()) + list(c_def.items()))
+
+# --------------------------------------------------------------
+
+
+class DeleteMachine(LoginRequiredMixin, DataMixin, DeleteView):
+    model = Machine
+    template_name = 'crm_app/crud_delete_machine.html'
+    success_url = reverse_lazy('index')
+    # login_url = reverse_lazy('login_user')
+    raise_exception = True
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Удаление записи о машине")
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class DeleteMaintenance(LoginRequiredMixin, DataMixin, DeleteView):
+    model = Maintenance
+    template_name = 'crm_app/crud_delete_maintenance.html'
+    success_url = reverse_lazy('index')
+    # login_url = reverse_lazy('login_user')
+    raise_exception = True
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Удаление записи о ТО машины")
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class DeleteClaim(LoginRequiredMixin, DataMixin, DeleteView):
+    model = Claims
+    template_name = 'crm_app/crud_delete_claim.html'
+    success_url = reverse_lazy('index')
+    # login_url = reverse_lazy('login_user')
+    raise_exception = True
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Удаление записи о Рекламации на машину")
         return dict(list(context.items()) + list(c_def.items()))
 
 # ======================== DIRECTORIES ========================

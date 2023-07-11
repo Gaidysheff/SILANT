@@ -17,7 +17,6 @@ urlpatterns = [
     #          name='page_after_authorization_test'),
     #     path('test3/', test3, name='test3'),
     #     ----------------------------------------------------------------
-    path('machine/<int:machine_id>/', show_machine, name='machine'),
     path('about/', about, name='about'),
     path('addpage/', addpage, name='add_page'),
     path('contact/', contact, name='contact'),
@@ -28,15 +27,28 @@ urlpatterns = [
     path('you_db/', page_after_authorization, name='page_after_authorization'),
     path('full_db_list/', full_db_list, name='full_db_list'),
     #     ---------------------- CRUD -------------------------------
+    path('machine/<int:machine_id>/', show_machine, name='machine'),
+    path('maintenance/<int:maintenance_id>/',
+         show_maintenance, name='maintenance'),
+    path('claim/<int:claim_id>/', show_claim, name='claim'),
+    #     ----------------------
     path('add_machine/', AddMachine.as_view(), name='add_machine'),
     path('add_maintenance/', AddMaintenance.as_view(), name='add_maintenance'),
     path('add_claim/', AddClaim.as_view(), name='add_claim'),
+    #     ----------------------
     path('machine/<int:pk>/update/',
          UpdateMachine.as_view(), name='update_machine'),
-    #     path('machine/<int:pk>/maintenance_update/', UpdateMaintenance.as_view(),
-    #          name='update_maintenance'),
-    #     path('machine/<int:pk>/claim_update/',
-    #          UpdateClaim.as_view(), name='update_claim'),
+    path('maintenance/<int:pk>/maintenance_update/', UpdateMaintenance.as_view(),
+         name='update_maintenance'),
+    path('claim/<int:pk>/claim_update/',
+         UpdateClaim.as_view(), name='update_claim'),
+    #     ----------------------
+    path('machine/<int:pk>/delete_machine/',
+         DeleteMachine.as_view(), name='delete_machine'),
+    path('maintenance/<int:pk>/delete_maintenance/',
+         DeleteMaintenance.as_view(), name='delete_maintenance'),
+    path('claim/<int:pk>/delete_claim/',
+         DeleteClaim.as_view(), name='delete_claim'),
     #     ---------------------- Справочники -------------------------------
     path('directory_model_machines/', DirectoryModelMachineList.as_view(),
          name='directory_model_machines'),

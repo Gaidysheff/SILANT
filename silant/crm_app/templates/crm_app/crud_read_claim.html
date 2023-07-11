@@ -1,0 +1,37 @@
+{% extends 'crm_app/base.html' %}{% block content %}
+<br />
+<h1>{{title}}</h1>
+<br />
+
+{{title}} <br />
+
+<div class="subtitle_in_tabs">
+  Выбрана Рекламация с id
+  <span>{{ claim.id}}</span>
+  <br />
+  машины с Зав. №
+  <span>{{ claim.machine}}</span>
+</div>
+
+{{ claim.machine }} <br />
+{{ claim.breakdownDate }} <br />
+{{ claim.operatingTime }} <br />
+{{ claim.breakdownNode }} <br />
+{{ claim.breakdownDescription }} <br />
+{{ claim.recoveryMethod }} <br />
+{{ claim.usedSpareParts }} <br />
+{{ claim.recoverDate }} <br />
+{{ claim.client }} <br />
+{{ claim.serviceCompany }} <br />
+
+<br />
+<a class="page-title" href="{% url 'update_claim' claim.pk %}"
+  >Обновить эту запись о рекламации</a
+>
+<br />
+<a class="page-title" href="{% url 'delete_claim' claim.pk %}"
+  >Удалить эту запись о рекламации из базы данных</a
+>
+<br />
+
+{% endblock content %}

@@ -1,7 +1,7 @@
 {% extends 'crm_app/base.html' %}
 <br />
 {% block content %}
- 
+
 <!-- ================================================================ -->
 
 <div class="container">
@@ -36,7 +36,7 @@
   <!-- ================= TABS CONTENT =============== -->
   <!------------------- Tab1 content ------------------->
   <div id="General_Info" class="tabcontent">
-    <div class="subtitle_in_tabs">Список Вашей техники</div>
+    <div class="subtitle_in_tabs">Список всей техники</div>
 
     <form class="filter" method="get">
       <div class="filter__items">{{ filter_machines.form.as_p }}</div>
@@ -133,7 +133,7 @@
 
   <div id="Maintenance" class="tabcontent">
     <div class="subtitle_in_tabs">
-      Данные о Техническом Обслуживании Вашей техники
+      Данные о Техническом Обслуживании всей техники
     </div>
 
     <form class="filter" method="get">
@@ -144,6 +144,7 @@
     <div class="tab1">
       <table class="tab1__table">
         <tr class="tab1__row">
+          <th class="tab1__head"># ID</th>
           <th class="tab1__head">Зав. № машины</th>
           <th class="tab1__head">Вид ТО</th>
           <th class="tab1__head">Дата проведения ТО</th>
@@ -157,10 +158,20 @@
         {% for maintenance in filter_maintenance.qs %}
         <tr class="tab1__row">
           <td class="tab1__col">
+            <a
+              class="link_to_object tooltip"
+              href="{% url 'maintenance' maintenance.pk %}"
+            >
+              {{maintenance.id}}
+              <span class="tooltiptext">Открыть это ТО</span>
+            </a>
+          </td>
+          <td class="tab1__col">
             <a href="{% url 'machine' maintenance.machine.pk %}"
               >{{maintenance.machine}}</a
             >
           </td>
+
           <td class="tab1__col">
             <a href="{% url 'directory_maintenance_type' maintenance.type.pk %}"
               >{{maintenance.type}}</a
@@ -196,7 +207,7 @@
   <!------------------- Tab3 content ------------------->
 
   <div id="Claims" class="tabcontent">
-    <div class="subtitle_in_tabs">Рекламации на Вашу технику</div>
+    <div class="subtitle_in_tabs">Рекламации на технику</div>
 
     <form class="filter" method="get">
       <div class="filter__items">{{ filter_claims.form.as_p }}</div>
@@ -206,6 +217,7 @@
     <div class="tab1">
       <table class="tab1__table">
         <tr class="tab1__row">
+          <th class="tab1__head"># ID</th>
           <th class="tab1__head">Зав. № машины</th>
           <th class="tab1__head">Дата отказа</th>
           <th class="tab1__head">Наработка, м/час</th>
@@ -220,6 +232,12 @@
         </tr>
         {% for claim in filter_claims.qs %}
         <tr class="tab1__row">
+          <td class="tab1__col">
+            <a class="link_to_object tooltip" href="{% url 'claim' claim.pk %}">
+              {{claim.id}}
+              <span class="tooltiptext">Открыть</span>
+            </a>
+          </td>
           <td class="tab1__col">
             <a href="{% url 'machine' claim.machine.pk %}">{{claim.machine}}</a>
           </td>

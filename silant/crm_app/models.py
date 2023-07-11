@@ -73,6 +73,9 @@ class Maintenance(models.Model):
     def __str__(self):
         return self.workOrder
 
+    def get_absolute_url(self):
+        return reverse('maintenance', kwargs={'maintenance_id': self.pk})
+
 
 class Claims(models.Model):
     machine = models.ForeignKey(
@@ -96,6 +99,9 @@ class Claims(models.Model):
     class Meta:
         verbose_name = 'Рекламация'
         verbose_name_plural = 'РЕКЛАМАЦИИ'
+
+    def get_absolute_url(self):
+        return reverse('claim', kwargs={'claim_id': self.pk})
 
     def __str__(self):
         return f'{self.breakdownDescription[:20]}...'

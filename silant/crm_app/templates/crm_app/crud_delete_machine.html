@@ -1,0 +1,17 @@
+{% extends 'crm_app/base.html' %}{% block content %}
+<br />
+<h1>{{title}}</h1>
+<br />
+
+<hr />
+<form action="" method="post">
+  {% csrf_token %}
+
+  <div class="subtitle_in_tabs">
+    Удаляем запись о машине с Зав. №
+    <span>{{ machine.serialNumber}}</span> ?
+  </div>
+  <input type="submit" value="Delete" />
+</form>
+
+{% endblock content %}

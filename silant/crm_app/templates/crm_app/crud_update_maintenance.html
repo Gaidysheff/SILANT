@@ -9,7 +9,7 @@
       <div class="crud__content">
         <form
           class="crud__form"
-          action="{% url 'update_maintenance' maintenance.machine.pk %}"
+          action="{% url 'update_maintenance' object.pk %}"
           method="post"
         >
           {% csrf_token %}

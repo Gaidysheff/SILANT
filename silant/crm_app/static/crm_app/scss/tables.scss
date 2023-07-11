@@ -187,18 +187,23 @@
   }
 }
 
+// .link_to_object a {
+//   color: #2bd600;
+//   cursor: pointer;
+// }
+
 /* ___________________________________________________________________ */
 
 .tab2 {
   &__grid-head {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: 1fr 1fr 2fr 2fr 1fr 2fr 2fr 2fr 2fr;
     grid-template-rows: 80px;
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: 1fr 1fr 2fr 2fr 1fr 2fr 2fr 2fr 2fr;
     grid-template-rows: repeat(auto, 30px);
   }
 
@@ -254,13 +259,13 @@
 .tab3 {
   &__grid-head {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: 1fr 2fr 2fr 1fr 2fr 2fr 2fr 2fr 2fr 1fr 2fr;
     grid-template-rows: 80px;
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: 1fr 2fr 2fr 1fr 2fr 2fr 2fr 2fr 2fr 1fr 2fr;
     grid-template-rows: repeat(auto, 30px);
   }
 
@@ -313,6 +318,48 @@
       }
     }
   }
+}
+
+// -----------------------------------------------------------
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  font-size: 1rem;
+  background-color: #ee0202;
+  color: #ebe6d6;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 25%;
+  left: 0%;
+  margin-left: -70px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
 
 /* ======================================================= */
