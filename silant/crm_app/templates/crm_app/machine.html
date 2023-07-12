@@ -24,142 +24,179 @@
 
     <div id="General_Info" class="tabcontent">
       <div class="subtitle_in_tabs">
-        Общая информация о машине с Зав. №
-        <span>{{ machine.serialNumber}}</span>
+        Выбрана машина с Зав. №
+        <span>{{ machine.serialNumber }}</span>
       </div>
 
-      <div class="search">
-        <div class="search__set">
-          <div class="search__set-title">МАШИНА</div>
-          <div class="search__grid">
-            <div class="search__col col-left">Модель техники</div>
-            <div class="search__col col-right">{{ machine.modelMachine }}</div>
-          </div>
-          <div class="search__grid">
-            <div class="search__col col-left">Зав. № машины</div>
-            <div class="search__col col-right">{{ machine.serialNumber }}</div>
-          </div>
-        </div>
-        <div class="search__set">
-          <div class="search__set-title">ДВИГАТЕЛЬ</div>
-          <div class="search__grid">
-            <div class="search__col col-left">Модель двигателя</div>
-            <div class="search__col col-right">{{ machine.modelEngine }}</div>
-          </div>
-          <div class="search__grid">
-            <div class="search__col col-left">Зав. № двигателя</div>
-            <div class="search__col col-right">
-              {{ machine.serialNumberEngine }}
+      <div class="container">
+        <div class="crud">
+          <div class="crud__inner">
+            <div class="crud__header header-machine">{{title}}</div>
+            <div class="crud__content">
+              <div class="crud__set">
+                <div class="crud__set-title">МАШИНА</div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">Модель техники</div>
+                  <div class="crud__col column-right">
+                    {{ machine.modelMachine }}
+                  </div>
+                </div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">Зав. № машины</div>
+                  <div class="crud__col column-right">
+                    {{ machine.serialNumber }}
+                  </div>
+                </div>
+              </div>
+              <div class="crud__set">
+                <div class="crud__set-title">ДВИГАТЕЛЬ</div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">Модель двигателя</div>
+                  <div class="crud__col column-right">
+                    {{ machine.modelEngine }}
+                  </div>
+                </div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">Зав. № двигателя</div>
+                  <div class="crud__col column-right">
+                    {{ machine.serialNumberEngine }}
+                  </div>
+                </div>
+              </div>
+              <div class="crud__set">
+                <div class="crud__set-title">ТРАНСМИССИЯ</div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">Модель трансмиссии</div>
+                  <div class="crud__col column-right">
+                    {{ machine.modelTransmission }}
+                  </div>
+                </div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">Зав. № ведущего моста</div>
+                  <div class="crud__col column-right">
+                    {{ machine.serialTransmission }}
+                  </div>
+                </div>
+              </div>
+              <div class="crud__set">
+                <div class="crud__set-title">ВУДУЩИЙ МОСТ</div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">Модель ведущего моста</div>
+                  <div class="crud__col column-right">
+                    {{ machine.modelDriveAxle }}
+                  </div>
+                </div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">Зав. № ведущего моста</div>
+                  <div class="crud__col column-right">
+                    {{ machine.serialDriveAxle }}
+                  </div>
+                </div>
+              </div>
+              <div class="crud__set">
+                <div class="crud__set-title">УПРАВЛЯЕМЫЙ МОСТ</div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">
+                    Модель управляемого моста
+                  </div>
+                  <div class="crud__col column-right">
+                    {{ machine.modelSteeringAxle }}
+                  </div>
+                </div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">
+                    Зав. № управляемого моста
+                  </div>
+                  <div class="crud__col column-right">
+                    {{ machine.serialSteeringAxle }}
+                  </div>
+                </div>
+              </div>
+              <div class="crud__set">
+                <div class="crud__set-title">ДОГОВОР И ОТГРУЗКА</div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">
+                    Договор поставки №, дата
+                  </div>
+                  <div class="crud__col column-right">
+                    {{ machine.deliveryContract }}
+                  </div>
+                </div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">
+                    Дата отгрузки с завода
+                  </div>
+                  <div class="crud__col column-right">
+                    {{ machine.shipmentDate }}
+                  </div>
+                </div>
+              </div>
+              <div class="crud__set">
+                <div class="crud__set-title">ГРУЗОПОЛУЧАТЕЛЬ</div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">
+                    Грузополучатель (конечный потребитель)
+                  </div>
+                  <div class="crud__col column-right">
+                    {{ machine.consignee }}
+                  </div>
+                </div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">
+                    Адрес поставки (эксплуатации)
+                  </div>
+                  <div class="crud__col column-right">
+                    {{ machine.deliveryAddress }}
+                  </div>
+                </div>
+              </div>
+              <div class="crud__set">
+                <div class="crud__set-title">ДОПОЛНИТЕЛЬНО</div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">
+                    Комплектация (дополнительные опции)
+                  </div>
+                  <div class="crud__col column-right">
+                    {{ machine.additionalOptions }}
+                  </div>
+                </div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">Клиент</div>
+                  <div class="crud__col column-right">{{ machine.client }}</div>
+                </div>
+                <div class="crud__grid">
+                  <div class="crud__col column-left">Сервисная компания</div>
+                  <div class="crud__col column-right">
+                    {{ machine.serviceCompany }}
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="search__set">
-          <div class="search__set-title">ТРАНСМИССИЯ</div>
-          <div class="search__grid">
-            <div class="search__col col-left">Модель трансмиссии</div>
-            <div class="search__col col-right">
-              {{ machine.modelTransmission }}
-            </div>
-          </div>
-          <div class="search__grid">
-            <div class="search__col col-left">Зав. № ведущего моста</div>
-            <div class="search__col col-right">
-              {{ machine.serialTransmission }}
-            </div>
-          </div>
-        </div>
-        <div class="search__set">
-          <div class="search__set-title">ВУДУЩИЙ МОСТ</div>
-          <div class="search__grid">
-            <div class="search__col col-left">Модель ведущего моста</div>
-            <div class="search__col col-right">
-              {{ machine.modelDriveAxle }}
-            </div>
-          </div>
-          <div class="search__grid">
-            <div class="search__col col-left">Зав. № ведущего моста</div>
-            <div class="search__col col-right">
-              {{ machine.serialDriveAxle }}
-            </div>
-          </div>
-        </div>
-        <div class="search__set">
-          <div class="search__set-title">УПРАВЛЯЕМЫЙ МОСТ</div>
-          <div class="search__grid">
-            <div class="search__col col-left">Модель управляемого моста</div>
-            <div class="search__col col-right">
-              {{ machine.modelSteeringAxle }}
-            </div>
-          </div>
-          <div class="search__grid">
-            <div class="search__col col-left">Зав. № управляемого моста</div>
-            <div class="search__col col-right">
-              {{ machine.serialSteeringAxle }}
-            </div>
-          </div>
-        </div>
-        <div class="search__set">
-          <div class="search__set-title">ДОГОВОР И ОТГРУЗКА</div>
-          <div class="search__grid">
-            <div class="search__col col-left">Договор поставки №, дата</div>
-            <div class="search__col col-right">
-              {{ machine.deliveryContract }}
-            </div>
-          </div>
-          <div class="search__grid">
-            <div class="search__col col-left">Дата отгрузки с завода</div>
-            <div class="search__col col-right">{{ machine.shipmentDate }}</div>
-          </div>
-        </div>
-        <div class="search__set">
-          <div class="search__set-title">ГРУЗОПОЛУЧАТЕЛЬ</div>
-          <div class="search__grid">
-            <div class="search__col col-left">
-              Грузополучатель (конечный потребитель)
-            </div>
-            <div class="search__col col-right">{{ machine.consignee }}</div>
-          </div>
-          <div class="search__grid">
-            <div class="search__col col-left">
-              Адрес поставки (эксплуатации)
-            </div>
-            <div class="search__col col-right">
-              {{ machine.deliveryAddress }}
-            </div>
-          </div>
-        </div>
-        <div class="search__set">
-          <div class="search__set-title">ДОПОЛНИТЕЛЬНО</div>
-          <div class="search__grid">
-            <div class="search__col col-left">
-              Комплектация (дополнительные опции)
-            </div>
-            <div class="search__col col-right">
-              {{ machine.additionalOptions }}
-            </div>
-          </div>
-          <div class="search__grid">
-            <div class="search__col col-left">Клиент</div>
-            <div class="search__col col-right">{{ machine.client }}</div>
-          </div>
-          <div class="search__grid">
-            <div class="search__col col-left">Сервисная компания</div>
-            <div class="search__col col-right">
-              {{ machine.serviceCompany }}
+            <div class="crud__underneath">
+              <div class="crud__underneath-up">
+                <span></span>
+                <a
+                  class="crud__btn btn-update prior-navigate"
+                  href="{% url 'update_machine' machine.pk %}"
+                >
+                  Обновить эту запись о машине
+                </a>
+              </div>
+              <div class="empty-blue"></div>
+              <div class="empty-red"></div>
+              <div class="crud__underneath-down">
+                <span></span>
+                <a
+                  class="crud__delete-read btn-delete prior-navigate"
+                  href="{% url 'delete_machine' machine.pk %}"
+                >
+                  Удалить эту запись о машине из базы данных
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <br />
-      <a class="page-title" href="{% url 'update_machine' machine.pk %}"
-        >Обновить эту запись о машине</a
-      >
-      <br />
-      <a class="page-title" href="{% url 'delete_machine' machine.pk %}"
-        >Удалить эту запись о машине из базы данных</a
-      >
-      <br />
     </div>
 
     <!------------------- Tab2 content ------------------->

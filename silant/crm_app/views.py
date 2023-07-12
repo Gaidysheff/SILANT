@@ -126,7 +126,8 @@ def show_machine(request, machine_id):
         'machine_table_titles': machine_table_titles,
         # 'machine_table_subtitles': machine_table_subtitles,
         'menu': menu,
-        'title': f"Машина | зав. № = {machine.serialNumber}"
+        'title': "Выбранная машина"
+        # 'title': f"Выбранная машина | зав. № = {machine.serialNumber}"
     }
     return render(request, 'crm_app/machine.html', context=context)
 

@@ -1,5 +1,3 @@
-.container {
-}
 .crud {
   padding: 30px 0;
 
@@ -12,9 +10,9 @@
   }
 
   &__header {
-    padding: 30px 20px 30px 100px;
+    padding: 30px 20px 30px 120px;
     background-color: #163e6c;
-    font-size: 3rem;
+    font-size: 2.2rem;
     font-weight: bold;
     font-style: italic;
     line-height: 1.6;
@@ -25,14 +23,24 @@
     text-shadow: 0px 4px 3px rgba(9, 164, 211, 0.623),
       0px 8px 13px rgba(6, 151, 199, 0.59),
       0px 18px 23px rgba(10, 187, 211, 0.671);
-    // box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18;
   }
 
   &__content {
     padding: 30px;
   }
 
-  &__form {
+  &__set {
+    margin: 0px -10px 20px -10px;
+    padding: 10px;
+    border: 1px solid #163e6c;
+    border-radius: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__set-title {
   }
 
   &__data {
@@ -181,6 +189,88 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }
+
+  &__underneath {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__underneath-up {
+    height: 200px;
+    display: flex;
+    align-items: end;
+    position: relative;
+
+    span::after {
+      content: "";
+      background: url("../images/crud/wave_UP.svg") bottom / cover;
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &__underneath-down {
+    height: 200px;
+    display: flex;
+    align-items: start;
+    position: relative;
+
+    span::after {
+      content: "";
+      background: url("../images/crud/wave_DEL.svg") bottom / cover;
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+.column-left {
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.column-right {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.empty-blue {
+  height: 30px;
+  background-color: #163e6c;
+}
+
+.empty-red {
+  height: 30px;
+  background-color: #d20a11;
+}
+
+.prior-navigate {
+  width: 90%;
+  margin: 0px auto;
+  padding: 0px 80px;
+  &:hover {
+    font-size: 1.5rem;
+  }
+
+  &:active {
+    font-size: 1.3rem;
+  }
+}
+
+.form-navigate {
+  width: 300px;
 }
 
 .in-form {
@@ -271,7 +361,7 @@
     position: absolute;
     top: 55%;
     transform: translateY(-50%);
-    right: 20%;
+    right: 5%;
   }
 
   &:hover::after {
@@ -283,25 +373,191 @@
   }
 }
 
+.btn-delete {
+  &::after {
+    content: "";
+    background: url("../../crm_app/images/icons/delete.png") no-repeat;
+    width: 27px;
+    height: 32px;
+    display: block;
+    position: absolute;
+    top: 55%;
+    transform: translateY(-50%);
+    right: 5%;
+  }
+
+  &:hover::after {
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  &:active::after {
+    transform: translateY(-50%) scale(0.9);
+  }
+
+  &:active {
+    box-shadow: 5px 5px 10px #490606, inset -5px -5px 8px -4px #560707,
+      inset -6px -6px 8px 0 #dc6868, -5px -5px 10px #e03e3e,
+      inset 5px 5px 8px -4px #d53131, inset 6px 6px 8px 0 #5f0a0a;
+  }
+}
+
+.crud {
+  &__content-delete {
+    padding-right: 0 5px 0 0;
+    // box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18;
+  }
+
+  &__bottom-delete {
+    position: relative;
+    height: 200px;
+    border-radius: 5px;
+
+    &::after {
+      content: "";
+      background: url("../images/crud/wave-delete.svg") bottom / cover;
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+  }
+
+  &__bottom-line {
+    background-color: #d20a11;
+    height: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  &__delete {
+    margin: 0 auto;
+    font-size: 1.4rem;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    // padding-right: 40px;
+    background: #d20a11;
+    color: #ebe6d6;
+    position: relative;
+    box-shadow: 5px 5px 10px #5d0808, inset -5px -5px 8px -4px #4f0707,
+      -5px -5px 10px #e45757, inset 5px 5px 8px -4px #e04b4b;
+    text-shadow: 0px 4px 3px rgba(211, 9, 9, 0.623),
+      0px 8px 13px rgba(199, 6, 6, 0.59), 0px 18px 23px rgba(211, 10, 10, 0.671);
+    cursor: pointer;
+    z-index: 11;
+    margin-top: 80px;
+
+    input {
+      width: 280px;
+      height: 70px;
+      background: none;
+      font-size: 1.6rem;
+      background: #d20a11;
+      color: #ebe6d6;
+      cursor: pointer;
+
+      &:hover {
+        font-size: 1.7rem;
+      }
+
+      &:active {
+        font-size: 1.5rem;
+      }
+    }
+
+    &:active {
+      box-shadow: 5px 5px 10px #490606, inset -5px -5px 8px -4px #560707,
+        inset -6px -6px 8px 0 #dc6868, -5px -5px 10px #e03e3e,
+        inset 5px 5px 8px -4px #d53131, inset 6px 6px 8px 0 #5f0a0a;
+    }
+  }
+
+  &__delete-read {
+    margin: 0 auto;
+    font-size: 1.4rem;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    // padding-right: 40px;
+    background: #d20a11;
+    color: #ebe6d6;
+    position: relative;
+    box-shadow: 5px 5px 10px #5d0808, inset -5px -5px 8px -4px #4f0707,
+      -5px -5px 10px #e45757, inset 5px 5px 8px -4px #e04b4b;
+    text-shadow: 0px 4px 3px rgba(211, 9, 9, 0.623),
+      0px 8px 13px rgba(199, 6, 6, 0.59), 0px 18px 23px rgba(211, 10, 10, 0.671);
+    cursor: pointer;
+    z-index: 11;
+  }
+}
+
 // ---------------- Calendar sign ---------------------------
 
 ::-webkit-calendar-picker-indicator {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23bbbbbb" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
 }
 
+// -------------------- CRUD Read -------------------------
+
+.crud {
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  &__col {
+    background-color: #163e6c;
+    color: #ebe6d6;
+    min-height: 60px;
+    font-size: 1.3rem;
+    padding: 20px;
+    border: 1px solid #ebe6d6;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+}
+
+.left-col {
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.right-col {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
 /* ======================================================= */
 /* ==================== ADAPTATION ======================= */
 /* ======================================================= */
 
-@media (max-width: 750px) {
+@media (max-width: 700px) {
   .crud {
     &__header {
-      font-size: 2.5rem;
+      font-size: 2rem;
+    }
+
+    &__col {
+      font-size: 1.1rem;
     }
   }
 }
 
-@media (max-width: 650px) {
+/* ======================================================= */
+
+@media (max-width: 670px) {
   .crud {
     &__header {
       font-size: 2rem;
@@ -318,7 +574,37 @@
   }
 }
 
-@media (max-width: 520px) {
+/* ======================================================= */
+
+@media (max-width: 610px) {
+  .crud {
+    &__header {
+      font-size: 1.8rem;
+    }
+
+    &__col {
+      font-size: 0.9rem;
+    }
+  }
+
+  .prior-navigate {
+    // width: 90%;
+    padding: 0px 70px;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    &:hover {
+      font-size: 1.35rem;
+    }
+
+    &:active {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+/* ======================================================= */
+
+@media (max-width: 570px) {
   .crud {
     &__header {
       font-size: 1.6rem;
@@ -326,6 +612,71 @@
     }
   }
 }
+
+/* ======================================================= */
+
+@media (max-width: 555px) {
+  .crud {
+    &__grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: 45px;
+      gap: 0;
+    }
+
+    &__col {
+      margin: 0;
+      justify-content: center;
+      font-size: 1.1rem;
+      line-height: 1;
+      text-align: center;
+
+      &:nth-child(2n + 1) {
+        background-color: #ebe6d6;
+        color: #163e6c;
+      }
+    }
+  }
+
+  .column-left {
+    padding-top: 0;
+  }
+}
+
+/* ======================================================= */
+
+@media (max-width: 520px) {
+  .prior-navigate {
+    // width: 90%;
+    padding: 0px 70px;
+    font-size: 1rem;
+    &:hover {
+      font-size: 1.1rem;
+    }
+
+    &:active {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+/* ======================================================= */
+
+@media (max-width: 460px) {
+  .prior-navigate {
+    padding: 0px 50px 0px 10px;
+    height: 60px;
+    font-size: 0.8rem;
+    &:hover {
+      font-size: 0.9rem;
+    }
+
+    &:active {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+/* ======================================================= */
 
 @media (max-width: 440px) {
   .crud {
@@ -368,33 +719,77 @@
         padding: 0;
       }
     }
-  }
-}
 
-@media (max-width: 400px) {
-  .crud {
-    &__btn {
-      font-size: 1.2rem;
+    &__delete {
+      input {
+        width: 190px;
+        height: 50px;
+        background: none;
+        font-size: 1rem;
+
+        &:hover {
+          font-size: 1.1rem;
+        }
+
+        &:active {
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .form-navigate {
       width: 200px;
-      height: 60px;
+      height: 50px;
     }
   }
 }
 
-@media (max-width: 350px) {
+/* ======================================================= */
+
+@media (max-width: 400px) {
+  .form-navigate {
+    font-size: 1.2rem;
+    width: 200px;
+    height: 60px;
+    line-height: 1;
+  }
+}
+
+/* ======================================================= */
+
+@media (max-width: 380px) {
   .crud {
     &__header {
       font-size: 1.2rem;
     }
+
+    &__header {
+      font-size: 1.2rem;
+      padding-left: 100px;
+    }
+
+    &__col {
+      font-size: 0.9rem;
+    }
   }
 }
 
+/* ======================================================= */
+
 @media (max-width: 305px) {
   .crud {
-    &__btn {
+    &__header {
       font-size: 1rem;
-      width: 150px;
-      height: 60px;
     }
+  }
+
+  .form-navigate {
+    font-size: 1rem;
+    width: 150px;
+    height: 60px;
+  }
+
+  .prior-navigate {
+    height: 70px;
   }
 }

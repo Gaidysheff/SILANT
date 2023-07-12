@@ -1,37 +1,89 @@
 {% extends 'crm_app/base.html' %}{% block content %}
-<br />
-<h1>{{title}}</h1>
-<br />
-
-{{title}} <br />
 
 <div class="subtitle_in_tabs">
-  Выбрана Рекламация с id
+  Выбрано: <br />Рекламация с id
   <span>{{ claim.id}}</span>
   <br />
   машины с Зав. №
   <span>{{ claim.machine}}</span>
 </div>
 
-{{ claim.machine }} <br />
-{{ claim.breakdownDate }} <br />
-{{ claim.operatingTime }} <br />
-{{ claim.breakdownNode }} <br />
-{{ claim.breakdownDescription }} <br />
-{{ claim.recoveryMethod }} <br />
-{{ claim.usedSpareParts }} <br />
-{{ claim.recoverDate }} <br />
-{{ claim.client }} <br />
-{{ claim.serviceCompany }} <br />
-
-<br />
-<a class="page-title" href="{% url 'update_claim' claim.pk %}"
-  >Обновить эту запись о рекламации</a
->
-<br />
-<a class="page-title" href="{% url 'delete_claim' claim.pk %}"
-  >Удалить эту запись о рекламации из базы данных</a
->
-<br />
+<div class="container">
+  <div class="crud">
+    <div class="crud__inner">
+      <div class="crud__header header-claim">{{title}}</div>
+      <div class="crud__content">
+        <div class="crud__grid">
+          <div class="crud__col left-col">Зав. № машины</div>
+          <div class="crud__col right-col">{{ claim.machine }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Дата отказа</div>
+          <div class="crud__col right-col">{{ claim.breakdownDate }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Наработка, м/час</div>
+          <div class="crud__col right-col">{{ claim.operatingTime }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Узел отказа</div>
+          <div class="crud__col right-col">{{ claim.breakdownNode }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Описание отказа</div>
+          <div class="crud__col right-col">
+            {{ claim.breakdownDescription }}
+          </div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Способ восстановления</div>
+          <div class="crud__col right-col">{{ claim.recoveryMethod }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Используемые запасные части</div>
+          <div class="crud__col right-col">{{ claim.usedSpareParts }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Дата восстановления</div>
+          <div class="crud__col right-col">{{ claim.recoverDate }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Время простоя техники</div>
+          <div class="crud__col right-col">{{ claim.downtime }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Клиент</div>
+          <div class="crud__col right-col">{{ claim.client }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Сервисная компания</div>
+          <div class="crud__col right-col">{{ claim.serviceCompany }}</div>
+        </div>
+      </div>
+      <div class="crud__underneath">
+        <div class="crud__underneath-up">
+          <span></span>
+          <a
+            class="crud__btn btn-update prior-navigate"
+            href="{% url 'update_claim' claim.pk %}"
+          >
+            Обновить эту запись о рекламации
+          </a>
+        </div>
+        <div class="empty-blue"></div>
+        <div class="empty-red"></div>
+        <div class="crud__underneath-down">
+          <span></span>
+          <a
+            class="crud__delete-read btn-delete prior-navigate"
+            href="{% url 'delete_claim' claim.pk %}"
+          >
+            Удалить эту запись о рекламации из базы данных
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock content %}

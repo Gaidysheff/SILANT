@@ -1,17 +1,30 @@
 {% extends 'crm_app/base.html' %}{% block content %}
-<br />
-<h1>{{title}}</h1>
-<br />
 
-<hr />
-<form action="" method="post">
-  {% csrf_token %}
+<div class="container">
+  <div class="crud">
+    <div class="crud__inner">
+      <div class="crud__header header-machine">{{title}}</div>
+      <div class="crud__content-delete">
+        <form action="" method="post">
+          {% csrf_token %}
 
-  <div class="subtitle_in_tabs">
-    Удаляем запись о машине с Зав. №
-    <span>{{ machine.serialNumber}}</span> ?
+          <div class="subtitle_in_tabs">
+            Удаляем запись <br />
+            о машине с Зав. № <span>{{ machine.serialNumber}}</span> ?
+          </div>
+          <div class="crud__bottom-delete">
+            <br />
+            <div class="crud__delete btn-delete form-navigate">
+              <input type="submit" value="Удалить навсегда" />
+            </div>
+            <br />
+            <br />
+          </div>
+        </form>
+      </div>
+      <div class="crud__bottom-line"></div>
+    </div>
   </div>
-  <input type="submit" value="Delete" />
-</form>
+</div>
 
 {% endblock content %}

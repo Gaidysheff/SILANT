@@ -1,35 +1,82 @@
 {% extends 'crm_app/base.html' %}{% block content %}
-<br />
-<h1>{{title}}</h1>
-<br />
-
-{{title}} <br />
 <div class="subtitle_in_tabs">
-  Выбрано Техническое Обслуживание с id
+  Выбрано: <br />Техническое Обслуживание с id
   <span>{{ maintenance.id}}</span>
   <br />
   машины с Зав. №
   <span>{{ maintenance.machine}}</span>
 </div>
 
-{{ maintenance.machine }} <br />
-{{ maintenance.type }} <br />
-{{ maintenance.maintenanceDate }} <br />
-{{ maintenance.operatingTime }} <br />
-{{ maintenance.workOrder }} <br />
-{{ maintenance.workOrderDate }} <br />
-{{ maintenance.executor }} <br />
-{{ maintenance.client }} <br />
-{{ maintenance.serviceCompany }} <br />
-
-<br />
-<a class="page-title" href="{% url 'update_maintenance' maintenance.pk %}"
-  >Обновить эту запись о техническом обслуживании</a
->
-<br />
-<a class="page-title" href="{% url 'delete_maintenance' maintenance.pk %}"
-  >Удалить эту запись о техническом обслуживании из базы данных</a
->
-<br />
+<div class="container">
+  <div class="crud">
+    <div class="crud__inner">
+      <div class="crud__header header-maintenance">{{title}}</div>
+      <div class="crud__content">
+        <div class="crud__grid">
+          <div class="crud__col left-col">Зав. № машины</div>
+          <div class="crud__col right-col">{{ maintenance.machine }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Вид ТО</div>
+          <div class="crud__col right-col">{{ maintenance.type }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Дата проведения ТО</div>
+          <div class="crud__col right-col">
+            {{ maintenance.maintenanceDate }}
+          </div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Наработка, м/час</div>
+          <div class="crud__col right-col">{{ maintenance.operatingTime }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">№ заказ-наряда</div>
+          <div class="crud__col right-col">{{ maintenance.workOrder }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Дата заказ-наряда</div>
+          <div class="crud__col right-col">{{ maintenance.workOrderDate }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Орг-ция, проводившая ТО</div>
+          <div class="crud__col right-col">{{ maintenance.executor }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Клиент</div>
+          <div class="crud__col right-col">{{ maintenance.client }}</div>
+        </div>
+        <div class="crud__grid">
+          <div class="crud__col left-col">Сервисная компания</div>
+          <div class="crud__col right-col">
+            {{ maintenance.serviceCompany }}
+          </div>
+        </div>
+      </div>
+      <div class="crud__underneath">
+        <div class="crud__underneath-up">
+          <span></span>
+          <a
+            class="crud__btn btn-update prior-navigate"
+            href="{% url 'update_maintenance' maintenance.pk %}"
+          >
+            Обновить эту запись о техническом обслуживании
+          </a>
+        </div>
+        <div class="empty-blue"></div>
+        <div class="empty-red"></div>
+        <div class="crud__underneath-down">
+          <span></span>
+          <a
+            class="crud__delete-read btn-delete prior-navigate"
+            href="{% url 'delete_maintenance' maintenance.pk %}"
+          >
+            Удалить эту запись о техническом обслуживании из базы данных
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock content %}
