@@ -337,9 +337,8 @@
     height: 32px;
     display: block;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 17%;
+    top: 0%;
+    left: 0%;
   }
 }
 
@@ -353,9 +352,8 @@
     height: 32px;
     display: block;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 17%;
+    top: 0%;
+    left: 0%;
   }
 }
 
@@ -369,9 +367,8 @@
     height: 32px;
     display: block;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 17%;
+    top: 0%;
+    left: 0%;
   }
 }
 
@@ -620,12 +617,6 @@
       font-size: 0.8rem;
     }
   }
-
-  .sign-update::before,
-  .sign-delete::before,
-  .sign-add::before {
-    left: 20%;
-  }
 }
 
 /* ======================================================= */
@@ -665,12 +656,6 @@
       line-height: 1.2;
       padding-left: 155px;
     }
-  }
-
-  .sign-update::before,
-  .sign-delete::before,
-  .sign-add::before {
-    left: 25%;
   }
 }
 
@@ -751,13 +736,6 @@
       font-size: 0.7rem;
     }
   }
-
-  .sign-update::before,
-  .sign-delete::before,
-  .sign-add::before {
-    top: 20%;
-    left: 28%;
-  }
 }
 
 /* ======================================================= */
@@ -816,13 +794,6 @@
       font-size: 0.9rem;
     }
   }
-
-  .sign-update::before,
-  .sign-delete::before,
-  .sign-add::before {
-    top: 20%;
-    left: 33%;
-  }
 }
 
 /* ======================================================= */
@@ -842,11 +813,5 @@
 
   .prior-navigate {
     height: 70px;
-  }
-
-  .sign-update::before,
-  .sign-delete::before,
-  .sign-add::before {
-    left: 40%;
   }
 }
