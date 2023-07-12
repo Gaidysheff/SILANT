@@ -327,6 +327,54 @@
   }
 }
 
+.sign-update {
+  position: relative;
+
+  &::before {
+    content: "";
+    background: url("../../crm_app/images/icons/sign_update.png") no-repeat;
+    width: 32px;
+    height: 32px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 17%;
+  }
+}
+
+.sign-add {
+  position: relative;
+
+  &::before {
+    content: "";
+    background: url("../../crm_app/images/icons/sign_add.png") no-repeat;
+    width: 32px;
+    height: 32px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 17%;
+  }
+}
+
+.sign-delete {
+  position: relative;
+
+  &::before {
+    content: "";
+    background: url("../../crm_app/images/icons/sign_delete.png") no-repeat;
+    width: 32px;
+    height: 32px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 17%;
+  }
+}
+
 // ---------------- Variations of the Buttons -----------------
 
 .btn-add {
@@ -572,6 +620,12 @@
       font-size: 0.8rem;
     }
   }
+
+  .sign-update::before,
+  .sign-delete::before,
+  .sign-add::before {
+    left: 20%;
+  }
 }
 
 /* ======================================================= */
@@ -609,7 +663,14 @@
     &__header {
       font-size: 1.6rem;
       line-height: 1.2;
+      padding-left: 155px;
     }
+  }
+
+  .sign-update::before,
+  .sign-delete::before,
+  .sign-add::before {
+    left: 25%;
   }
 }
 
@@ -646,9 +707,9 @@
 
 @media (max-width: 520px) {
   .prior-navigate {
-    // width: 90%;
     padding: 0px 70px;
     font-size: 1rem;
+
     &:hover {
       font-size: 1.1rem;
     }
@@ -657,11 +718,27 @@
       font-size: 0.9rem;
     }
   }
+
+  .crud {
+    &__form-row {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__form-input {
+      min-width: 100%;
+    }
+  }
 }
 
 /* ======================================================= */
 
 @media (max-width: 460px) {
+  .crud {
+    &__header {
+      padding-left: 120px;
+    }
+  }
   .prior-navigate {
     padding: 0px 50px 0px 10px;
     height: 60px;
@@ -674,52 +751,19 @@
       font-size: 0.7rem;
     }
   }
+
+  .sign-update::before,
+  .sign-delete::before,
+  .sign-add::before {
+    top: 20%;
+    left: 28%;
+  }
 }
 
 /* ======================================================= */
 
 @media (max-width: 440px) {
   .crud {
-    &__form-row {
-      font-size: 0.6rem;
-      margin-bottom: 2px;
-    }
-
-    &__form-input {
-      font-size: 0.6rem;
-
-      #id_modelMachine,
-      #id_serialNumber,
-      #id_modelEngine,
-      #id_serialNumberEngine,
-      #id_modelTransmission,
-      #id_serialTransmission,
-      #id_modelDriveAxle,
-      #id_serialDriveAxle,
-      #id_modelSteeringAxle,
-      #id_serialSteeringAxle,
-      #id_deliveryContract,
-      #id_shipmentDate,
-      #id_consignee,
-      #id_deliveryAddress,
-      #id_client,
-      #id_serviceCompany {
-        height: 20px;
-        padding: 0;
-      }
-
-      #id_type,
-      #id_maintenanceDate,
-      #id_operatingTime,
-      #id_workOrder,
-      #id_workOrderDate,
-      #id_executor,
-      #id_machine {
-        height: 20px;
-        padding: 0;
-      }
-    }
-
     &__delete {
       input {
         width: 190px;
@@ -772,6 +816,13 @@
       font-size: 0.9rem;
     }
   }
+
+  .sign-update::before,
+  .sign-delete::before,
+  .sign-add::before {
+    top: 20%;
+    left: 33%;
+  }
 }
 
 /* ======================================================= */
@@ -791,5 +842,11 @@
 
   .prior-navigate {
     height: 70px;
+  }
+
+  .sign-update::before,
+  .sign-delete::before,
+  .sign-add::before {
+    left: 40%;
   }
 }

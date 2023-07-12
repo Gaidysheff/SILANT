@@ -5,7 +5,7 @@
 <div class="container">
   <div class="crud">
     <div class="crud__inner">
-      <div class="crud__header header-machine">{{title}}</div>
+      <div class="crud__header sign-add header-machine">{{title}}</div>
       <div class="crud__content">
         <form class="crud__form" action="{% url 'add_machine' %}" method="post">
           {% csrf_token %}
