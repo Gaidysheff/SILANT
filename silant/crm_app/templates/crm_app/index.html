@@ -35,11 +35,24 @@
       </div>
     </div>
   </div>
-  <br />
-  <a class="page-title" href="{% url 'page_after_authorization' %}"
-    >Перейти в мою базу данных</a
-  >
-  <br />
+
+  <!-- ============================================== -->
+
+  <div class="frontpage__wrapper">
+    <div class="frontpage__top">
+      <span></span>
+    </div>
+    <div class="frontpage__center">
+      <a class="frontpage__btn" href="{% url 'page_after_authorization' %}"
+        >Перейти в мою базу данных</a
+      >
+    </div>
+    <div class="frontpage__bottom">
+      <span></span>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
   <form
     class="machine__search-form"
     method="POST"

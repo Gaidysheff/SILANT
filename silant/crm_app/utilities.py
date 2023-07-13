@@ -1,6 +1,7 @@
 
 menu = [
     {'title': "Главная страница", 'url_name': 'index'},
+    {'title': "Моя база данных", 'url_name': 'page_after_authorization'},
     {'title': "Добавить статью", 'url_name': 'add_page'},
     {'title': "О сайте", 'url_name': 'about'},
     {'title': "Обратная связь", 'url_name': 'contact'},

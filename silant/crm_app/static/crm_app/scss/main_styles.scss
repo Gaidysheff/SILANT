@@ -76,10 +76,121 @@ main {
   background-color: #163e6c;
 }
 
+.frontpage {
+  &__wrapper {
+    margin: -50px auto 0 auto;
+    width: 900px;
+  }
+
+  &__top {
+    height: 200px;
+    position: relative;
+
+    span::after {
+      content: "";
+      background: url("../images/decor/wave_front_up.svg") bottom / cover;
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &__center {
+    background-color: #d20a11;
+    padding: 20px 0;
+  }
+
+  &__bottom {
+    height: 200px;
+    position: relative;
+
+    span::after {
+      content: "";
+      background: url("../images/decor/wave_front_down2.svg") top / cover;
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &__btn {
+    margin: 0 auto;
+    font-size: 1.8rem;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #d20a11;
+    color: #ebe6d6;
+    position: relative;
+    box-shadow: 5px 5px 10px #5d0808, inset -5px -5px 8px -4px #4f0707,
+      -5px -5px 10px #e45757, inset 5px 5px 8px -4px #e04b4b;
+    text-shadow: 0px 4px 3px rgba(211, 9, 9, 0.623),
+      0px 8px 13px rgba(199, 6, 6, 0.59), 0px 18px 23px rgba(211, 10, 10, 0.671);
+    cursor: pointer;
+    z-index: 11;
+    width: 80%;
+
+    &::after {
+      content: "";
+      background: url("../../crm_app/images/icons_buttons/database-light.png")
+        no-repeat;
+      width: 100px;
+      height: 100px;
+      display: block;
+      position: absolute;
+      top: 10%;
+      right: 3%;
+    }
+
+    &:hover::after {
+      transform: scale(1.1);
+      transition: all 0.5s;
+    }
+
+    &:hover {
+      font-size: 1.9rem;
+      transition: all 0.5s;
+    }
+
+    &:active::after {
+      transform: scale(0.9);
+      transition: all 0.5s;
+    }
+
+    &:active {
+      font-size: 1.7rem;
+      transition: all 0.5s;
+    }
+
+    &:active {
+      box-shadow: 5px 5px 10px #490606, inset -5px -5px 8px -4px #560707,
+        inset -6px -6px 8px 0 #dc6868, -5px -5px 10px #e03e3e,
+        inset 5px 5px 8px -4px #d53131, inset 6px 6px 8px 0 #5f0a0a;
+    }
+  }
+}
+
+// .crud {
+//   &__delete-read {
+//   }
+// }
+// .my_db {
+// }
+// .bottom {
+// }
+
 .message {
   font-size: 1.8rem;
   font-style: italic;
-  color: #ee0202;
+  color: #d20a11;
   text-align: center;
   opacity: 0.8;
   padding: 10px;
@@ -138,8 +249,8 @@ main {
   > input {
     width: 200px;
     height: 50px;
-    border: 2px solid #ee0202;
-    color: #ee0202;
+    border: 2px solid #d20a11;
+    color: #d20a11;
     font-size: 1.5rem;
     border-radius: 5px;
     background-color: #ebe6d6;
@@ -148,7 +259,7 @@ main {
     align-items: center;
 
     &:hover {
-      background-color: #ee0202;
+      background-color: #d20a11;
       color: #ebe6d6;
       transform: scale(1.2);
       transition: all 0.5s;
@@ -185,7 +296,7 @@ h1 {
   }
 
   &__logo:hover path {
-    fill: #ee0202;
+    fill: #d20a11;
   }
 
   &__menu-list {
@@ -246,7 +357,7 @@ h1 {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      right: -50px;
+      right: -70px;
     }
   }
 
@@ -293,7 +404,7 @@ h1 {
   }
 
   &__dropdown:hover &__dropbtn {
-    background-color: #ee0202;
+    background-color: #d20a11;
     transform: scale(1.1);
     transition: all 0.5s;
   }
@@ -404,7 +515,7 @@ h1 {
     }
 
     &:hover path {
-      fill: #ee0202;
+      fill: #d20a11;
     }
   }
 
@@ -446,7 +557,7 @@ h1 {
   }
 
   &__dropup:hover &__dropbtn {
-    background-color: #ee0202;
+    background-color: #d20a11;
   }
 
   &__dropup-content {
@@ -490,7 +601,7 @@ h1 {
 
   &__content {
     font-size: 2rem;
-    color: #ee0202;
+    color: #d20a11;
     margin-bottom: 50px;
   }
 
@@ -543,7 +654,19 @@ h1 {
   text-shadow: 0px 4px 3px rgba(9, 164, 211, 0.623),
     0px 8px 13px rgba(6, 151, 199, 0.59),
     0px 18px 23px rgba(10, 187, 211, 0.671);
-  margin: 30px 0 60px 0;
+  margin: 30px 0 80px 0;
+  position: relative;
+
+  &::after {
+    content: "";
+    background: url("../images/icons/search-title.png");
+    width: 140px;
+    height: 150px;
+    display: block;
+    position: absolute;
+    top: -65px;
+    left: 0;
+  }
 }
 
 .search {
@@ -558,17 +681,17 @@ h1 {
   }
 
   &__result-negative {
-    background-color: #ee0202;
+    background-color: #d20a11;
     color: #ebe6d6;
     text-align: center;
     font-size: 1.5rem;
     opacity: 0.8;
     padding: 10px;
-    box-shadow: 0 0 10px 5px #ee0202;
+    box-shadow: 0 0 10px 5px #d20a11;
   }
 
   &__offer_to_login {
-    color: #ee0202;
+    color: #d20a11;
     text-align: center;
     font-size: 1.5rem;
   }
@@ -904,9 +1027,29 @@ h1 {
       margin: 0 auto;
     }
 
-    &__menu-user,
     &__dropdown {
       display: none;
+    }
+
+    &__menu-list {
+      position: relative;
+    }
+
+    &__menu-user {
+      color: #163e6c;
+      margin: 50px 0;
+      position: none;
+
+      &::before {
+        content: "";
+        background: url("../images/icons8-login-48-blue.png");
+        width: 48px;
+        height: 48px;
+        display: block;
+        position: absolute;
+        top: -120%;
+        right: 25%;
+      }
     }
 
     &__burger-menu {
@@ -926,7 +1069,7 @@ h1 {
         margin-bottom: 50px;
 
         &:hover {
-          color: #ee0202;
+          color: #d20a11;
           transform: scale(1.2);
           transition: all 0.5s;
         }
@@ -1012,6 +1155,16 @@ h1 {
   .page-title {
     font-size: 3rem;
   }
+
+  .frontpage {
+    &__wrapper {
+      width: 100%;
+    }
+
+    &__btn {
+      padding: 0px 120px 0px 5px;
+    }
+  }
 }
 
 /* ======================= 950 ========================== */
@@ -1028,6 +1181,8 @@ h1 {
 @media (max-width: 850px) {
   .search {
     &__button {
+      margin: 20px auto;
+
       &::after {
         display: none;
       }
@@ -1058,6 +1213,7 @@ h1 {
 
   .search-inner {
     padding: 20px;
+    padding-top: 50px;
   }
 
   .search-title {
@@ -1147,6 +1303,14 @@ h1 {
       font-size: 1.2rem;
     }
   }
+
+  .search {
+    &__button {
+      padding: 15px;
+      min-width: 100%;
+      height: auto;
+    }
+  }
 }
 /* ======================= 700 ========================== */
 
@@ -1173,12 +1337,6 @@ h1 {
   }
 
   .search {
-    &__button {
-      padding: 15px;
-      min-width: 100%;
-      height: auto;
-    }
-
     &__set-title {
       font-size: 1rem;
     }
@@ -1189,8 +1347,22 @@ h1 {
     }
   }
 
+  .search-inner {
+    padding: 20px;
+  }
+
   .search-title {
     font-size: 1.3rem;
+    margin: 20px 0px 40px 0px;
+
+    &::after {
+      content: "";
+      background: url("../images/icons/search-title-small.png");
+      width: 70px;
+      height: 75px;
+      top: -25px;
+      left: 0;
+    }
   }
 
   .message {
@@ -1329,6 +1501,23 @@ h1 {
     font-size: 0.9rem;
     line-height: 110%;
   }
+
+  .search {
+    &__button {
+      margin-top: 10px;
+      padding: 5px;
+    }
+
+    &__button-goto {
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    &__button-machine {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+  }
 }
 
 /* ======================= 450 ========================== */
@@ -1372,6 +1561,48 @@ h1 {
         }
       }
     }
+  }
+
+  .frontpage {
+    margin: 0px auto -20px auto;
+
+    &__top {
+      height: 100px;
+    }
+
+    &__bottom {
+      height: 100px;
+    }
+
+    &__btn {
+      font-size: 1.2rem;
+      height: 70px;
+      padding: 0px 80px 0px 5px;
+
+      &::after {
+        content: "";
+        background: url("../../crm_app/images/icons_buttons/database-light-small.png")
+          no-repeat;
+        width: 54px;
+        height: 50px;
+        display: block;
+        position: absolute;
+        top: 15%;
+        right: 5%;
+      }
+
+      &:hover {
+        font-size: 1.3rem;
+      }
+
+      &:active {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .search-title {
+    padding-left: 70px;
   }
 }
 
@@ -1446,6 +1677,23 @@ h1 {
         input {
           width: 160px;
         }
+      }
+    }
+  }
+}
+
+/* ======================= 325 ========================== */
+@media (max-width: 325px) {
+  .frontpage {
+    &__btn {
+      font-size: 0.9rem;
+
+      &:hover {
+        font-size: 1rem;
+      }
+
+      &:active {
+        font-size: 0.8rem;
       }
     }
   }
