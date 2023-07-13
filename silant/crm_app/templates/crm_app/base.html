@@ -63,21 +63,36 @@
                   </g>
                 </svg>
               </a>
+
+              <div class="header__drop">
+                <div class="header__dropdown">
+                  <button class="header__dropbtn">Навигация</button>
+                  <div class="header__dropdown-content">
+                    {% block mainmenu %} {% for m in menu %}
+                    <a href="{% url m.url_name %}">{{m.title}}</a>
+                    {% endfor %}{% endblock mainmenu %}
+                  </div>
+                </div>
+                <div class="header__burger-menu">
+                  <div class="header__burger-item">
+                    {% block burgermenu %} {% for m in menu %}
+                    <a href="{% url m.url_name %}">{{m.title}}</a>
+                    {% endfor %}{% endblock burgermenu %}
+                  </div>
+                </div>
+              </div>
+
               <ul class="header__menu-list">
-                {% block mainmenu %} {% for m in menu %}
-                <li class="header__menu-item">
-                  <a href="{% url m.url_name %}">{{m.title}}</a>
-                </li>
-                {% endfor %} {% if request.user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                 <li class="header__menu-user">{{ request.user }} |</li>
-                <li class="header__menu-item">
-                  <a href="{% url 'logout' %}">Выйти</a>
-                </li>
+                <a class="header__menu-item exit" href="{% url 'logout' %}"
+                  >Выйти</a
+                >
                 {% else %}
-                <li class="header__menu-item">
-                  <a href="{% url 'login' %}">Войти</a>
-                </li>
-                {% endif %} {% endblock mainmenu %}
+                <a class="header__menu-item enter" href="{% url 'login' %}"
+                  >Войти</a
+                >
+                {% endif %}
               </ul>
             </div>
           </div>
@@ -120,14 +135,19 @@
                 </g>
               </svg>
             </a>
-            <ul class="footer__menu-list">
-              {% for m in menu %}
-              <li class="footer__menu-item">
-                <a href="{% url m.url_name %}">{{m.title}}</a>
-              </li>
-              {% endfor %}
-              <li class="footer__menu-item">© Copyright 2023</li>
-            </ul>
+
+            <div class="footer__drop">
+              <div class="footer__dropup">
+                <button class="footer__dropbtn">Навигация</button>
+                <div class="footer__dropup-content">
+                  {% block footmenu %} {% for m in menu %}
+                  <a href="{% url m.url_name %}">{{m.title}}</a>
+                  {% endfor %}{% endblock footmenu %}
+                </div>
+              </div>
+            </div>
+
+            <div class="footer__menu-item">© Copyright 2023</div>
           </div>
         </div>
       </div>
