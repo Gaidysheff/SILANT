@@ -1,13 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-
-menu = [
-    {'title': "Главная страница", 'url_name': 'index'},
-    {'title': "Добавить статью", 'url_name': 'add_page'},
-    {'title': "О нас", 'url_name': 'about'},
-    {'title': "Обратная связь", 'url_name': 'contact'},
-]
+from crm_app.utilities import *
 
 
 def login_user(request):

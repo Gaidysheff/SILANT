@@ -396,7 +396,7 @@ h1 {
     margin: 0;
     text-align: center;
     padding: 5px 0;
-    width: 250px;
+    width: 270px;
     height: 60px;
     text-shadow: 10px 4px 3px rgba(9, 164, 211, 0.623),
       10px 8px 13px rgba(6, 151, 199, 0.59),
@@ -413,13 +413,13 @@ h1 {
     display: none;
     position: absolute;
     background-color: #ebe6d6;
-    min-width: 250px;
+    min-width: 270px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
   }
 
   &__dropdown-content a {
-    min-width: 250px;
+    min-width: 270px;
     font-size: 1.5rem;
     float: none;
     color: #163e6c;
@@ -549,7 +549,7 @@ h1 {
     margin: 0;
     text-align: center;
     padding: 5px 0;
-    width: 200px;
+    width: 220px;
     height: 60px;
     text-shadow: 10px 4px 3px rgba(9, 164, 211, 0.623),
       10px 8px 13px rgba(6, 151, 199, 0.59),
@@ -564,14 +564,14 @@ h1 {
     display: none;
     position: absolute;
     background-color: #ebe6d6;
-    min-width: 200px;
+    min-width: 220px;
     bottom: 60px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
   }
 
   &__dropup-content a {
-    min-width: 200px;
+    min-width: 220px;
     font-size: 1.2rem;
     float: none;
     color: #163e6c;
@@ -704,7 +704,7 @@ h1 {
     margin: 50px auto;
     text-align: center;
     padding: 15px;
-    width: 60%;
+    width: 700px;
     height: 100px;
     border: 2px solid #163e6c;
     border-radius: 5px;
@@ -834,6 +834,27 @@ h1 {
   }
 }
 
+.construction,
+.forbidden {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #163e6c;
+  height: 90vh;
+
+  img {
+    width: 90%;
+    height: auto;
+    margin-top: 100px;
+    margin: 0 auto;
+  }
+}
+
+.forbidden {
+  background: rgb(254, 168, 24);
+}
+
 /* ======================================================= */
 /* ==================== ADAPTATION ======================= */
 /* ======================================================= */
@@ -952,7 +973,7 @@ h1 {
   }
 
   .header {
-    padding-top: 30px;
+    // padding-top: 30px;
     background: #ebe6d6;
 
     &__top {
@@ -975,12 +996,10 @@ h1 {
       flex-direction: column;
       height: 100%;
       justify-content: space-between;
-      padding: 100px 0;
+      padding: 10px 0;
     }
 
     &__logo {
-      margin-bottom: 50px;
-
       path {
         fill: #163e6c;
         transition: all 0.5s;
@@ -1037,7 +1056,7 @@ h1 {
 
     &__menu-user {
       color: #163e6c;
-      margin: 50px 0;
+      margin: 20px 0;
       position: none;
 
       &::before {
@@ -1066,7 +1085,7 @@ h1 {
       font-size: 1.5rem;
 
       a {
-        margin-bottom: 50px;
+        margin-bottom: 20px;
 
         &:hover {
           color: #d20a11;
@@ -1247,7 +1266,7 @@ h1 {
 @media (max-width: 800px) {
   .footer {
     &__menu-item {
-      font-size: 0.8rem;
+      font-size: 0.6rem;
     }
 
     &__logo > svg {
@@ -1257,16 +1276,17 @@ h1 {
 
     &__dropbtn {
       font-size: 1.1rem;
-      width: 160px;
+      width: 170px;
     }
 
     &__dropup-content {
-      min-width: 160px;
+      min-width: 170px;
     }
 
     &__dropup-content a {
       font-size: 1rem;
-      min-width: 160px;
+      min-width: 170px;
+      padding: 0px 5px;
     }
   }
 
@@ -1307,7 +1327,7 @@ h1 {
   .search {
     &__button {
       padding: 15px;
-      min-width: 100%;
+      width: 100%;
       height: auto;
     }
   }

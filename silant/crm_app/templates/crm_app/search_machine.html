@@ -10,108 +10,118 @@
     </div>
   </a>
 
-  <div class="search__set">
-    <div class="search__set-title">МАШИНА</div>
-    <div class="search__grid">
-      <div class="search__col col-left">Модель техники</div>
-      <div class="search__col col-right">{{ m.modelMachine }}</div>
-    </div>
-    <div class="search__grid">
-      <div class="search__col col-left">Зав. № машины</div>
-      <div class="search__col col-right">{{ m.serialNumber }}</div>
-    </div>
-  </div>
-  <div class="search__set">
-    <div class="search__set-title">ДВИГАТЕЛЬ</div>
-    <div class="search__grid">
-      <div class="search__col col-left">Модель двигателя</div>
-      <div class="search__col col-right">{{ m.modelEngine }}</div>
-    </div>
-    <div class="search__grid">
-      <div class="search__col col-left">Зав. № двигателя</div>
-      <div class="search__col col-right">{{ m.serialNumberEngine }}</div>
-    </div>
-  </div>
+  <!-- ============================================= -->
+  <div class="crud">
+    <div class="crud__inner">
+      <div class="crud__content">
+        <div class="crud__set">
+          <div class="crud__set-title">МАШИНА</div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">Модель техники</div>
+            <div class="crud__col column-right">{{ m.modelMachine }}</div>
+          </div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">Зав. № машины</div>
+            <div class="crud__col column-right">{{ m.serialNumber }}</div>
+          </div>
+        </div>
+        <div class="crud__set">
+          <div class="crud__set-title">ДВИГАТЕЛЬ</div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">Модель двигателя</div>
+            <div class="crud__col column-right">{{ m.modelEngine }}</div>
+          </div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">Зав. № двигателя</div>
+            <div class="crud__col column-right">{{ m.serialNumberEngine }}</div>
+          </div>
+        </div>
+        <div class="crud__set">
+          <div class="crud__set-title">ТРАНСМИССИЯ</div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">Модель трансмиссии</div>
+            <div class="crud__col column-right">{{ m.modelTransmission }}</div>
+          </div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">Зав. № ведущего моста</div>
+            <div class="crud__col column-right">{{ m.serialTransmission }}</div>
+          </div>
+        </div>
+        <div class="crud__set">
+          <div class="crud__set-title">ВУДУЩИЙ МОСТ</div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">Модель ведущего моста</div>
+            <div class="crud__col column-right">{{ m.modelDriveAxle }}</div>
+          </div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">Зав. № ведущего моста</div>
+            <div class="crud__col column-right">{{ m.serialDriveAxle }}</div>
+          </div>
+        </div>
+        <div class="crud__set">
+          <div class="crud__set-title">УПРАВЛЯЕМЫЙ МОСТ</div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">Модель управляемого моста</div>
+            <div class="crud__col column-right">{{ m.modelSteeringAxle }}</div>
+          </div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">Зав. № управляемого моста</div>
+            <div class="crud__col column-right">{{ m.serialSteeringAxle }}</div>
+          </div>
+        </div>
 
-  <div class="search__set">
-    <div class="search__set-title">ТРАНСМИССИЯ</div>
-    <div class="search__grid">
-      <div class="search__col col-left">Модель трансмиссии</div>
-      <div class="search__col col-right">{{ m.modelTransmission }}</div>
-    </div>
-    <div class="search__grid">
-      <div class="search__col col-left">Зав. № ведущего моста</div>
-      <div class="search__col col-right">{{ m.serialTransmission }}</div>
-    </div>
-  </div>
-  <div class="search__set">
-    <div class="search__set-title">ВУДУЩИЙ МОСТ</div>
-    <div class="search__grid">
-      <div class="search__col col-left">Модель ведущего моста</div>
-      <div class="search__col col-right">{{ m.modelDriveAxle }}</div>
-    </div>
-    <div class="search__grid">
-      <div class="search__col col-left">Зав. № ведущего моста</div>
-      <div class="search__col col-right">{{ m.serialDriveAxle }}</div>
-    </div>
-  </div>
-  <div class="search__set">
-    <div class="search__set-title">УПРАВЛЯЕМЫЙ МОСТ</div>
-    <div class="search__grid">
-      <div class="search__col col-left">Модель управляемого моста</div>
-      <div class="search__col col-right">{{ m.modelSteeringAxle }}</div>
-    </div>
-    <div class="search__grid">
-      <div class="search__col col-left">Зав. № управляемого моста</div>
-      <div class="search__col col-right">{{ m.serialSteeringAxle }}</div>
-    </div>
-  </div>
+        {% if user.is_authenticated %}
 
-  {% if user.is_authenticated %}
+        <div class="crud__set">
+          <div class="crud__set-title">ДОГОВОР И ОТГРУЗКА</div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">Договор поставки №, дата</div>
+            <div class="crud__col column-right">{{ m.deliveryContract }}</div>
+          </div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">Дата отгрузки с завода</div>
+            <div class="crud__col column-right">{{ m.shipmentDate }}</div>
+          </div>
+        </div>
+        <div class="crud__set">
+          <div class="crud__set-title">ГРУЗОПОЛУЧАТЕЛЬ</div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">
+              Грузополучатель (конечный потребитель)
+            </div>
+            <div class="crud__col column-right">{{ m.consignee }}</div>
+          </div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">
+              Адрес поставки (эксплуатации)
+            </div>
+            <div class="crud__col column-right">{{ m.deliveryAddress }}</div>
+          </div>
+        </div>
+        <div class="crud__set">
+          <div class="crud__set-title">ДОПОЛНИТЕЛЬНО</div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">
+              Комплектация (дополнительные опции)
+            </div>
+            <div class="crud__col column-right">{{ m.additionalOptions }}</div>
+          </div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">Клиент</div>
+            <div class="crud__col column-right">{{ m.client }}</div>
+          </div>
+          <div class="crud__grid">
+            <div class="crud__col column-left">Сервисная компания</div>
+            <div class="crud__col column-right">{{ m.serviceCompany }}</div>
+          </div>
+        </div>
 
-  <div class="search__set">
-    <div class="search__set-title">ДОГОВОР И ОТГРУЗКА</div>
-    <div class="search__grid">
-      <div class="search__col col-left">Договор поставки №, дата</div>
-      <div class="search__col col-right">{{ m.deliveryContract }}</div>
-    </div>
-    <div class="search__grid">
-      <div class="search__col col-left">Дата отгрузки с завода</div>
-      <div class="search__col col-right">{{ m.shipmentDate }}</div>
-    </div>
-  </div>
-  <div class="search__set">
-    <div class="search__set-title">ГРУЗОПОЛУЧАТЕЛЬ</div>
-    <div class="search__grid">
-      <div class="search__col col-left">
-        Грузополучатель (конечный потребитель)
+        {% endif %}
       </div>
-      <div class="search__col col-right">{{ m.consignee }}</div>
-    </div>
-    <div class="search__grid">
-      <div class="search__col col-left">Адрес поставки (эксплуатации)</div>
-      <div class="search__col col-right">{{ m.deliveryAddress }}</div>
     </div>
   </div>
-  <div class="search__set">
-    <div class="search__set-title">ДОПОЛНИТЕЛЬНО</div>
-    <div class="search__grid">
-      <div class="search__col col-left">
-        Комплектация (дополнительные опции)
-      </div>
-      <div class="search__col col-right">{{ m.additionalOptions }}</div>
-    </div>
-    <div class="search__grid">
-      <div class="search__col col-left">Клиент</div>
-      <div class="search__col col-right">{{ m.client }}</div>
-    </div>
-    <div class="search__grid">
-      <div class="search__col col-left">Сервисная компания</div>
-      <div class="search__col col-right">{{ m.serviceCompany }}</div>
-    </div>
-  </div>
-
-  {% endif %} {% endfor %} {% else %}
+  {% endfor %} {% else %}
   <div class="search__result-negative">Данные для поиска не введены !</div>
 </div>
+
 {% endif %} {% endblock content %}

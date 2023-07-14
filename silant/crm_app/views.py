@@ -166,8 +166,8 @@ class AddMachine(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddMachineForm
     template_name = 'crm_app/crud_add_machine.html'
     success_url = reverse_lazy('index')
-    # login_url = reverse_lazy('login_user')
-    raise_exception = True
+    login_url = reverse_lazy('forbidden')
+    # raise_exception = True
     # вывести '403 Forbidden' для неавторизованного пользователя
     # (закоментить строку - тогда перенаправление на 'home')
 
@@ -536,16 +536,20 @@ class DirectoryServiceCompanyList(LoginRequiredMixin, DataMixin, ListView):
 # =============================================================
 
 
+def under_construction(request):
+    return render(request, 'crm_app/under_construction.html', {'menu': menu, 'title': 'Страница в разработке'})
+
+
 def about(request):
     return render(request, 'crm_app/about.html', {'menu': menu, 'title': 'О нас'})
 
 
-def addpage(request):
-    return HttpResponse("Добавление статьи")
-
-
 def contact(request):
-    return HttpResponse("Обратная связь")
+    return render(request, 'crm_app/under_construction.html', {'menu': menu, 'title': 'Страница в разработке'})
+
+
+def forbidden(request):
+    return render(request, 'crm_app/forbidden.html', {'menu': menu, 'title': '403 Запрещено'})
 
 
 # def login(request):

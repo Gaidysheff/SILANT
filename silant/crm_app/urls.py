@@ -2,16 +2,9 @@ from django.urls import path
 from crm_app.views import *
 
 urlpatterns = [
-    # path('', index, name='index'),
     path('', MachinesHomePage.as_view(), name='index'),
     #     ----------------------------------------------------------------
-    path('about/', about, name='about'),
-    path('addpage/', addpage, name='add_page'),
-    path('contact/', contact, name='contact'),
-    #     path('search_machine/', SearchMachine.as_view(), name='search_machine'),
     path('search_machine/', search_machine, name='search_machine'),
-    #     path('you_db/', PageAfterAuthorization.as_view(),
-    #          name='page_after_authorization'),
     path('you_db/', page_after_authorization, name='page_after_authorization'),
     path('full_db_list/', full_db_list, name='full_db_list'),
     #     ---------------------- CRUD -------------------------------
@@ -82,4 +75,10 @@ urlpatterns = [
          name='directory_service_companies'),
     path('directory_service_companies/<int:machine_pk>/',
          DirectoryServiceCompany.as_view(), name='directory_service_company'),
+    #     ----------------------- VARIOUS -----------------------------
+    path('under_construction/', under_construction, name='under_construction'),
+    path('forbidden/', forbidden, name='forbidden'),
+    path('about/', about, name='about'),
+    path('contact/', contact, name='contact'),
+
 ]

@@ -224,8 +224,12 @@
         <div class="tab2__col">
           <a class="link_to_object tooltip" href="{% url 'maintenance' m.pk %}">
             {{m.id}}
-            <span class="tooltiptext">Открыть</span>
           </a>
+          <div class="tooltiptext">Открыть ТО</div>
+          <!-- <a class="link_to_object tooltip" href="{% url 'maintenance' m.pk %}">
+            {{m.id}}
+            <span class="tooltiptext">Открыть</span>
+          </a> -->
         </div>
         <div class="tab2__col">
           <a href="{% url 'machine' m.machine.pk %}">{{m.machine}}</a>
