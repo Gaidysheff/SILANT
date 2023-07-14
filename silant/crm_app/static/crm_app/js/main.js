@@ -20,3 +20,18 @@ $(function () {
     $(".overlay").toggleClass("overlay--show");
   });
 });
+
+// ------------ Аккордеон в СПРАВОЧНИКАХ ---------------------
+
+$(".refbook__acc-link").on("click", function (e) {
+  e.preventDefault();
+  if ($(this).hasClass("refbook__acc-link--active")) {
+    $(this).removeClass("refbook__acc-link--active");
+    $(this).children(".refbook__acc-text").slideUp();
+  } else {
+    $(".refbook__acc-link").removeClass("refbook__acc-link--active");
+    $(".refbook__acc-text").slideUp();
+    $(this).addClass("refbook__acc-link--active");
+    $(this).children(".refbook__acc-text").slideDown();
+  }
+});

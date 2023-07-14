@@ -31,6 +31,8 @@ urlpatterns = [
     path('claim/<int:pk>/delete_claim/',
          DeleteClaim.as_view(), name='delete_claim'),
     #     ---------------------- Справочники -------------------------------
+    path('all_directories/', AllDirectories.as_view(), name='all_directories'),
+    #     ----------------------------------------------------------------
     path('directory_model_machines/', DirectoryModelMachineList.as_view(),
          name='directory_model_machines'),
     path('directory_model_machines/<int:modelMachine_pk>/',

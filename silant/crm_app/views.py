@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
+from django.views.generic.base import TemplateView
 
 from .filter import ClaimsFilter, MachineFilter, MaintenanceFilter
 from .models import (Breakdown, Claims, Machine, Maintenance, MaintenanceType,
@@ -294,6 +295,26 @@ class DeleteClaim(LoginRequiredMixin, DataMixin, DeleteView):
 
 # ======================== DIRECTORIES ========================
 
+class AllDirectories(LoginRequiredMixin, DataMixin, TemplateView):
+    template_name = 'crm_app/allDirectories.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(AllDirectories, self).get_context_data(**kwargs)
+        context['modelMachine'] = ModelMachine.objects.order_by('name')
+        context['modelEngine'] = ModelEngine.objects.order_by('name')
+        context['modelTransmission'] = ModelTransmission.objects.order_by('name')
+        context['modelDriveAxle'] = ModelDriveAxle.objects.order_by('name')
+        context['modelSteeringAxle'] = ModelSteeringAxle.objects.order_by('name')
+        context['maintenanceType'] = MaintenanceType.objects.order_by('name')
+        context['breakdown'] = Breakdown.objects.order_by('name')
+        context['recoveryMethod'] = RecoveryMethod.objects.order_by('name')
+        context['serviceCompany'] = ServiceCompany.objects.order_by('name')
+        context['menu'] = menu
+        context['title'] = "СПРАВОЧНИКИ"
+        return context
+
+
+# ---------------------------------------------------------------
 
 class DirectoryModelMachine(LoginRequiredMixin, DataMixin, DetailView):
     model = ModelMachine
