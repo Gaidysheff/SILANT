@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   &__image {
     width: 300px;
     display: flex;
@@ -334,7 +335,7 @@
 }
 
 .navigate-to {
-  height: 300px;
+  height: 500px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -366,6 +367,34 @@
 /*! ============================== Accordion ============================== */
 
 .refbook {
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__image {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  &__title {
+    font-size: 4rem;
+    padding-left: 100px;
+    color: #163e6c;
+    line-height: 160%;
+    text-align: center;
+    align-items: center;
+    text-shadow: 0px 4px 3px rgba(9, 164, 211, 0.623),
+      0px 8px 13px rgba(6, 151, 199, 0.59),
+      0px 18px 23px rgba(10, 187, 211, 0.671);
+  }
+
   &__inner {
     display: flex;
     justify-content: space-between;
@@ -391,24 +420,130 @@
 
   &__acc-link {
     display: block;
-    padding-left: 40px;
+    // padding-left: 40px;
   }
 
   &__acc-head {
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 150%;
-    color: #1e212c;
+    font-size: 2rem;
+    font-weight: bold;
+    display: inline-flex;
+    color: #163e6c;
+    line-height: 1.4;
     position: relative;
+    padding-left: 50px;
+    width: 100%;
+
+    > p {
+      height: 120px;
+      background: #163e6c;
+      color: #ebe6d6;
+      width: 100%;
+      margin-left: 20px;
+      padding-left: 150px;
+      padding-right: 10px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18;
+      border-radius: 10px;
+
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+      }
+    }
+  }
+  &__icon {
+    &-machine {
+      &::before {
+        background: url("../images/icons-refbook/ref-machine.png");
+        width: 117px;
+        height: 80px;
+      }
+    }
+
+    &-engine {
+      &::before {
+        background: url("../images/icons-refbook/ref-engine.png");
+        width: 110px;
+        height: 80px;
+      }
+    }
+
+    &-transmission {
+      &::before {
+        background: url("../images/icons-refbook/ref-transmission.png");
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    &-drive_axle {
+      &::before {
+        background: url("../images/icons-refbook/ref-drive_axle.png");
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    &-steering_axle {
+      &::before {
+        background: url("../images/icons-refbook/ref-steering_axle.png");
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    &-maintenanceType {
+      &::before {
+        background: url("../images/icons-refbook/ref-maintenance.png");
+        width: 82px;
+        height: 80px;
+      }
+    }
+
+    &-breakdown {
+      &::before {
+        background: url("../images/icons-refbook/ref-breakdown.png");
+        width: 90px;
+        height: 80px;
+      }
+    }
+
+    &-recovery_method {
+      &::before {
+        background: url("../images/icons-refbook/ref-repair.png");
+        width: 77px;
+        height: 80px;
+      }
+    }
+
+    &-service_company {
+      &::before {
+        background: url("../images/icons-refbook/ref-service_company.png");
+        width: 73px;
+        height: 80px;
+      }
+    }
   }
 
   &__acc-head span {
-    font-weight: 400;
-    color: #ff3f3a;
+    width: 200px;
+    font-weight: normal;
+    color: #d20a11;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    text-shadow: 0px 4px 3px rgba(211, 9, 9, 0.623),
+      0px 8px 13px rgba(199, 6, 6, 0.59), 0px 18px 23px rgba(211, 10, 10, 0.671);
   }
 
   &__acc-text {
     margin-top: 16px;
+    color: #163e6c;
   }
 
   &__acc-head::before,
@@ -416,11 +551,13 @@
     content: "";
     position: absolute;
     top: 50%;
-    left: -40px;
+    left: 0px;
     width: 18px;
     height: 2px;
-    background-color: #ff3f3a;
+    background-color: #d20a11;
     border-radius: 2px;
+    box-shadow: 0px 2px 3px rgba(211, 9, 9, 0.623),
+      0px 6px 13px rgba(199, 6, 6, 0.59), 0px 18px 23px rgba(211, 10, 10, 0.671);
   }
 
   &__acc-head::after {
@@ -455,7 +592,7 @@
   }
 }
 
-// ================================================================
+/* ======================= 1320 ========================== */
 
 @media (max-width: 1320px) {
   .directory-head {
@@ -468,7 +605,7 @@
   }
 }
 
-// ================================================================
+/* ======================= 1250 ========================== */
 
 @media (max-width: 1250px) {
   .directory {
@@ -487,7 +624,7 @@
   }
 }
 
-// ================================================================
+/* ======================= 1030 ========================== */
 
 @media (max-width: 1030px) {
   .directory {
@@ -519,9 +656,24 @@
       margin-bottom: 150px;
     }
   }
+
+  .refbook {
+    &__image {
+      width: 150px;
+    }
+
+    &__title {
+      font-size: 3.5rem;
+      padding-left: 50px;
+    }
+  }
+
+  .navigate-to {
+    height: 400px;
+  }
 }
 
-// ================================================================
+/* ======================= 900 ========================== */
 
 @media (max-width: 900px) {
   .directory-head {
@@ -539,9 +691,108 @@
       }
     }
   }
+
+  .refbook {
+    &__acc-link {
+      padding-left: 0;
+    }
+
+    &__acc-head {
+      font-size: 1.6rem;
+      padding-left: 30px;
+
+      > p {
+        height: 80px;
+        padding-left: 85px;
+        margin-left: 5px;
+
+        &::before {
+          top: 20px;
+        }
+      }
+    }
+
+    &__acc-head span {
+      width: 160px;
+    }
+
+    &__icon {
+      &-machine {
+        &::before {
+          background: url("../images/icons-refbook/ref-machine-small.png");
+          width: 59px;
+          height: 40px;
+        }
+      }
+
+      &-engine {
+        &::before {
+          background: url("../images/icons-refbook/ref-engine-small.png");
+          width: 55px;
+          height: 40px;
+        }
+      }
+
+      &-transmission {
+        &::before {
+          background: url("../images/icons-refbook/ref-transmission-small.png");
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      &-drive_axle {
+        &::before {
+          background: url("../images/icons-refbook/ref-drive_axle-small.png");
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      &-steering_axle {
+        &::before {
+          background: url("../images/icons-refbook/ref-steering_axle-small.png");
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      &-maintenanceType {
+        &::before {
+          background: url("../images/icons-refbook/ref-maintenance-small.png");
+          width: 41px;
+          height: 40px;
+        }
+      }
+
+      &-breakdown {
+        &::before {
+          background: url("../images/icons-refbook/ref-breakdown-small.png");
+          width: 45px;
+          height: 40px;
+        }
+      }
+
+      &-recovery_method {
+        &::before {
+          background: url("../images/icons-refbook/ref-repair-small.png");
+          width: 38px;
+          height: 40px;
+        }
+      }
+
+      &-service_company {
+        &::before {
+          background: url("../images/icons-refbook/ref-service_company-small.png");
+          width: 36px;
+          height: 40px;
+        }
+      }
+    }
+  }
 }
 
-// ================================================================
+/* ======================= 800 ========================== */
 
 @media (max-width: 800px) {
   .directory {
@@ -585,12 +836,25 @@
       font-size: 1.15rem;
     }
   }
+
+  .refbook {
+    &__acc-head {
+      font-size: 1.3rem;
+    }
+
+    &__acc-head span {
+      width: 140px;
+    }
+  }
 }
 
-// ================================================================
+/* ======================= 700 ========================== */
 
 @media (max-width: 700px) {
   .navigate-to {
+    height: 300px;
+    margin: 15px 0px -50px 0px;
+
     .btn:after {
       left: -44%;
     }
@@ -621,9 +885,41 @@
       }
     }
   }
+
+  .refbook {
+    &__image {
+      width: 100px;
+    }
+
+    &__title {
+      font-size: 2.5rem;
+      padding-left: 40px;
+    }
+  }
 }
 
-// ================================================================
+/* ======================= 650 ========================== */
+
+@media (max-width: 650px) {
+  .refbook {
+    &__acc-head {
+      font-size: 1rem;
+      padding-left: 20px;
+    }
+
+    &__acc-head span {
+      width: 100px;
+    }
+
+    &__acc-head::before,
+    &__acc-head::after {
+      width: 9px;
+      height: 1px;
+    }
+  }
+}
+
+/* ======================= 600 ========================== */
 
 @media (max-width: 600px) {
   .directory-head {
@@ -681,7 +977,22 @@
   }
 }
 
-// ================================================================
+/* ======================= 500 ========================== */
+
+@media (max-width: 500px) {
+  .refbook {
+    &__image {
+      width: 70px;
+    }
+
+    &__title {
+      font-size: 2rem;
+      padding-left: 20px;
+    }
+  }
+}
+
+/* ======================= 450 ========================== */
 
 @media (max-width: 450px) {
   .directory-head {
@@ -713,11 +1024,58 @@
   .btn_forward {
     width: 220px;
   }
+
+  .refbook {
+    &__acc-head {
+      font-size: 0.8rem;
+
+      > p {
+        height: 60px;
+        padding-left: 70px;
+
+        &::before {
+          top: 10px;
+          left: 10px;
+        }
+      }
+    }
+
+    &__acc-head span {
+      width: 80px;
+    }
+  }
 }
 
-// ================================================================
+/* ======================= 400 ========================== */
+
+@media (max-width: 400px) {
+  .refbook {
+    &__acc-head {
+      font-size: 0.6rem;
+
+      > p {
+        height: 60px;
+        padding-left: 70px;
+
+        // &::before {
+        //   top: 10px;
+        //   left: 10px;
+        // }
+      }
+    }
+
+    &__acc-head span {
+      width: 60px;
+    }
+  }
+}
+
+/* ======================= 350 ========================== */
 
 @media (max-width: 350px) {
+  .container {
+    padding: 0px 10px;
+  }
   .directory-head {
     &__title {
       font-size: 1rem;
@@ -741,6 +1099,17 @@
   .directory {
     &__name-db {
       font-size: 0.9rem;
+    }
+  }
+
+  .refbook {
+    &__image {
+      width: 50px;
+    }
+
+    &__title {
+      font-size: 1.5rem;
+      // padding-left: 20px;
     }
   }
 }

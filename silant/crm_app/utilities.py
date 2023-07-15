@@ -2,11 +2,11 @@
 menu = [
     {'title': "Главная страница", 'url_name': 'index'},
     {'title': "Моя база данных", 'url_name': 'page_after_authorization'},
+    {'title': "СПРАВОЧНИКИ", 'url_name': 'all_directories'},
     {'title': "Добавить машину", 'url_name': 'add_machine'},
     {'title': "Добавить ТО", 'url_name': 'add_maintenance'},
     {'title': "Добавить рекламацию", 'url_name': 'add_claim'},
     {'title': "О сайте", 'url_name': 'about'},
-    {'title': "Обратная связь", 'url_name': 'contact'},
 ]
 
 
