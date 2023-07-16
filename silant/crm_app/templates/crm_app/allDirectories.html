@@ -34,7 +34,19 @@
             <tbody>
               {% for object in modelMachine %}
               <tr class="directories__row">
-                <td class="directories__col">{{object.name}}</td>
+                <td class="directories__col">
+                  <a
+                    class="link_to_object tooltip"
+                    href="{% url 'directory_model_machine' object.pk %}"
+                  >
+                    {{object.name}}
+                    <span class="tooltiptext"
+                      >Открыть эту запись в отдельной вкладке или окне - ПРАВЫЙ
+                      КЛИК МЫШИ</span
+                    ></a
+                  >
+                </td>
+
                 {% autoescape off %}
                 <td class="directories__col">
                   {{object.description|linebreaks}}
@@ -67,7 +79,18 @@
             <tbody>
               {% for object in modelEngine %}
               <tr class="directories__row">
-                <td class="directories__col">{{object.name}}</td>
+                <td class="directories__col">
+                  <a
+                    class="link_to_object tooltip"
+                    href="{% url 'directory_model_engine' object.pk %}"
+                  >
+                    {{object.name}}
+                    <span class="tooltiptext"
+                      >Открыть эту запись в отдельной вкладке или окне - ПРАВЫЙ
+                      КЛИК МЫШИ</span
+                    ></a
+                  >
+                </td>
                 {% autoescape off %}
                 <td class="directories__col">
                   {{object.description|linebreaks}}
@@ -100,7 +123,18 @@
             <tbody>
               {% for object in modelTransmission %}
               <tr class="directories__row">
-                <td class="directories__col">{{object.name}}</td>
+                <td class="directories__col">
+                  <a
+                    class="link_to_object tooltip"
+                    href="{% url 'directory_model_transmission' object.pk %}"
+                  >
+                    {{object.name}}
+                    <span class="tooltiptext"
+                      >Открыть эту запись в отдельной вкладке или окне - ПРАВЫЙ
+                      КЛИК МЫШИ</span
+                    ></a
+                  >
+                </td>
                 {% autoescape off %}
                 <td class="directories__col">
                   {{object.description|linebreaks}}
@@ -133,7 +167,18 @@
             <tbody>
               {% for object in modelDriveAxle %}
               <tr class="directories__row">
-                <td class="directories__col">{{object.name}}</td>
+                <td class="directories__col">
+                  <a
+                    class="link_to_object tooltip"
+                    href="{% url 'directory_model_drive_axle' object.pk %}"
+                  >
+                    {{object.name}}
+                    <span class="tooltiptext"
+                      >Открыть эту запись в отдельной вкладке или окне - ПРАВЫЙ
+                      КЛИК МЫШИ</span
+                    ></a
+                  >
+                </td>
                 {% autoescape off %}
                 <td class="directories__col">
                   {{object.description|linebreaks}}
@@ -166,7 +211,18 @@
             <tbody>
               {% for object in modelSteeringAxle %}
               <tr class="directories__row">
-                <td class="directories__col">{{object.name}}</td>
+                <td class="directories__col">
+                  <a
+                    class="link_to_object tooltip"
+                    href="{% url 'directory_model_steering_axle' object.pk %}"
+                  >
+                    {{object.name}}
+                    <span class="tooltiptext"
+                      >Открыть эту запись в отдельной вкладке или окне - ПРАВЫЙ
+                      КЛИК МЫШИ</span
+                    ></a
+                  >
+                </td>
                 {% autoescape off %}
                 <td class="directories__col">
                   {{object.description|linebreaks}}
@@ -201,7 +257,18 @@
             <tbody>
               {% for object in maintenanceType %}
               <tr class="directories__row">
-                <td class="directories__col">{{object.name}}</td>
+                <td class="directories__col">
+                  <a
+                    class="link_to_object tooltip"
+                    href="{% url 'directory_maintenance_type' object.pk %}"
+                  >
+                    {{object.name}}
+                    <span class="tooltiptext"
+                      >Открыть эту запись в отдельной вкладке или окне - ПРАВЫЙ
+                      КЛИК МЫШИ</span
+                    ></a
+                  >
+                </td>
                 {% autoescape off %}
                 <td class="directories__col">
                   {{object.description|linebreaks}}
@@ -234,7 +301,18 @@
             <tbody>
               {% for object in breakdown %}
               <tr class="directories__row">
-                <td class="directories__col">{{object.name}}</td>
+                <td class="directories__col">
+                  <a
+                    class="link_to_object tooltip"
+                    href="{% url 'directory_breakdown' object.pk %}"
+                  >
+                    {{object.name}}
+                    <span class="tooltiptext"
+                      >Открыть эту запись в отдельной вкладке или окне - ПРАВЫЙ
+                      КЛИК МЫШИ</span
+                    ></a
+                  >
+                </td>
                 {% autoescape off %}
                 <td class="directories__col">
                   {{object.description|linebreaks}}
@@ -267,7 +345,18 @@
             <tbody>
               {% for object in recoveryMethod %}
               <tr class="directories__row">
-                <td class="directories__col">{{object.name}}</td>
+                <td class="directories__col">
+                  <a
+                    class="link_to_object tooltip"
+                    href="{% url 'directory_recovery_method' object.pk %}"
+                  >
+                    {{object.name}}
+                    <span class="tooltiptext"
+                      >Открыть эту запись в отдельной вкладке или окне - ПРАВЫЙ
+                      КЛИК МЫШИ</span
+                    ></a
+                  >
+                </td>
                 {% autoescape off %}
                 <td class="directories__col">
                   {{object.description|linebreaks}}
@@ -300,7 +389,18 @@
             <tbody>
               {% for object in serviceCompany %}
               <tr class="directories__row">
-                <td class="directories__col">{{object.name}}</td>
+                <td class="directories__col">
+                  <a
+                    class="link_to_object tooltip"
+                    href="{% url 'directory_service_company' object.pk %}"
+                  >
+                    {{object.name}}
+                    <span class="tooltiptext"
+                      >Открыть эту запись в отдельной вкладке или окне - ПРАВЫЙ
+                      КЛИК МЫШИ</span
+                    ></a
+                  >
+                </td>
                 {% autoescape off %}
                 <td class="directories__col">
                   {{object.description|linebreaks}}
