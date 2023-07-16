@@ -173,6 +173,7 @@
               </div>
             </div>
             <div class="crud__underneath">
+              {% if perms.crm_app.change_machine %}
               <div class="crud__underneath-up">
                 <span></span>
                 <a
@@ -183,6 +184,7 @@
                 </a>
               </div>
               <div class="empty-blue"></div>
+              {% endif %}{% if perms.crm_app.delete_machine %}
               <div class="empty-red"></div>
               <div class="crud__underneath-down">
                 <span></span>
@@ -193,6 +195,7 @@
                   Удалить эту запись о машине из базы данных
                 </a>
               </div>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -225,11 +228,10 @@
           <a class="link_to_object tooltip" href="{% url 'maintenance' m.pk %}">
             {{m.id}}
           </a>
-          <div class="tooltiptext">Открыть ТО</div>
-          <!-- <a class="link_to_object tooltip" href="{% url 'maintenance' m.pk %}">
+          <a class="link_to_object tooltip" href="{% url 'maintenance' m.pk %}">
             {{m.id}}
             <span class="tooltiptext">Открыть</span>
-          </a> -->
+          </a>
         </div>
         <div class="tab2__col">
           <a href="{% url 'machine' m.machine.pk %}">{{m.machine}}</a>

@@ -1,7 +1,7 @@
 from typing import Any
 
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db import models
 from django.db.models.query import QuerySet
 from django.http import HttpResponse
@@ -37,22 +37,27 @@ class MachinesHomePage(DataMixin, ListView):
 @login_required()
 def full_db_list(request):
 
-    filter_machines = MachineFilter(
-        request.GET, queryset=Machine.objects.all().order_by('-shipmentDate'))
-    filter_maintenance = MaintenanceFilter(
-        request.GET, queryset=Maintenance.objects.all().order_by('-maintenanceDate'))
-    filter_claims = ClaimsFilter(
-        request.GET, queryset=Claims.objects.all().order_by('-breakdownDate'))
+    if request.user.is_staff == True:
 
-    context = {
-        'filter_machines': filter_machines,
-        'filter_maintenance': filter_maintenance,
-        'filter_claims': filter_claims,
-        'menu': menu,
-        'title': "Ваша база данных"
-    }
+        filter_machines = MachineFilter(
+            request.GET, queryset=Machine.objects.all().order_by('-shipmentDate'))
+        filter_maintenance = MaintenanceFilter(
+            request.GET, queryset=Maintenance.objects.all().order_by('-maintenanceDate'))
+        filter_claims = ClaimsFilter(
+            request.GET, queryset=Claims.objects.all().order_by('-breakdownDate'))
 
-    return render(request, 'crm_app/full_db_list.html', context=context)
+        context = {
+            'filter_machines': filter_machines,
+            'filter_maintenance': filter_maintenance,
+            'filter_claims': filter_claims,
+            'menu': menu,
+            'title': "Ваша база данных"
+        }
+
+        return render(request, 'crm_app/full_db_list.html', context=context)
+
+    else:
+        return redirect('forbidden')
 
 
 @login_required()
@@ -163,129 +168,146 @@ def show_claim(request, claim_id):
 # --------------------------------------------------------------
 
 
-class AddMachine(LoginRequiredMixin, DataMixin, CreateView):
+class AddMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.add_machine'
     form_class = AddMachineForm
     template_name = 'crm_app/crud_add_machine.html'
     success_url = reverse_lazy('index')
-    login_url = reverse_lazy('forbidden')
-    # raise_exception = True
-    # вывести '403 Forbidden' для неавторизованного пользователя
-    # (закоментить строку - тогда перенаправление на 'home')
+    # login_url = reverse_lazy('forbidden')
+    redirect_field_name = reverse_lazy('forbidden')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title="Добавление Машины")
         return dict(list(context.items()) + list(c_def.items()))
 
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
 
-class AddMaintenance(LoginRequiredMixin, DataMixin, CreateView):
+
+class AddMaintenance(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.add_maintenance'
     form_class = AddMaintenanceForm
     template_name = 'crm_app/crud_add_maintenance.html'
     success_url = reverse_lazy('index')
-    # login_url = reverse_lazy('login_user')
-    raise_exception = True
-    # вывести '403 Forbidden' для неавторизованного пользователя
-    # (закоментить строку - тогда перенаправление на 'home')
+    redirect_field_name = reverse_lazy('forbidden')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title="Добавление ТО")
         return dict(list(context.items()) + list(c_def.items()))
 
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
 
-class AddClaim(LoginRequiredMixin, DataMixin, CreateView):
+
+class AddClaim(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.add_claims'
     form_class = AddClaimForm
     template_name = 'crm_app/crud_add_claim.html'
     success_url = reverse_lazy('index')
-    # login_url = reverse_lazy('login_user')
-    raise_exception = True
-    # вывести '403 Forbidden' для неавторизованного пользователя
-    # (закоментить строку - тогда перенаправление на 'home')
+    redirect_field_name = reverse_lazy('forbidden')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title="Добавление Рекламации")
         return dict(list(context.items()) + list(c_def.items()))
 
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
 # --------------------------------------------------------------
 
 
-class UpdateMachine(LoginRequiredMixin, DataMixin, UpdateView):
+class UpdateMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
+    permission_required = 'crm_app.change_machine'
     form_class = AddMachineForm
     model = Machine
     template_name = 'crm_app/crud_update_machine.html'
     success_url = reverse_lazy('index')
-    # login_url = reverse_lazy('login_user')
-    raise_exception = True
+    redirect_field_name = reverse_lazy('forbidden')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title="Обновление Машины")
         return dict(list(context.items()) + list(c_def.items()))
 
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
 
-class UpdateMaintenance(LoginRequiredMixin, DataMixin, UpdateView):
+
+class UpdateMaintenance(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
+    permission_required = 'crm_app.change_maintenance'
     form_class = AddMaintenanceForm
     model = Maintenance
     template_name = 'crm_app/crud_update_maintenance.html'
     success_url = reverse_lazy('index')
-    # login_url = reverse_lazy('login_user')
-    raise_exception = True
+    redirect_field_name = reverse_lazy('forbidden')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title="Обновление ТО")
         return dict(list(context.items()) + list(c_def.items()))
 
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
 
-class UpdateClaim(LoginRequiredMixin, DataMixin, UpdateView):
+
+class UpdateClaim(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
+    permission_required = 'crm_app.change_claims'
     form_class = AddClaimForm
     model = Claims
     template_name = 'crm_app/crud_update_claim.html'
     success_url = reverse_lazy('index')
-    # login_url = reverse_lazy('login_user')
-    raise_exception = True
+    redirect_field_name = reverse_lazy('forbidden')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title="Обновление Рекламации")
         return dict(list(context.items()) + list(c_def.items()))
 
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
 # --------------------------------------------------------------
 
 
-class DeleteMachine(LoginRequiredMixin, DataMixin, DeleteView):
+class DeleteMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
+    permission_required = 'crm_app.delete_machine'
     model = Machine
     template_name = 'crm_app/crud_delete_machine.html'
     success_url = reverse_lazy('index')
-    # login_url = reverse_lazy('login_user')
-    raise_exception = True
+    redirect_field_name = reverse_lazy('forbidden')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title="Удаление записи о машине")
         return dict(list(context.items()) + list(c_def.items()))
 
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
 
-class DeleteMaintenance(LoginRequiredMixin, DataMixin, DeleteView):
+
+class DeleteMaintenance(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
+    permission_required = 'crm_app.delete_maintenance'
     model = Maintenance
     template_name = 'crm_app/crud_delete_maintenance.html'
     success_url = reverse_lazy('index')
-    # login_url = reverse_lazy('login_user')
-    raise_exception = True
+    redirect_field_name = reverse_lazy('forbidden')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title="Удаление записи о ТО машины")
         return dict(list(context.items()) + list(c_def.items()))
 
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
 
-class DeleteClaim(LoginRequiredMixin, DataMixin, DeleteView):
+
+class DeleteClaim(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
+    permission_required = 'crm_app.delete_claims'
     model = Claims
     template_name = 'crm_app/crud_delete_claim.html'
     success_url = reverse_lazy('index')
-    # login_url = reverse_lazy('login_user')
-    raise_exception = True
+    redirect_field_name = reverse_lazy('forbidden')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -293,18 +315,23 @@ class DeleteClaim(LoginRequiredMixin, DataMixin, DeleteView):
             title="Удаление записи о Рекламации на машину")
         return dict(list(context.items()) + list(c_def.items()))
 
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
 # ======================== DIRECTORIES ========================
+
 
 class AllDirectories(LoginRequiredMixin, DataMixin, TemplateView):
     template_name = 'crm_app/allDirectories.html'
-    
+
     def get_context_data(self, **kwargs):
         context = super(AllDirectories, self).get_context_data(**kwargs)
         context['modelMachine'] = ModelMachine.objects.order_by('name')
         context['modelEngine'] = ModelEngine.objects.order_by('name')
-        context['modelTransmission'] = ModelTransmission.objects.order_by('name')
+        context['modelTransmission'] = ModelTransmission.objects.order_by(
+            'name')
         context['modelDriveAxle'] = ModelDriveAxle.objects.order_by('name')
-        context['modelSteeringAxle'] = ModelSteeringAxle.objects.order_by('name')
+        context['modelSteeringAxle'] = ModelSteeringAxle.objects.order_by(
+            'name')
         context['maintenanceType'] = MaintenanceType.objects.order_by('name')
         context['breakdown'] = Breakdown.objects.order_by('name')
         context['recoveryMethod'] = RecoveryMethod.objects.order_by('name')

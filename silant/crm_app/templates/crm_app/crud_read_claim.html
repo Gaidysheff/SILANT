@@ -61,6 +61,7 @@
         </div>
       </div>
       <div class="crud__underneath">
+        {% if perms.crm_app.change_claims %}
         <div class="crud__underneath-up">
           <span></span>
           <a
@@ -71,6 +72,7 @@
           </a>
         </div>
         <div class="empty-blue"></div>
+        {% endif %}{% if perms.crm_app.delete_claims %}
         <div class="empty-red"></div>
         <div class="crud__underneath-down">
           <span></span>
@@ -81,6 +83,7 @@
             Удалить эту запись о рекламации из базы данных
           </a>
         </div>
+        {% endif %}
       </div>
     </div>
   </div>
