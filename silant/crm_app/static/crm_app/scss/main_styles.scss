@@ -78,49 +78,31 @@ main {
 
 .frontpage {
   &__wrapper {
-    margin: -50px auto 0 auto;
-    width: 900px;
+    margin: 50px auto;
+    background-color: #d20a11;
   }
 
   &__top {
-    height: 200px;
-    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
 
-    span::after {
-      content: "";
-      background: url("../images/decor/wave_front_up.svg") bottom / cover;
-      width: 100%;
-      height: 100%;
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
+    img {
+      width: 40%;
+      height: auto;
     }
-  }
-
-  &__center {
-    background-color: #d20a11;
-    padding: 20px 0;
   }
 
   &__bottom {
-    height: 200px;
-    position: relative;
-
-    span::after {
-      content: "";
-      background: url("../images/decor/wave_front_down2.svg") top / cover;
-      width: 100%;
-      height: 100%;
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
+    background-color: #d20a11;
+    padding: 50px 0;
   }
 
   &__btn {
     margin: 0 auto;
+    padding-right: 125px;
     font-size: 1.8rem;
     height: 120px;
     display: flex;
@@ -136,7 +118,7 @@ main {
       0px 8px 13px rgba(199, 6, 6, 0.59), 0px 18px 23px rgba(211, 10, 10, 0.671);
     cursor: pointer;
     z-index: 11;
-    width: 80%;
+    width: 40%;
 
     &::after {
       content: "";
@@ -177,15 +159,6 @@ main {
     }
   }
 }
-
-// .crud {
-//   &__delete-read {
-//   }
-// }
-// .my_db {
-// }
-// .bottom {
-// }
 
 .message {
   font-size: 1.8rem;
@@ -1193,6 +1166,12 @@ h1 {
     font-size: 1.5rem;
     line-height: 1.2;
   }
+
+  .frontpage {
+    &__btn {
+      width: 90%;
+    }
+  }
 }
 
 /* ======================= 850 ========================== */
@@ -1346,6 +1325,18 @@ h1 {
   .page-authorized-title {
     font-size: 1rem;
     line-height: 1.2;
+  }
+
+  .frontpage {
+    &__btn {
+      font-size: 1.4rem;
+    }
+
+    &__top {
+      img {
+        width: 60%;
+      }
+    }
   }
 }
 
@@ -1586,13 +1577,9 @@ h1 {
   .frontpage {
     margin: 0px auto -20px auto;
 
-    &__top {
-      height: 100px;
-    }
-
-    &__bottom {
-      height: 100px;
-    }
+    // &__top {
+    //   height: 100px;
+    // }
 
     &__btn {
       font-size: 1.2rem;

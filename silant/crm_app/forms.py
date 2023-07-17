@@ -91,3 +91,60 @@ class AddClaimForm(forms.ModelForm):
     class Meta:
         model = Claims
         fields = '__all__'
+
+
+# ======================== DIRECTORIES ========================
+
+
+class AddModelMachineForm(forms.ModelForm):
+    class Meta:
+        model = ModelMachine
+        fields = ['name', 'description',]
+
+
+class AddModelEngineForm(forms.ModelForm):
+    class Meta:
+        model = ModelEngine
+        fields = ['name', 'description',]
+
+
+class AddModelTransmissionForm(forms.ModelForm):
+    class Meta:
+        model = ModelTransmission
+        fields = ['name', 'description',]
+
+
+class AddModelDriveAxleForm(forms.ModelForm):
+    class Meta:
+        model = ModelDriveAxle
+        fields = ['name', 'description',]
+
+
+class AddModelSteeringAxleForm(forms.ModelForm):
+    class Meta:
+        model = ModelSteeringAxle
+        fields = ['name', 'description',]
+
+
+class AddMaintenanceTypeForm(forms.ModelForm):
+    class Meta:
+        model = MaintenanceType
+        fields = ['name', 'description',]
+
+
+class AddBreakdownForm(forms.ModelForm):
+    class Meta:
+        model = Breakdown
+        fields = ['name', 'description',]
+
+
+class AddRecoveryMethodForm(forms.ModelForm):
+    class Meta:
+        model = RecoveryMethod
+        fields = ['name', 'description',]
+
+
+class AddServiceCompanyForm(forms.ModelForm):
+    class Meta:
+        model = ServiceCompany
+        fields = ['name', 'description',]

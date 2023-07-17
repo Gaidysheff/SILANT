@@ -1,0 +1,43 @@
+{% extends 'crm_app/base.html' %}
+<br />
+{% block content %}
+
+<div class="container">
+  <div class="handbook">
+    <div class="handbook__inner">
+      <div class="handbook__header sign-add header-recovery_method">
+        {{title}}
+      </div>
+      <div class="handbook__content">
+        <form
+          class="handbook__form"
+          action="{% url 'add_recovery_method' %}"
+          method="post"
+        >
+          {% csrf_token %}
+          <div class="handbook__data">
+            <div class="handbook__form-error">{{ form.non_field_errors }}</div>
+            {% for item in form %}
+            <div class="handbook__form-row">
+              <label class="handbook__form-label" for="{{ item.id_for_label }}"
+                >{{ item.label }}:</label
+              >
+              <div class="handbook__form-input">{{ item }}</div>
+            </div>
+            <div class="handbook__form-error">{{ item.errors }}</div>
+            {% endfor %}
+          </div>
+          <div class="handbook__button-area">
+            <span></span>
+            <button type="submit" class="handbook__btn btn-add in-form">
+              Добавить
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="handbook__bottom"></div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

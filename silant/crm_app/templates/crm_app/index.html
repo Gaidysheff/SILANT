@@ -35,24 +35,26 @@
       </div>
     </div>
   </div>
+</div>
+<!-- ============================================== -->
 
-  <!-- ============================================== -->
-
-  <div class="frontpage__wrapper">
-    <div class="frontpage__top">
-      <span></span>
-    </div>
-    <div class="frontpage__center">
-      <a class="frontpage__btn" href="{% url 'page_after_authorization' %}"
-        >Перейти в мою базу данных</a
-      >
-    </div>
-    <div class="frontpage__bottom">
-      <span></span>
-    </div>
+<div class="frontpage__wrapper">
+  <div class="frontpage__top">
+    <img
+      src="../../static/crm_app/images/image_frontpage.png"
+      alt="image of database"
+    />
+    <span></span>
   </div>
+  <div class="frontpage__bottom">
+    <a class="frontpage__btn" href="{% url 'page_after_authorization' %}"
+      >Перейти в мою базу данных</a
+    >
+  </div>
+</div>
 
-  <!-- ============================================== -->
+<!-- ============================================== -->
+<div class="container">
   <form
     class="machine__search-form"
     method="POST"
@@ -68,7 +70,6 @@
     <button class="machine__search-btn" type="submit"><i>Поиск</i></button>
   </form>
 </div>
-
 <!-- ========== Search Result inbuilt ========== -->
 <div class="search-wrapper">
   <div class="container">

@@ -173,7 +173,6 @@ class AddMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateV
     form_class = AddMachineForm
     template_name = 'crm_app/crud_add_machine.html'
     success_url = reverse_lazy('index')
-    # login_url = reverse_lazy('forbidden')
     redirect_field_name = reverse_lazy('forbidden')
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -215,6 +214,7 @@ class AddClaim(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateVie
 
     def handle_no_permission(self):
         return redirect(self.get_redirect_field_name())
+
 # --------------------------------------------------------------
 
 
@@ -267,6 +267,7 @@ class UpdateClaim(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, Update
 
     def handle_no_permission(self):
         return redirect(self.get_redirect_field_name())
+
 # --------------------------------------------------------------
 
 
@@ -317,6 +318,8 @@ class DeleteClaim(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, Delete
 
     def handle_no_permission(self):
         return redirect(self.get_redirect_field_name())
+
+
 # ======================== DIRECTORIES ========================
 
 
@@ -500,7 +503,8 @@ class DirectoryMaintenanceTypeList(LoginRequiredMixin, DataMixin, ListView):
         c_def = self.get_user_context(
             title='"Виды Технического Обслуживания"')
         return dict(list(context.items()) + list(c_def.items()))
-    # ---------------------------------------------------------------
+
+# ---------------------------------------------------------------
 
 
 class DirectoryBreakdown(LoginRequiredMixin, DataMixin, DetailView):
@@ -581,7 +585,467 @@ class DirectoryServiceCompanyList(LoginRequiredMixin, DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-# =============================================================
+# =================== CRUD for DIRECTORIES ===================
+
+class AddModelMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.add_modelmachine'
+    form_class = AddModelMachineForm
+    template_name = 'crm_app/directories/directory_add_modelMachine.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Добавление модели машины")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class AddModelEngine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.add_modelengine'
+    form_class = AddModelEngineForm
+    template_name = 'crm_app/directories/directory_add_modelEngine.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Добавление модели двигателя")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class AddModelTransmission(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.add_modeltransmission'
+    form_class = AddModelTransmissionForm
+    template_name = 'crm_app/directories/directory_add_modelTransmission.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Добавление модели трансмиссии")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class AddModelDriveAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.add_modeldriveaxle'
+    form_class = AddModelDriveAxleForm
+    template_name = 'crm_app/directories/directory_add_modelDriveAxle.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Добавление модели ведущего моста")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class AddModelSteeringAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.add_modelsteeringaxle'
+    form_class = AddModelSteeringAxleForm
+    template_name = 'crm_app/directories/directory_add_modelSteeringAxle.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Добавление модели управляемого моста")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class AddMaintenanceType(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.add_maintenancetype'
+    form_class = AddMaintenanceTypeForm
+    template_name = 'crm_app/directories/directory_add_maintenanceType.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Добавление вида Технического Обслуживания")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class AddBreakdown(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.add_breakdown'
+    form_class = AddBreakdownForm
+    template_name = 'crm_app/directories/directory_add_breakdown.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Добавление узла отказа")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class AddRecoveryMethod(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.add_recoverymethod'
+    form_class = AddRecoveryMethodForm
+    template_name = 'crm_app/directories/directory_add_recoveryMethod.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Добавление способа восстановления")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class AddServiceCompany(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.add_servicecompany'
+    form_class = AddServiceCompanyForm
+    template_name = 'crm_app/directories/directory_add_serviceCompany.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Добавление сервисной компании")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+# --------------------------------------------------------------
+
+
+class UpdateModelMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
+    permission_required = 'crm_app.change_modelmachine'
+    form_class = AddModelMachineForm
+    model = ModelMachine
+    template_name = 'crm_app/directories/directory_update_modelMachine.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Обновление модели машины")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class UpdateModelEngine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.change_modelengine'
+    form_class = AddModelEngineForm
+    template_name = 'crm_app/directories/directory_update_modelEngine.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Обновление модели двигателя")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class UpdateModelTransmission(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.change_modeltransmission'
+    form_class = AddModelTransmissionForm
+    template_name = 'crm_app/directories/directory_update_modelTransmission.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Обновление модели трансмиссии")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class UpdateModelDriveAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.change_modeldriveaxle'
+    form_class = AddModelDriveAxleForm
+    template_name = 'crm_app/directories/directory_update_modelDriveAxle.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Обновление модели ведущего моста")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class UpdateModelSteeringAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.change_modelsteeringaxle'
+    form_class = AddModelSteeringAxleForm
+    template_name = 'crm_app/directories/directory_update_modelSteeringAxle.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Обновление модели управляемого моста")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class UpdateMaintenanceType(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.change_maintenancetype'
+    form_class = AddMaintenanceTypeForm
+    template_name = 'crm_app/directories/directory_update_maintenanceType.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Обновление вида Технического Обслуживания")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class UpdateBreakdown(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.change_breakdown'
+    form_class = AddBreakdownForm
+    template_name = 'crm_app/directories/directory_update_breakdown.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Обновление узла отказа")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class UpdateRecoveryMethod(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.change_recoverymethod'
+    form_class = AddRecoveryMethodForm
+    template_name = 'crm_app/directories/directory_update_recoveryMethod.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Обновление способа восстановления")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class UpdateServiceCompany(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.change_servicecompany'
+    form_class = AddServiceCompanyForm
+    template_name = 'crm_app/directories/directory_update_serviceCompany.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Обновление сервисной компании")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+# --------------------------------------------------------------
+
+
+class DeleteModelMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
+    permission_required = 'crm_app.delete_modelmachine'
+    form_class = AddModelMachineForm
+    model = ModelMachine
+    template_name = 'crm_app/directories/directory_delete_modelMachine.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Удаление записи о модели машины")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class DeleteModelEngine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.delete_modelengine'
+    form_class = AddModelEngineForm
+    template_name = 'crm_app/directories/directory_delete_modelEngine.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Удаление записи о модели двигателя")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class DeleteModelTransmission(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.delete_modeltransmission'
+    form_class = AddModelTransmissionForm
+    template_name = 'crm_app/directories/directory_delete_modelTransmission.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Удаление записи о модели трансмиссии")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class DeleteModelDriveAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.delete_modeldriveaxle'
+    form_class = AddModelDriveAxleForm
+    template_name = 'crm_app/directories/directory_delete_modelDriveAxle.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Удаление записи о модели ведущего моста")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class DeleteModelSteeringAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.delete_modelsteeringaxle'
+    form_class = AddModelSteeringAxleForm
+    template_name = 'crm_app/directories/directory_delete_modelSteeringAxle.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Удаление записи о модели управляемого моста")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class DeleteMaintenanceType(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.delete_maintenancetype'
+    form_class = AddMaintenanceTypeForm
+    template_name = 'crm_app/directories/directory_delete_maintenanceType.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Удаление записи о виде Технического Обслуживания")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class DeleteBreakdown(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.delete_breakdown'
+    form_class = AddBreakdownForm
+    template_name = 'crm_app/directories/directory_delete_breakdown.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Удаление записи об узле отказа")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class DeleteRecoveryMethod(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.delete_recoverymethod'
+    form_class = AddRecoveryMethodForm
+    template_name = 'crm_app/directories/directory_delete_recoveryMethod.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Удаление записи о способе восстановления")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+class DeleteServiceCompany(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+    permission_required = 'crm_app.delete_servicecompany'
+    form_class = AddServiceCompanyForm
+    template_name = 'crm_app/directories/directory_delete_serviceCompany.html'
+    success_url = reverse_lazy('index')
+    redirect_field_name = reverse_lazy('forbidden')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            title="Удаление записи о сервисной компании")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def handle_no_permission(self):
+        return redirect(self.get_redirect_field_name())
+
+
+# ============================================================
 
 
 def under_construction(request):

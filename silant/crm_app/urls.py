@@ -30,7 +30,7 @@ urlpatterns = [
          DeleteMaintenance.as_view(), name='delete_maintenance'),
     path('claim/<int:pk>/delete_claim/',
          DeleteClaim.as_view(), name='delete_claim'),
-    #     ---------------------- Справочники -------------------------------
+    #     ---------------------- СПРАВОЧНИКИ -------------------------------
     path('all_directories/', AllDirectories.as_view(), name='all_directories'),
     #     ----------------------------------------------------------------
     path('directory_model_machines/', DirectoryModelMachineList.as_view(),
@@ -77,7 +77,27 @@ urlpatterns = [
          name='directory_service_companies'),
     path('directory_service_companies/<int:machine_pk>/',
          DirectoryServiceCompany.as_view(), name='directory_service_company'),
-    #     ----------------------- VARIOUS -----------------------------
+    #     ---------------------- СПРАВОЧНИКИ Create -------------------------
+    path('add_model_machine/', AddModelMachine.as_view(), name='add_model_machine'),
+    path('add_model_engine/', AddModelEngine.as_view(), name='add_model_engine'),
+    path('add_model_transmission/', AddModelTransmission.as_view(),
+         name='add_model_transmission'),
+    path('add_model_drive_axle/', AddModelDriveAxle.as_view(),
+         name='add_model_drive_axle'),
+    path('add_model_steering_axle/', AddModelSteeringAxle.as_view(),
+         name='add_model_steering_axle'),
+    path('add_maintenance_type/', AddMaintenanceType.as_view(),
+         name='add_maintenance_type'),
+    path('add_breakdown/', AddBreakdown.as_view(), name='add_breakdown'),
+    path('add_recovery_method/', AddRecoveryMethod.as_view(),
+         name='add_recovery_method'),
+    path('add_service_company/', AddServiceCompany.as_view(),
+         name='add_service_company'),
+    #     ---------------------- СПРАВОЧНИКИ Update -------------------------
+    path('directory_model_machines/<int:modelMachine_pk>/',
+         UpdateModelMachine.as_view(), name='update_model_machine'),
+    #     ---------------------- СПРАВОЧНИКИ Delete -------------------------
+    #     ---------------------------- VARIOUS ------------------------------
     path('under_construction/', under_construction, name='under_construction'),
     path('forbidden/', forbidden, name='forbidden'),
     path('about/', about, name='about'),
