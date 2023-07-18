@@ -5,11 +5,13 @@
 <div class="container">
   <div class="handbook">
     <div class="handbook__inner">
-      <div class="handbook__header sign-update header-machine">{{title}}</div>
+      <div class="handbook__header sign-update header-drive_axle">
+        {{title}}
+      </div>
       <div class="handbook__content">
         <form
           class="handbook__form"
-          action="{% url 'update_model_machine' object.pk %}"
+          action="{% url 'update_model_drive_axle' object.pk %}"
           method="post"
         >
           {% csrf_token %}

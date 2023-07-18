@@ -756,9 +756,10 @@ class UpdateModelMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin,
         return redirect(self.get_redirect_field_name())
 
 
-class UpdateModelEngine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class UpdateModelEngine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
     permission_required = 'crm_app.change_modelengine'
     form_class = AddModelEngineForm
+    model = ModelEngine
     template_name = 'crm_app/directories/directory_update_modelEngine.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -772,9 +773,10 @@ class UpdateModelEngine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, 
         return redirect(self.get_redirect_field_name())
 
 
-class UpdateModelTransmission(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class UpdateModelTransmission(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
     permission_required = 'crm_app.change_modeltransmission'
     form_class = AddModelTransmissionForm
+    model = ModelTransmission
     template_name = 'crm_app/directories/directory_update_modelTransmission.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -788,9 +790,10 @@ class UpdateModelTransmission(PermissionRequiredMixin, LoginRequiredMixin, DataM
         return redirect(self.get_redirect_field_name())
 
 
-class UpdateModelDriveAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class UpdateModelDriveAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
     permission_required = 'crm_app.change_modeldriveaxle'
     form_class = AddModelDriveAxleForm
+    model = ModelDriveAxle
     template_name = 'crm_app/directories/directory_update_modelDriveAxle.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -804,9 +807,10 @@ class UpdateModelDriveAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixi
         return redirect(self.get_redirect_field_name())
 
 
-class UpdateModelSteeringAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class UpdateModelSteeringAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
     permission_required = 'crm_app.change_modelsteeringaxle'
     form_class = AddModelSteeringAxleForm
+    model = ModelSteeringAxle
     template_name = 'crm_app/directories/directory_update_modelSteeringAxle.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -821,9 +825,10 @@ class UpdateModelSteeringAxle(PermissionRequiredMixin, LoginRequiredMixin, DataM
         return redirect(self.get_redirect_field_name())
 
 
-class UpdateMaintenanceType(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class UpdateMaintenanceType(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
     permission_required = 'crm_app.change_maintenancetype'
     form_class = AddMaintenanceTypeForm
+    model = MaintenanceType
     template_name = 'crm_app/directories/directory_update_maintenanceType.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -838,9 +843,10 @@ class UpdateMaintenanceType(PermissionRequiredMixin, LoginRequiredMixin, DataMix
         return redirect(self.get_redirect_field_name())
 
 
-class UpdateBreakdown(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class UpdateBreakdown(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
     permission_required = 'crm_app.change_breakdown'
     form_class = AddBreakdownForm
+    model = Breakdown
     template_name = 'crm_app/directories/directory_update_breakdown.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -855,9 +861,10 @@ class UpdateBreakdown(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, Cr
         return redirect(self.get_redirect_field_name())
 
 
-class UpdateRecoveryMethod(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class UpdateRecoveryMethod(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
     permission_required = 'crm_app.change_recoverymethod'
     form_class = AddRecoveryMethodForm
+    model = RecoveryMethod
     template_name = 'crm_app/directories/directory_update_recoveryMethod.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -872,9 +879,10 @@ class UpdateRecoveryMethod(PermissionRequiredMixin, LoginRequiredMixin, DataMixi
         return redirect(self.get_redirect_field_name())
 
 
-class UpdateServiceCompany(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class UpdateServiceCompany(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
     permission_required = 'crm_app.change_servicecompany'
     form_class = AddServiceCompanyForm
+    model = ServiceCompany
     template_name = 'crm_app/directories/directory_update_serviceCompany.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -892,7 +900,7 @@ class UpdateServiceCompany(PermissionRequiredMixin, LoginRequiredMixin, DataMixi
 # --------------------------------------------------------------
 
 
-class DeleteModelMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
+class DeleteModelMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_modelmachine'
     form_class = AddModelMachineForm
     model = ModelMachine
@@ -909,7 +917,7 @@ class DeleteModelMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin,
         return redirect(self.get_redirect_field_name())
 
 
-class DeleteModelEngine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class DeleteModelEngine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_modelengine'
     form_class = AddModelEngineForm
     template_name = 'crm_app/directories/directory_delete_modelEngine.html'
@@ -926,7 +934,7 @@ class DeleteModelEngine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, 
         return redirect(self.get_redirect_field_name())
 
 
-class DeleteModelTransmission(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class DeleteModelTransmission(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_modeltransmission'
     form_class = AddModelTransmissionForm
     template_name = 'crm_app/directories/directory_delete_modelTransmission.html'
@@ -943,7 +951,7 @@ class DeleteModelTransmission(PermissionRequiredMixin, LoginRequiredMixin, DataM
         return redirect(self.get_redirect_field_name())
 
 
-class DeleteModelDriveAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class DeleteModelDriveAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_modeldriveaxle'
     form_class = AddModelDriveAxleForm
     template_name = 'crm_app/directories/directory_delete_modelDriveAxle.html'
@@ -960,7 +968,7 @@ class DeleteModelDriveAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixi
         return redirect(self.get_redirect_field_name())
 
 
-class DeleteModelSteeringAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class DeleteModelSteeringAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_modelsteeringaxle'
     form_class = AddModelSteeringAxleForm
     template_name = 'crm_app/directories/directory_delete_modelSteeringAxle.html'
@@ -977,7 +985,7 @@ class DeleteModelSteeringAxle(PermissionRequiredMixin, LoginRequiredMixin, DataM
         return redirect(self.get_redirect_field_name())
 
 
-class DeleteMaintenanceType(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class DeleteMaintenanceType(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_maintenancetype'
     form_class = AddMaintenanceTypeForm
     template_name = 'crm_app/directories/directory_delete_maintenanceType.html'
@@ -994,7 +1002,7 @@ class DeleteMaintenanceType(PermissionRequiredMixin, LoginRequiredMixin, DataMix
         return redirect(self.get_redirect_field_name())
 
 
-class DeleteBreakdown(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class DeleteBreakdown(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_breakdown'
     form_class = AddBreakdownForm
     template_name = 'crm_app/directories/directory_delete_breakdown.html'
@@ -1011,7 +1019,7 @@ class DeleteBreakdown(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, Cr
         return redirect(self.get_redirect_field_name())
 
 
-class DeleteRecoveryMethod(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class DeleteRecoveryMethod(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_recoverymethod'
     form_class = AddRecoveryMethodForm
     template_name = 'crm_app/directories/directory_delete_recoveryMethod.html'
@@ -1028,7 +1036,7 @@ class DeleteRecoveryMethod(PermissionRequiredMixin, LoginRequiredMixin, DataMixi
         return redirect(self.get_redirect_field_name())
 
 
-class DeleteServiceCompany(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
+class DeleteServiceCompany(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_servicecompany'
     form_class = AddServiceCompanyForm
     template_name = 'crm_app/directories/directory_delete_serviceCompany.html'
