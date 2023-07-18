@@ -264,6 +264,80 @@
     display: flex;
     background: #163e6c;
   }
+
+  &__change {
+    display: flex;
+  }
+
+  &__update,
+  &__delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    align-self: center;
+    margin: 50px auto;
+  }
+
+  &__admin-update,
+  &__admin-delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 400px;
+    height: 100px;
+  }
+
+  &__admin-update {
+    color: #163e6c;
+    border: 3px solid #163e6c;
+    text-shadow: 5px 5px 10px #073b6e;
+    box-shadow: 5px 5px 10px #073b6e, inset -5px -5px 8px -4px #083460;
+    position: relative;
+
+    &::after {
+      content: "";
+      background: url("../../crm_app/images/icons_buttons/admin-update.png")
+        no-repeat;
+      width: 36px;
+      height: 40px;
+      display: block;
+      position: absolute;
+      top: 25px;
+      right: 25px;
+    }
+  }
+
+  &__admin-delete {
+    color: #d20a11;
+    border: 3px solid #d20a11;
+    text-shadow: 5px 5px 10px #6e060a;
+    box-shadow: 5px 5px 10px #6e060a, inset -5px -5px 8px -4px #6f0e11;
+    position: relative;
+
+    &::after {
+      content: "";
+      background: url("../../crm_app/images/icons_buttons/admin-delete.png")
+        no-repeat;
+      width: 36px;
+      height: 40px;
+      display: block;
+      position: absolute;
+      top: 25px;
+      right: 25px;
+    }
+  }
+
+  // &:active {
+  //   box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18,
+  //     inset -6px -6px 8px 0 #3185d5, -5px -5px 10px #3185d5,
+  //     inset 5px 5px 8px -4px #3185d5, inset 6px 6px 8px 0 #020d18;
+  // }
 }
 
 // ============================ DIRECTORY with all items =============================
@@ -363,7 +437,7 @@
   }
 }
 
-/*! ============================== Accordion ============================== */
+/* ============================== Accordion ============================== */
 
 .refbook {
   margin: 50px auto;
@@ -1249,6 +1323,16 @@
       }
     }
   }
+
+  .directory {
+    &__change {
+      flex-direction: column;
+    }
+
+    &__delete {
+      margin-top: 0;
+    }
+  }
 }
 
 /* ======================= 800 ========================== */
@@ -1450,6 +1534,11 @@
         margin-left: 30px;
       }
     }
+
+    &__admin-update,
+    &__admin-delete {
+      width: 90%;
+    }
   }
 }
 
@@ -1522,6 +1611,12 @@
     &__name-db {
       height: 70px;
       font-size: 1.2rem;
+    }
+
+    &__admin-update,
+    &__admin-delete {
+      padding-right: 70px;
+      font-size: 1.3rem;
     }
   }
 
@@ -1635,6 +1730,17 @@
   .directory {
     &__name-db {
       font-size: 0.9rem;
+    }
+
+    &__admin-update,
+    &__admin-delete {
+      padding-right: 55px;
+      font-size: 1.2rem;
+      text-align: center;
+
+      &::after {
+        right: 15px;
+      }
     }
   }
 
