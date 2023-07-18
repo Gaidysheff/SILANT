@@ -7,6 +7,7 @@ urlpatterns = [
     path('search_machine/', search_machine, name='search_machine'),
     path('you_db/', page_after_authorization, name='page_after_authorization'),
     path('full_db_list/', full_db_list, name='full_db_list'),
+
     #     ---------------------- CRUD -------------------------------
     path('machine/<int:machine_id>/', show_machine, name='machine'),
     path('maintenance/<int:maintenance_id>/',
@@ -30,6 +31,7 @@ urlpatterns = [
          DeleteMaintenance.as_view(), name='delete_maintenance'),
     path('claim/<int:pk>/delete_claim/',
          DeleteClaim.as_view(), name='delete_claim'),
+
     #     ---------------------- СПРАВОЧНИКИ -------------------------------
     path('all_directories/', AllDirectories.as_view(), name='all_directories'),
     #     ----------------------------------------------------------------
@@ -77,6 +79,7 @@ urlpatterns = [
          name='directory_service_companies'),
     path('directory_service_companies/<int:machine_pk>/',
          DirectoryServiceCompany.as_view(), name='directory_service_company'),
+
     #     ---------------------- СПРАВОЧНИКИ Create -------------------------
     path('add_model_machine/', AddModelMachine.as_view(), name='add_model_machine'),
     path('add_model_engine/', AddModelEngine.as_view(), name='add_model_engine'),
@@ -93,6 +96,7 @@ urlpatterns = [
          name='add_recovery_method'),
     path('add_service_company/', AddServiceCompany.as_view(),
          name='add_service_company'),
+
     #     ---------------------- СПРАВОЧНИКИ Update -------------------------
     path('directory_model_machines/<int:pk>/update',
          UpdateModelMachine.as_view(), name='update_model_machine'),
@@ -112,7 +116,27 @@ urlpatterns = [
          name='update_recovery_method'),
     path('directory_service_companies/<int:pk>/update', UpdateServiceCompany.as_view(),
          name='update_service_company'),
+
     #     ---------------------- СПРАВОЧНИКИ Delete -------------------------
+    path('directory_model_machines/<int:pk>/delete',
+         DeleteModelMachine.as_view(), name='delete_model_machine'),
+    path('directory_model_engines/<int:pk>/delete',
+         DeleteModelEngine.as_view(), name='delete_model_engine'),
+    path('directory_model_transmissions/<int:pk>/delete', DeleteModelTransmission.as_view(),
+         name='delete_model_transmission'),
+    path('directory_model_drive_axles/<int:pk>/delete', DeleteModelDriveAxle.as_view(),
+         name='delete_model_drive_axle'),
+    path('directory_model_steering_axles/<int:pk>/delete', DeleteModelSteeringAxle.as_view(),
+         name='delete_model_steering_axle'),
+    path('directory_maintenance_types/<int:pk>/delete', DeleteMaintenanceType.as_view(),
+         name='delete_maintenance_type'),
+    path('directory_breakdowns/<int:pk>/delete',
+         DeleteBreakdown.as_view(), name='delete_breakdown'),
+    path('directory_recovery_methods/<int:pk>/delete', DeleteRecoveryMethod.as_view(),
+         name='delete_recovery_method'),
+    path('directory_service_companies/<int:pk>/delete', DeleteServiceCompany.as_view(),
+         name='delete_service_company'),
+
     #     ---------------------------- VARIOUS ------------------------------
     path('under_construction/', under_construction, name='under_construction'),
     path('forbidden/', forbidden, name='forbidden'),

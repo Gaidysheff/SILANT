@@ -3,14 +3,16 @@
 <div class="container">
   <div class="handbook">
     <div class="handbook__inner">
-      <div class="handbook__header sign-delete header-machine">{{title}}</div>
+      <div class="handbook__header sign-delete header-maintenance_type">
+        {{title}}
+      </div>
       <div class="handbook__content-delete">
         <form action="" method="post">
           {% csrf_token %}
 
           <div class="subtitle_in_tabs">
             Удаляем запись <br />
-            о модели машины <br />
+            о виде ТО <br />
             <span>{{ object.name }}</span> ?
           </div>
           <div class="handbook__bottom-delete">

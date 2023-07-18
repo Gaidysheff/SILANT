@@ -348,7 +348,7 @@ class AllDirectories(LoginRequiredMixin, DataMixin, TemplateView):
 
 class DirectoryModelMachine(LoginRequiredMixin, DataMixin, DetailView):
     model = ModelMachine
-    template_name = 'crm_app/directoryModelMachine.html'
+    template_name = 'crm_app/directories/directoryModelMachine.html'
     pk_url_kwarg = 'modelMachine_pk'
     context_object_name = 'model'
 
@@ -361,7 +361,7 @@ class DirectoryModelMachine(LoginRequiredMixin, DataMixin, DetailView):
 
 class DirectoryModelMachineList(LoginRequiredMixin, DataMixin, ListView):
     queryset = ModelMachine.objects.order_by('name')
-    template_name = 'crm_app/directoryModelMachineList.html'
+    template_name = 'crm_app/directories/directoryModelMachineList.html'
     allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -374,7 +374,7 @@ class DirectoryModelMachineList(LoginRequiredMixin, DataMixin, ListView):
 
 class DirectoryModelEngine(LoginRequiredMixin, DataMixin, DetailView):
     model = ModelEngine
-    template_name = 'crm_app/directoryModelEngine.html'
+    template_name = 'crm_app/directories/directoryModelEngine.html'
     pk_url_kwarg = 'modelMachine_pk'
     context_object_name = 'model'
 
@@ -387,7 +387,7 @@ class DirectoryModelEngine(LoginRequiredMixin, DataMixin, DetailView):
 
 class DirectoryModelEngineList(LoginRequiredMixin, DataMixin, ListView):
     queryset = ModelEngine.objects.order_by('name')
-    template_name = 'crm_app/directoryModelEngineList.html'
+    template_name = 'crm_app/directories/directoryModelEngineList.html'
     allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -401,7 +401,7 @@ class DirectoryModelEngineList(LoginRequiredMixin, DataMixin, ListView):
 
 class DirectoryModelTransmission(LoginRequiredMixin, DataMixin, DetailView):
     model = ModelTransmission
-    template_name = 'crm_app/directoryModelTransmission.html'
+    template_name = 'crm_app/directories/directoryModelTransmission.html'
     pk_url_kwarg = 'modelMachine_pk'
     context_object_name = 'model'
 
@@ -414,7 +414,7 @@ class DirectoryModelTransmission(LoginRequiredMixin, DataMixin, DetailView):
 
 class DirectoryModelTransmissionList(LoginRequiredMixin, DataMixin, ListView):
     queryset = ModelTransmission.objects.order_by('name')
-    template_name = 'crm_app/directoryModelTransmissionList.html'
+    template_name = 'crm_app/directories/directoryModelTransmissionList.html'
     allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -428,7 +428,7 @@ class DirectoryModelTransmissionList(LoginRequiredMixin, DataMixin, ListView):
 
 class DirectoryModelDriveAxle(LoginRequiredMixin, DataMixin, DetailView):
     model = ModelDriveAxle
-    template_name = 'crm_app/directoryModelDriveAxle.html'
+    template_name = 'crm_app/directories/directoryModelDriveAxle.html'
     pk_url_kwarg = 'modelMachine_pk'
     context_object_name = 'model'
 
@@ -441,7 +441,7 @@ class DirectoryModelDriveAxle(LoginRequiredMixin, DataMixin, DetailView):
 
 class DirectoryModelDriveAxleList(LoginRequiredMixin, DataMixin, ListView):
     queryset = ModelDriveAxle.objects.order_by('name')
-    template_name = 'crm_app/directoryModelDriveAxleList.html'
+    template_name = 'crm_app/directories/directoryModelDriveAxleList.html'
     allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -455,7 +455,7 @@ class DirectoryModelDriveAxleList(LoginRequiredMixin, DataMixin, ListView):
 
 class DirectoryModelSteeringAxle(LoginRequiredMixin, DataMixin, DetailView):
     model = ModelSteeringAxle
-    template_name = 'crm_app/directoryModelSteeringAxle.html'
+    template_name = 'crm_app/directories/directoryModelSteeringAxle.html'
     pk_url_kwarg = 'modelMachine_pk'
     context_object_name = 'model'
 
@@ -468,7 +468,7 @@ class DirectoryModelSteeringAxle(LoginRequiredMixin, DataMixin, DetailView):
 
 class DirectoryModelSteeringAxleList(LoginRequiredMixin, DataMixin, ListView):
     queryset = ModelSteeringAxle.objects.order_by('name')
-    template_name = 'crm_app/directoryModelSteeringAxleList.html'
+    template_name = 'crm_app/directories/directoryModelSteeringAxleList.html'
     allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -482,7 +482,7 @@ class DirectoryModelSteeringAxleList(LoginRequiredMixin, DataMixin, ListView):
 
 class DirectoryMaintenanceType(LoginRequiredMixin, DataMixin, DetailView):
     model = MaintenanceType
-    template_name = 'crm_app/directoryMaintenanceType.html'
+    template_name = 'crm_app/directories/directoryMaintenanceType.html'
     pk_url_kwarg = 'modelMachine_pk'
     context_object_name = 'model'
 
@@ -495,7 +495,7 @@ class DirectoryMaintenanceType(LoginRequiredMixin, DataMixin, DetailView):
 
 class DirectoryMaintenanceTypeList(LoginRequiredMixin, DataMixin, ListView):
     queryset = MaintenanceType.objects.order_by('name')
-    template_name = 'crm_app/directoryMaintenanceTypeList.html'
+    template_name = 'crm_app/directories/directoryMaintenanceTypeList.html'
     allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -509,7 +509,7 @@ class DirectoryMaintenanceTypeList(LoginRequiredMixin, DataMixin, ListView):
 
 class DirectoryBreakdown(LoginRequiredMixin, DataMixin, DetailView):
     model = Breakdown
-    template_name = 'crm_app/directoryBreakdown.html'
+    template_name = 'crm_app/directories/directoryBreakdown.html'
     pk_url_kwarg = 'modelMachine_pk'
     context_object_name = 'model'
 
@@ -522,7 +522,7 @@ class DirectoryBreakdown(LoginRequiredMixin, DataMixin, DetailView):
 
 class DirectoryBreakdownList(LoginRequiredMixin, DataMixin, ListView):
     queryset = Breakdown.objects.order_by('name')
-    template_name = 'crm_app/directoryBreakdownList.html'
+    template_name = 'crm_app/directories/directoryBreakdownList.html'
     allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -535,7 +535,7 @@ class DirectoryBreakdownList(LoginRequiredMixin, DataMixin, ListView):
 
 class DirectoryRecoveryMethod(LoginRequiredMixin, DataMixin, DetailView):
     model = RecoveryMethod
-    template_name = 'crm_app/directoryRecoveryMethod.html'
+    template_name = 'crm_app/directories/directoryRecoveryMethod.html'
     pk_url_kwarg = 'modelMachine_pk'
     context_object_name = 'model'
 
@@ -548,7 +548,7 @@ class DirectoryRecoveryMethod(LoginRequiredMixin, DataMixin, DetailView):
 
 class DirectoryRecoveryMethodList(LoginRequiredMixin, DataMixin, ListView):
     queryset = RecoveryMethod.objects.order_by('name')
-    template_name = 'crm_app/directoryRecoveryMethodList.html'
+    template_name = 'crm_app/directories/directoryRecoveryMethodList.html'
     allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -562,7 +562,7 @@ class DirectoryRecoveryMethodList(LoginRequiredMixin, DataMixin, ListView):
 
 class DirectoryServiceCompany(LoginRequiredMixin, DataMixin, DetailView):
     model = ServiceCompany
-    template_name = 'crm_app/directoryServiceCompany.html'
+    template_name = 'crm_app/directories/directoryServiceCompany.html'
     pk_url_kwarg = 'machine_pk'
     context_object_name = 'model'
 
@@ -575,7 +575,7 @@ class DirectoryServiceCompany(LoginRequiredMixin, DataMixin, DetailView):
 
 class DirectoryServiceCompanyList(LoginRequiredMixin, DataMixin, ListView):
     queryset = ServiceCompany.objects.order_by('name')
-    template_name = 'crm_app/directoryServiceCompanyList.html'
+    template_name = 'crm_app/directories/directoryServiceCompanyList.html'
     allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -902,7 +902,6 @@ class UpdateServiceCompany(PermissionRequiredMixin, LoginRequiredMixin, DataMixi
 
 class DeleteModelMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_modelmachine'
-    form_class = AddModelMachineForm
     model = ModelMachine
     template_name = 'crm_app/directories/directory_delete_modelMachine.html'
     success_url = reverse_lazy('index')
@@ -919,7 +918,7 @@ class DeleteModelMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin,
 
 class DeleteModelEngine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_modelengine'
-    form_class = AddModelEngineForm
+    model = ModelEngine
     template_name = 'crm_app/directories/directory_delete_modelEngine.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -936,7 +935,7 @@ class DeleteModelEngine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, 
 
 class DeleteModelTransmission(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_modeltransmission'
-    form_class = AddModelTransmissionForm
+    model = ModelTransmission
     template_name = 'crm_app/directories/directory_delete_modelTransmission.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -953,7 +952,7 @@ class DeleteModelTransmission(PermissionRequiredMixin, LoginRequiredMixin, DataM
 
 class DeleteModelDriveAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_modeldriveaxle'
-    form_class = AddModelDriveAxleForm
+    model = ModelDriveAxle
     template_name = 'crm_app/directories/directory_delete_modelDriveAxle.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -970,7 +969,7 @@ class DeleteModelDriveAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixi
 
 class DeleteModelSteeringAxle(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_modelsteeringaxle'
-    form_class = AddModelSteeringAxleForm
+    model = ModelSteeringAxle
     template_name = 'crm_app/directories/directory_delete_modelSteeringAxle.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -987,7 +986,7 @@ class DeleteModelSteeringAxle(PermissionRequiredMixin, LoginRequiredMixin, DataM
 
 class DeleteMaintenanceType(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_maintenancetype'
-    form_class = AddMaintenanceTypeForm
+    model = MaintenanceType
     template_name = 'crm_app/directories/directory_delete_maintenanceType.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -1004,7 +1003,7 @@ class DeleteMaintenanceType(PermissionRequiredMixin, LoginRequiredMixin, DataMix
 
 class DeleteBreakdown(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_breakdown'
-    form_class = AddBreakdownForm
+    model = Breakdown
     template_name = 'crm_app/directories/directory_delete_breakdown.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -1021,7 +1020,7 @@ class DeleteBreakdown(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, De
 
 class DeleteRecoveryMethod(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_recoverymethod'
-    form_class = AddRecoveryMethodForm
+    model = RecoveryMethod
     template_name = 'crm_app/directories/directory_delete_recoveryMethod.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -1038,7 +1037,7 @@ class DeleteRecoveryMethod(PermissionRequiredMixin, LoginRequiredMixin, DataMixi
 
 class DeleteServiceCompany(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
     permission_required = 'crm_app.delete_servicecompany'
-    form_class = AddServiceCompanyForm
+    model = ServiceCompany
     template_name = 'crm_app/directories/directory_delete_serviceCompany.html'
     success_url = reverse_lazy('index')
     redirect_field_name = reverse_lazy('forbidden')
@@ -1070,7 +1069,3 @@ def contact(request):
 
 def forbidden(request):
     return render(request, 'crm_app/forbidden.html', {'menu': menu, 'title': '403 Запрещено'})
-
-
-# def login(request):
-#     return HttpResponse("Авторизация")
