@@ -801,7 +801,7 @@ h1 {
 
     &:hover {
       background: #d20a11;
-      color: #ebe6d6;
+      color: rgb(235, 230, 214);
       transform: scale(1.1);
     }
   }
@@ -828,6 +828,21 @@ h1 {
   background: rgb(254, 168, 24);
 }
 
+.about {
+  margin-bottom: 50px;
+  &__image {
+    padding-top: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
 /* ======================================================= */
 /* ==================== ADAPTATION ======================= */
 /* ======================================================= */
