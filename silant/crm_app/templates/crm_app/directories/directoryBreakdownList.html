@@ -47,5 +47,11 @@
   >
   {% endif %}
 </div>
-
-{% endblock content %}
+{% if perms.crm_app.add_breakdown %}
+<div class="directory__add">
+  <a href="{% url 'add_breakdown' %}" class="directory__admin-add"
+    >Добавить <br />
+    узел отказа</a
+  >
+</div>
+{% endif %} {% endblock content %}

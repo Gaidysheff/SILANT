@@ -279,6 +279,16 @@
     margin: 50px auto;
   }
 
+  &__add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    align-self: center;
+    padding: 25px 0 100px 0;
+    background: #163e6c;
+  }
+
   &__admin-update,
   &__admin-delete {
     display: flex;
@@ -311,6 +321,16 @@
       top: 25px;
       right: 25px;
     }
+
+    &:hover {
+      transform: scale(1.1);
+      transition: all 0.5s;
+    }
+
+    &:active {
+      transform: scale(0.9);
+      transition: all 0.5s;
+    }
   }
 
   &__admin-delete {
@@ -331,13 +351,57 @@
       top: 25px;
       right: 25px;
     }
+
+    &:hover {
+      transform: scale(1.1);
+      transition: all 0.5s;
+    }
+
+    &:active {
+      transform: scale(0.9);
+      transition: all 0.5s;
+    }
   }
 
-  // &:active {
-  //   box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18,
-  //     inset -6px -6px 8px 0 #3185d5, -5px -5px 10px #3185d5,
-  //     inset 5px 5px 8px -4px #3185d5, inset 6px 6px 8px 0 #020d18;
-  // }
+  &__admin-add {
+    color: #ebe6d6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+    font-size: 1.5rem;
+    width: 400px;
+    height: 100px;
+    border: 3px solid #ebe6d6;
+    text-shadow: 5px 5px 10px #928a72;
+    box-shadow: 5px 5px 10px #968c6c, inset -5px -5px 8px -4px #877d5b;
+    position: relative;
+
+    &::after {
+      content: "";
+      background: url("../../crm_app/images/icons_buttons/admin-add-light.png")
+        no-repeat;
+      width: 34px;
+      height: 40px;
+      display: block;
+      position: absolute;
+      top: 25px;
+      right: 25px;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+      transition: all 0.5s;
+    }
+
+    &:active {
+      transform: scale(0.9);
+      transition: all 0.5s;
+    }
+  }
 }
 
 // ============================ DIRECTORY with all items =============================
@@ -1583,6 +1647,12 @@
       font-size: 1.2rem;
     }
   }
+
+  .directory {
+    &__admin-add {
+      width: 90%;
+    }
+  }
 }
 
 /* ======================= 450 ========================== */
@@ -1696,6 +1766,18 @@
     &__btn {
       font-size: 1rem;
       width: 200px;
+    }
+  }
+
+  .directory {
+    &__admin-add {
+      padding-right: 55px;
+      font-size: 1.2rem;
+      text-align: center;
+
+      &::after {
+        right: 15px;
+      }
     }
   }
 }

@@ -47,5 +47,11 @@
   >
   {% endif %}
 </div>
-
-{% endblock content %}
+{% if perms.crm_app.add_recoverymethod %}
+<div class="directory__add">
+  <a href="{% url 'add_recovery_method' %}" class="directory__admin-add"
+    >Добавить способ <br />
+    восстановления</a
+  >
+</div>
+{% endif %} {% endblock content %}

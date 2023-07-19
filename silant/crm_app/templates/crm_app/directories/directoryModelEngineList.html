@@ -47,5 +47,11 @@
   >
   {% endif %}
 </div>
-
-{% endblock content %}
+{% if perms.crm_app.add_modelengine %}
+<div class="directory__add">
+  <a href="{% url 'add_model_engine' %}" class="directory__admin-add"
+    >Добавить <br />
+    модель двигателя</a
+  >
+</div>
+{% endif %} {% endblock content %}

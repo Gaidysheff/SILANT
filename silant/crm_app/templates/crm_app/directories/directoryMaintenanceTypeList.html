@@ -47,5 +47,10 @@
   >
   {% endif %}
 </div>
-
-{% endblock content %}
+{% if perms.crm_app.add_maintenancetype %}
+<div class="directory__add">
+  <a href="{% url 'add_maintenance_type' %}" class="directory__admin-add"
+    >Добавить <br />вид ТО</a
+  >
+</div>
+{% endif %} {% endblock content %}

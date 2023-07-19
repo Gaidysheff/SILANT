@@ -47,5 +47,11 @@
   >
   {% endif %}
 </div>
-
-{% endblock content %}
+{% if perms.crm_app.add_servicecompany %}
+<div class="directory__add">
+  <a href="{% url 'add_service_company' %}" class="directory__admin-add"
+    >Добавить <br />
+    сервисную компанию</a
+  >
+</div>
+{% endif %} {% endblock content %}

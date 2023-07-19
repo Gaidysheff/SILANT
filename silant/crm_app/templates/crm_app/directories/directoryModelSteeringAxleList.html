@@ -47,5 +47,11 @@
   >
   {% endif %}
 </div>
-
-{% endblock content %}
+{% if perms.crm_app.add_modelsteeringaxle %}
+<div class="directory__add">
+  <a href="{% url 'add_model_steering_axle' %}" class="directory__admin-add"
+    >Добавить модель <br />
+    управляемого моста</a
+  >
+</div>
+{% endif %} {% endblock content %}
