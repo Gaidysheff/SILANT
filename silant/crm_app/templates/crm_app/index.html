@@ -96,7 +96,64 @@
 <section class="bottom">
   <div class="container">
     <div class="bottom__contact">
-      <div class="bottom__content">Get in touch with our experts</div>
+      <div class="bottom__head">Связаться с нами:</div>
+      <div class="bottom__content">
+        <div class="bottom__form">
+          <div class="bottom__form-rows">
+            <input
+              type="text"
+              class="bottom__form-input"
+              placeholder="Ваше имя"
+              required
+            />
+            <input
+              type="email"
+              class="bottom__form-input"
+              placeholder="Ваша электронная почта"
+              required
+            />
+            <input
+              type="text"
+              class="bottom__form-input"
+              placeholder="Тема Вашего сообщения"
+              required
+            />
+            <textarea
+              class="bottom__form-text"
+              placeholder="Текст сообщения"
+              required
+            ></textarea>
+          </div>
+          <!-- <button type="submit" class="bottom__form-btn">
+            Послать сообщение
+          </button> -->
+          <a class="bottom__form-btn" href="{% url 'under_construction' %}">
+            Послать сообщение
+          </a>
+        </div>
+        <ul class="bottom__info">
+          <li class="bottom__item">
+            <div class="bottom__item-title">Адрес</div>
+            <div class="bottom__item-link">
+              428028, Чувашия, г. Чебоксары,<br />
+              проспект Тракторостроителей, 109
+            </div>
+          </li>
+          <li class="bottom__item">
+            <div class="bottom__item-title">Контактные детали</div>
+            <a class="bottom__item-link" href="tel:+78352204243"
+              >+7 (835) 220-42-43</a
+            >
+            <a class="bottom__item-link" href="mailto:mail@chzsa.ru"
+              >mail@chzsa.ru</a
+            >
+          </li>
+          <li class="bottom__item">
+            <div class="bottom__item-title">Часы работы</div>
+            <div class="bottom__item-link">пн.-пт. 9:00 - 18:00</div>
+          </li>
+        </ul>
+      </div>
       <div class="bottom__map">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61178.11837320009!2d47.27152798335624!3d56.1081939229559!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x415a36efdd5791bb%3A0x9871b9a03e0335ee!2z0KfQtdCx0L7QutGB0LDRgNGB0LrQuNC5INC30LDQstC-0LQg0YHQuNC70L7QstGL0YUg0LDQs9GA0LXQs9Cw0YLQvtCy!5e0!3m2!1sru!2sru!4v1686826525218!5m2!1sru!2sru"
