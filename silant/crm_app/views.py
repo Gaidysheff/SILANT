@@ -1,22 +1,52 @@
 from typing import Any
 
-from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.db import models
-from django.db.models.query import QuerySet
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import (LoginRequiredMixin,
+                                        PermissionRequiredMixin)
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
 from django.views.generic.base import TemplateView
+from rest_framework import viewsets
+from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly, DjangoModelPermissions
+
+from .pagination import MyAPIListPagination
+
+from .serializers import ClaimsSerializer, MachineSerializer, MaintenanceSerializer
 
 from .filter import ClaimsFilter, MachineFilter, MaintenanceFilter
+from .forms import *
 from .models import (Breakdown, Claims, Machine, Maintenance, MaintenanceType,
                      ModelDriveAxle, ModelEngine, ModelMachine,
                      ModelSteeringAxle, ModelTransmission, RecoveryMethod,
                      ServiceCompany)
 from .utilities import *
-from .forms import *
+
+
+# =========================== DRF ===========================
+
+class MachinesViewSet(viewsets.ModelViewSet):
+    permission_classes = (DjangoModelPermissions,)
+    queryset = Machine.objects.all()
+    serializer_class = MachineSerializer
+    pagination_class = MyAPIListPagination
+
+
+class MaintenanceViewSet(viewsets.ModelViewSet):
+    permission_classes = (DjangoModelPermissions,)
+    queryset = Maintenance.objects.all()
+    serializer_class = MaintenanceSerializer
+    pagination_class = MyAPIListPagination
+
+
+class ClaimsViewSet(viewsets.ModelViewSet):
+    permission_classes = (DjangoModelPermissions,)
+    queryset = Claims.objects.all()
+    serializer_class = ClaimsSerializer
+    pagination_class = MyAPIListPagination
+
+# ===========================================================
 
 
 class MachinesHomePage(DataMixin, ListView):

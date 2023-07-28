@@ -1,7 +1,28 @@
-from django.urls import path
+from django.urls import include, path
 from crm_app.views import *
 
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'machines', MachinesViewSet)
+router.register(r'maintenance', MaintenanceViewSet)
+router.register(r'claims', ClaimsViewSet)
+print(router.urls)
+
 urlpatterns = [
+
+    # =========================== DRF ===========================
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    path('api/', include(router.urls)),
+    # http://127.0.0.1:8000/api/machines/
+    # http://127.0.0.1:8000/api/maintenances/
+    # http://127.0.0.1:8000/api/claims/
+
+
+
+    # ===========================================================
+
     path('', MachinesHomePage.as_view(), name='index'),
     #     ----------------------------------------------------------------
     path('search_machine/', search_machine, name='search_machine'),
@@ -98,43 +119,43 @@ urlpatterns = [
          name='add_service_company'),
 
     #     ---------------------- СПРАВОЧНИКИ Update -------------------------
-    path('directory_model_machines/<int:pk>/update',
+    path('directory_model_machines/<int:pk>/update/',
          UpdateModelMachine.as_view(), name='update_model_machine'),
-    path('directory_model_engines/<int:pk>/update',
+    path('directory_model_engines/<int:pk>/update/',
          UpdateModelEngine.as_view(), name='update_model_engine'),
-    path('directory_model_transmissions/<int:pk>/update', UpdateModelTransmission.as_view(),
+    path('directory_model_transmissions/<int:pk>/update/', UpdateModelTransmission.as_view(),
          name='update_model_transmission'),
-    path('directory_model_drive_axles/<int:pk>/update', UpdateModelDriveAxle.as_view(),
+    path('directory_model_drive_axles/<int:pk>/update/', UpdateModelDriveAxle.as_view(),
          name='update_model_drive_axle'),
-    path('directory_model_steering_axles/<int:pk>/update', UpdateModelSteeringAxle.as_view(),
+    path('directory_model_steering_axles/<int:pk>/update/', UpdateModelSteeringAxle.as_view(),
          name='update_model_steering_axle'),
-    path('directory_maintenance_types/<int:pk>/update', UpdateMaintenanceType.as_view(),
+    path('directory_maintenance_types/<int:pk>/update/', UpdateMaintenanceType.as_view(),
          name='update_maintenance_type'),
-    path('directory_breakdowns/<int:pk>/update',
+    path('directory_breakdowns/<int:pk>/update/',
          UpdateBreakdown.as_view(), name='update_breakdown'),
-    path('directory_recovery_methods/<int:pk>/update', UpdateRecoveryMethod.as_view(),
+    path('directory_recovery_methods/<int:pk>/update/', UpdateRecoveryMethod.as_view(),
          name='update_recovery_method'),
-    path('directory_service_companies/<int:pk>/update', UpdateServiceCompany.as_view(),
+    path('directory_service_companies/<int:pk>/update/', UpdateServiceCompany.as_view(),
          name='update_service_company'),
 
     #     ---------------------- СПРАВОЧНИКИ Delete -------------------------
-    path('directory_model_machines/<int:pk>/delete',
+    path('directory_model_machines/<int:pk>/delete/',
          DeleteModelMachine.as_view(), name='delete_model_machine'),
-    path('directory_model_engines/<int:pk>/delete',
+    path('directory_model_engines/<int:pk>/delete/',
          DeleteModelEngine.as_view(), name='delete_model_engine'),
-    path('directory_model_transmissions/<int:pk>/delete', DeleteModelTransmission.as_view(),
+    path('directory_model_transmissions/<int:pk>/delete/', DeleteModelTransmission.as_view(),
          name='delete_model_transmission'),
-    path('directory_model_drive_axles/<int:pk>/delete', DeleteModelDriveAxle.as_view(),
+    path('directory_model_drive_axles/<int:pk>/delete/', DeleteModelDriveAxle.as_view(),
          name='delete_model_drive_axle'),
-    path('directory_model_steering_axles/<int:pk>/delete', DeleteModelSteeringAxle.as_view(),
+    path('directory_model_steering_axles/<int:pk>/delete/', DeleteModelSteeringAxle.as_view(),
          name='delete_model_steering_axle'),
-    path('directory_maintenance_types/<int:pk>/delete', DeleteMaintenanceType.as_view(),
+    path('directory_maintenance_types/<int:pk>/delete/', DeleteMaintenanceType.as_view(),
          name='delete_maintenance_type'),
-    path('directory_breakdowns/<int:pk>/delete',
+    path('directory_breakdowns/<int:pk>/delete/',
          DeleteBreakdown.as_view(), name='delete_breakdown'),
-    path('directory_recovery_methods/<int:pk>/delete', DeleteRecoveryMethod.as_view(),
+    path('directory_recovery_methods/<int:pk>/delete/', DeleteRecoveryMethod.as_view(),
          name='delete_recovery_method'),
-    path('directory_service_companies/<int:pk>/delete', DeleteServiceCompany.as_view(),
+    path('directory_service_companies/<int:pk>/delete/', DeleteServiceCompany.as_view(),
          name='delete_service_company'),
 
     #     ---------------------------- VARIOUS ------------------------------
