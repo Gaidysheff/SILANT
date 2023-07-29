@@ -7,7 +7,15 @@ router = routers.DefaultRouter()
 router.register(r'maintenance', MaintenanceViewSet)
 router.register(r'claims', ClaimsViewSet)
 router.register(r'model_machine', DirectoryModelMachineViewSet)
-print(router.urls)
+router.register(r'model_engine', DirectoryModelEngineViewSet)
+router.register(r'model_transmission', DirectoryModelTransmissionViewSet)
+router.register(r'model_drive_axle', DirectoryModelDriveAxleViewSet)
+router.register(r'model_steering_axle', DirectoryModelSteeringAxleViewSet)
+router.register(r'maintenance_type', DirectoryMaintenanceTypeViewSet)
+router.register(r'breakdown', DirectoryBreakdownViewSet)
+router.register(r'recovery_method', DirectoryRecoveryMethodViewSet)
+router.register(r'service_company', DirectoryServiceCompanyViewSet)
+# print(router.urls)
 
 urlpatterns = [
 
@@ -21,7 +29,8 @@ urlpatterns = [
     path('api/', include(router.urls)),
     # http://127.0.0.1:8000/api/maintenances/
     # http://127.0.0.1:8000/api/claims/  ... and so on.
-
+    #   .........
+    # http://127.0.0.1:8000/api/service_company/
 
     # ===========================================================
 

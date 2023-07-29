@@ -65,6 +65,62 @@ class DirectoryModelMachineViewSet(viewsets.ModelViewSet):
     serializer_class = DirectoryModelMachineSerializer
     pagination_class = SecondaryTypeAPIListPagination
 
+
+class DirectoryModelEngineViewSet(viewsets.ModelViewSet):
+    permission_classes = (DjangoModelPermissions,)
+    queryset = ModelEngine.objects.all()
+    serializer_class = DirectoryModelEngineSerializer
+    pagination_class = SecondaryTypeAPIListPagination
+
+
+class DirectoryModelTransmissionViewSet(viewsets.ModelViewSet):
+    permission_classes = (DjangoModelPermissions,)
+    queryset = ModelTransmission.objects.all()
+    serializer_class = DirectoryModelTransmissionSerializer
+    pagination_class = SecondaryTypeAPIListPagination
+
+
+class DirectoryModelDriveAxleViewSet(viewsets.ModelViewSet):
+    permission_classes = (DjangoModelPermissions,)
+    queryset = ModelDriveAxle.objects.all()
+    serializer_class = DirectoryModelDriveAxleSerializer
+    pagination_class = SecondaryTypeAPIListPagination
+
+
+class DirectoryModelSteeringAxleViewSet(viewsets.ModelViewSet):
+    permission_classes = (DjangoModelPermissions,)
+    queryset = ModelSteeringAxle.objects.all()
+    serializer_class = DirectoryModelSteeringAxleSerializer
+    pagination_class = SecondaryTypeAPIListPagination
+
+
+class DirectoryMaintenanceTypeViewSet(viewsets.ModelViewSet):
+    permission_classes = (DjangoModelPermissions,)
+    queryset = MaintenanceType.objects.all()
+    serializer_class = DirectoryMaintenanceTypeSerializer
+    pagination_class = SecondaryTypeAPIListPagination
+
+
+class DirectoryBreakdownViewSet(viewsets.ModelViewSet):
+    permission_classes = (DjangoModelPermissions,)
+    queryset = Breakdown.objects.all()
+    serializer_class = DirectoryBreakdownSerializer
+    pagination_class = SecondaryTypeAPIListPagination
+
+
+class DirectoryRecoveryMethodViewSet(viewsets.ModelViewSet):
+    permission_classes = (DjangoModelPermissions,)
+    queryset = RecoveryMethod.objects.all()
+    serializer_class = DirectoryRecoveryMethodSerializer
+    pagination_class = SecondaryTypeAPIListPagination
+
+
+class DirectoryServiceCompanyViewSet(viewsets.ModelViewSet):
+    permission_classes = (DjangoModelPermissions,)
+    queryset = ServiceCompany.objects.all()
+    serializer_class = DirectoryServiceCompanySerializer
+    pagination_class = SecondaryTypeAPIListPagination
+
 # ===========================================================
 
 
@@ -1109,7 +1165,7 @@ def under_construction(request):
 
 
 def about(request):
-    return render(request, 'crm_app/about.html', {'menu': menu, 'title': 'О нас'})
+    return render(request, 'crm_app/about.html', {'menu': menu, 'title': 'О сайте'})
 
 
 def contact(request):
