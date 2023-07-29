@@ -4,9 +4,9 @@ from crm_app.views import *
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'machines', MachinesViewSet)
 router.register(r'maintenance', MaintenanceViewSet)
 router.register(r'claims', ClaimsViewSet)
+router.register(r'model_machine', DirectoryModelMachineViewSet)
 print(router.urls)
 
 urlpatterns = [
@@ -14,11 +14,13 @@ urlpatterns = [
     # =========================== DRF ===========================
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
-    path('api/', include(router.urls)),
-    # http://127.0.0.1:8000/api/machines/
-    # http://127.0.0.1:8000/api/maintenances/
-    # http://127.0.0.1:8000/api/claims/
+    path('api/machines/', MachineAPIList.as_view()),
+    path('api/machines_add/', MachineAddAPI.as_view()),
+    path('api/machines/<int:pk>/', MachineRetrieveUpdateDestroyAPI.as_view()),
 
+    path('api/', include(router.urls)),
+    # http://127.0.0.1:8000/api/maintenances/
+    # http://127.0.0.1:8000/api/claims/  ... and so on.
 
 
     # ===========================================================

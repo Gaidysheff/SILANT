@@ -8,43 +8,62 @@ from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 from django.views.generic.base import TemplateView
-from rest_framework import viewsets
-from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly, DjangoModelPermissions
-
-from .pagination import MyAPIListPagination
-
-from .serializers import ClaimsSerializer, MachineSerializer, MaintenanceSerializer
+from rest_framework import generics, viewsets
+from rest_framework.permissions import DjangoModelPermissions
 
 from .filter import ClaimsFilter, MachineFilter, MaintenanceFilter
 from .forms import *
-from .models import (Breakdown, Claims, Machine, Maintenance, MaintenanceType,
-                     ModelDriveAxle, ModelEngine, ModelMachine,
-                     ModelSteeringAxle, ModelTransmission, RecoveryMethod,
-                     ServiceCompany)
+from .models import *
+from .pagination import (PrimaryTypeAPIListPagination,
+                         SecondaryTypeAPIListPagination)
+from .serializers import *
 from .utilities import *
 
 
 # =========================== DRF ===========================
+class MachineAPIList(generics.ListAPIView):
+    queryset = Machine.objects.all()
+    serializer_class = MachineSerializerAnyUser
+    pagination_class = PrimaryTypeAPIListPagination
 
-class MachinesViewSet(viewsets.ModelViewSet):
+
+class MachineAddAPI(generics.CreateAPIView):
     permission_classes = (DjangoModelPermissions,)
     queryset = Machine.objects.all()
     serializer_class = MachineSerializer
-    pagination_class = MyAPIListPagination
+    pagination_class = PrimaryTypeAPIListPagination
+
+
+class MachineRetrieveUpdateDestroyAPI(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (DjangoModelPermissions,)
+    queryset = Machine.objects.all()
+    serializer_class = MachineSerializer
+    pagination_class = PrimaryTypeAPIListPagination
+
+# -----------------------------------------------------------
 
 
 class MaintenanceViewSet(viewsets.ModelViewSet):
     permission_classes = (DjangoModelPermissions,)
     queryset = Maintenance.objects.all()
     serializer_class = MaintenanceSerializer
-    pagination_class = MyAPIListPagination
+    pagination_class = PrimaryTypeAPIListPagination
 
 
 class ClaimsViewSet(viewsets.ModelViewSet):
     permission_classes = (DjangoModelPermissions,)
     queryset = Claims.objects.all()
     serializer_class = ClaimsSerializer
-    pagination_class = MyAPIListPagination
+    pagination_class = PrimaryTypeAPIListPagination
+
+# -----------------------------------------------------------
+
+
+class DirectoryModelMachineViewSet(viewsets.ModelViewSet):
+    permission_classes = (DjangoModelPermissions,)
+    queryset = ModelMachine.objects.all()
+    serializer_class = DirectoryModelMachineSerializer
+    pagination_class = SecondaryTypeAPIListPagination
 
 # ===========================================================
 
