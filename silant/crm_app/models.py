@@ -1,7 +1,7 @@
-from django.db import models
-from django.contrib.auth.models import User
-from django.urls import reverse
 from django.contrib import admin
+from django.contrib.auth.models import User
+from django.db import models
+from django.urls import reverse
 
 
 class Machine(models.Model):
@@ -90,7 +90,6 @@ class Claims(models.Model):
     usedSpareParts = models.TextField(
         verbose_name='Используемые запасные части')
     recoverDate = models.DateField(verbose_name='Дата восстановления')
-    # downtime = models.IntegerField(verbose_name='Время простоя техники')
     client = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name='Клиент')
     serviceCompany = models.ForeignKey(

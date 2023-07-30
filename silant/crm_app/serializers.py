@@ -42,8 +42,8 @@ class ClaimsSerializer(serializers.ModelSerializer):
         model = Claims
         fields = '__all__'
 
-# ======================== DIRECTORIES ========================
 
+# ======================== DIRECTORIES ========================
 
 class DirectoryModelMachineSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,12 +1,12 @@
 from typing import Any
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import (LoginRequiredMixin,
-                                        PermissionRequiredMixin)
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin, PermissionRequiredMixin)
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
-                                  UpdateView)
+from django.views.generic import (
+    CreateView, DeleteView, DetailView, ListView, UpdateView)
 from django.views.generic.base import TemplateView
 from rest_framework import generics, viewsets
 from rest_framework.permissions import DjangoModelPermissions
@@ -20,7 +20,8 @@ from .serializers import *
 from .utilities import *
 
 
-# =========================== DRF ===========================
+# ============================= DRF =============================
+
 class MachineAPIList(generics.ListAPIView):
     queryset = Machine.objects.all()
     serializer_class = MachineSerializerAnyUser
@@ -121,7 +122,7 @@ class DirectoryServiceCompanyViewSet(viewsets.ModelViewSet):
     serializer_class = DirectoryServiceCompanySerializer
     pagination_class = SecondaryTypeAPIListPagination
 
-# ===========================================================
+# ===========================================================================
 
 
 class MachinesHomePage(DataMixin, ListView):
@@ -221,7 +222,7 @@ def search_machine(request):
             context['searched'] = 'Данных о машине с таким заводским номером в системе нет !!!'
             return render(request, 'crm_app/index.html', context=context)
 
-# =========================== CRUD ===========================
+# ================================= CRUD =================================
 
 
 @login_required()
@@ -235,10 +236,8 @@ def show_machine(request, machine_id):
         'maintenance': maintenance,
         'claims': claims,
         'machine_table_titles': machine_table_titles,
-        # 'machine_table_subtitles': machine_table_subtitles,
         'menu': menu,
         'title': "Выбранная машина"
-        # 'title': f"Выбранная машина | зав. № = {machine.serialNumber}"
     }
     return render(request, 'crm_app/machine.html', context=context)
 
@@ -250,7 +249,6 @@ def show_maintenance(request, maintenance_id):
     context = {
         'maintenance': maintenance,
         'machine_table_titles': machine_table_titles,
-        # 'machine_table_subtitles': machine_table_subtitles,
         'menu': menu,
         'title': "Выбранное Техническое Обслуживание"
     }
@@ -264,13 +262,12 @@ def show_claim(request, claim_id):
     context = {
         'claim': claim,
         'machine_table_titles': machine_table_titles,
-        # 'machine_table_subtitles': machine_table_subtitles,
         'menu': menu,
         'title': "Выбранная Рекламация"
     }
     return render(request, 'crm_app/crud_read_claim.html', context=context)
 
-# --------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 class AddMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
@@ -320,7 +317,7 @@ class AddClaim(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateVie
     def handle_no_permission(self):
         return redirect(self.get_redirect_field_name())
 
-# --------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 class UpdateMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
@@ -373,7 +370,7 @@ class UpdateClaim(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, Update
     def handle_no_permission(self):
         return redirect(self.get_redirect_field_name())
 
-# --------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 class DeleteMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
@@ -425,8 +422,7 @@ class DeleteClaim(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, Delete
         return redirect(self.get_redirect_field_name())
 
 
-# ======================== DIRECTORIES ========================
-
+# ============================== DIRECTORIES ==============================
 
 class AllDirectories(LoginRequiredMixin, DataMixin, TemplateView):
     template_name = 'crm_app/allDirectories.html'
@@ -448,8 +444,8 @@ class AllDirectories(LoginRequiredMixin, DataMixin, TemplateView):
         context['title'] = "СПРАВОЧНИКИ"
         return context
 
+# -------------------------------------------------------------------------
 
-# ---------------------------------------------------------------
 
 class DirectoryModelMachine(LoginRequiredMixin, DataMixin, DetailView):
     model = ModelMachine
@@ -474,7 +470,7 @@ class DirectoryModelMachineList(LoginRequiredMixin, DataMixin, ListView):
         c_def = self.get_user_context(title='"Модели техники"')
         return dict(list(context.items()) + list(c_def.items()))
 
-# ---------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 class DirectoryModelEngine(LoginRequiredMixin, DataMixin, DetailView):
@@ -501,7 +497,7 @@ class DirectoryModelEngineList(LoginRequiredMixin, DataMixin, ListView):
             title='"Модели двигателей"')
         return dict(list(context.items()) + list(c_def.items()))
 
-# ---------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 class DirectoryModelTransmission(LoginRequiredMixin, DataMixin, DetailView):
@@ -528,7 +524,7 @@ class DirectoryModelTransmissionList(LoginRequiredMixin, DataMixin, ListView):
             title='"Модели трансмиссий"')
         return dict(list(context.items()) + list(c_def.items()))
 
-# ---------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 class DirectoryModelDriveAxle(LoginRequiredMixin, DataMixin, DetailView):
@@ -555,7 +551,7 @@ class DirectoryModelDriveAxleList(LoginRequiredMixin, DataMixin, ListView):
             title='"Модели ведущего моста"')
         return dict(list(context.items()) + list(c_def.items()))
 
-# ---------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 class DirectoryModelSteeringAxle(LoginRequiredMixin, DataMixin, DetailView):
@@ -582,7 +578,7 @@ class DirectoryModelSteeringAxleList(LoginRequiredMixin, DataMixin, ListView):
             title='"Модели управляемого моста"')
         return dict(list(context.items()) + list(c_def.items()))
 
-# ---------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 class DirectoryMaintenanceType(LoginRequiredMixin, DataMixin, DetailView):
@@ -609,7 +605,7 @@ class DirectoryMaintenanceTypeList(LoginRequiredMixin, DataMixin, ListView):
             title='"Виды Технического Обслуживания"')
         return dict(list(context.items()) + list(c_def.items()))
 
-# ---------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 class DirectoryBreakdown(LoginRequiredMixin, DataMixin, DetailView):
@@ -635,7 +631,7 @@ class DirectoryBreakdownList(LoginRequiredMixin, DataMixin, ListView):
         c_def = self.get_user_context(title='"Узлы отказа"')
         return dict(list(context.items()) + list(c_def.items()))
 
-# ---------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 class DirectoryRecoveryMethod(LoginRequiredMixin, DataMixin, DetailView):
@@ -662,7 +658,7 @@ class DirectoryRecoveryMethodList(LoginRequiredMixin, DataMixin, ListView):
             title='"Способы восстановления"')
         return dict(list(context.items()) + list(c_def.items()))
 
-# ---------------------------------------------------------------
+# -------------------------------------------------------------------------
 
 
 class DirectoryServiceCompany(LoginRequiredMixin, DataMixin, DetailView):
@@ -690,7 +686,7 @@ class DirectoryServiceCompanyList(LoginRequiredMixin, DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-# =================== CRUD for DIRECTORIES ===================
+# ================================= CRUD for DIRECTORIES ===============================
 
 class AddModelMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, CreateView):
     permission_required = 'crm_app.add_modelmachine'
@@ -840,8 +836,7 @@ class AddServiceCompany(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, 
     def handle_no_permission(self):
         return redirect(self.get_redirect_field_name())
 
-
-# --------------------------------------------------------------
+# --------------------------------------------------------------------------------------
 
 
 class UpdateModelMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, UpdateView):
@@ -1001,8 +996,7 @@ class UpdateServiceCompany(PermissionRequiredMixin, LoginRequiredMixin, DataMixi
     def handle_no_permission(self):
         return redirect(self.get_redirect_field_name())
 
-
-# --------------------------------------------------------------
+# --------------------------------------------------------------------------------------
 
 
 class DeleteModelMachine(PermissionRequiredMixin, LoginRequiredMixin, DataMixin, DeleteView):
@@ -1157,7 +1151,7 @@ class DeleteServiceCompany(PermissionRequiredMixin, LoginRequiredMixin, DataMixi
         return redirect(self.get_redirect_field_name())
 
 
-# ============================================================
+# =========================================================================================
 
 
 def under_construction(request):

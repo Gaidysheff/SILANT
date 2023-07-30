@@ -273,37 +273,6 @@
   width: 300px;
 }
 
-// .my_db {
-//   width: 80%;
-//   height: 200px;
-
-//   &::after {
-//     content: "";
-//     background: url("../../crm_app/images/icons/delete.png") no-repeat;
-//     width: 27px;
-//     height: 32px;
-//     display: block;
-//     position: absolute;
-//     top: 55%;
-//     transform: translateY(-50%);
-//     right: 5%;
-//   }
-
-//   &:hover::after {
-//     transform: translateY(-50%) scale(1.1);
-//   }
-
-//   &:active::after {
-//     transform: translateY(-50%) scale(0.9);
-//   }
-
-//   &:active {
-//     box-shadow: 5px 5px 10px #490606, inset -5px -5px 8px -4px #560707,
-//       inset -6px -6px 8px 0 #dc6868, -5px -5px 10px #e03e3e,
-//       inset 5px 5px 8px -4px #d53131, inset 6px 6px 8px 0 #5f0a0a;
-//   }
-// }
-
 .in-form {
   margin: 0 0 20px 30px;
 }
@@ -480,7 +449,6 @@
 .crud {
   &__content-delete {
     padding-right: 0 5px 0 0;
-    // box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18;
   }
 
   &__bottom-delete {
@@ -516,7 +484,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    // padding-right: 40px;
     background: #d20a11;
     color: #ebe6d6;
     position: relative;
@@ -561,7 +528,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    // padding-right: 40px;
     background: #d20a11;
     color: #ebe6d6;
     position: relative;
@@ -664,7 +630,6 @@
   }
 
   .prior-navigate {
-    // width: 90%;
     padding: 0px 70px;
     font-size: 1.2rem;
     line-height: 1.4;

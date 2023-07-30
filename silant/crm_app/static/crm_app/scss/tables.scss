@@ -187,11 +187,6 @@
   }
 }
 
-// .link_to_object a {
-//   color: #2bd600;
-//   cursor: pointer;
-// }
-
 /* ___________________________________________________________________ */
 
 .tab2 {
@@ -366,21 +361,6 @@
 /* ======================================================= */
 
 @media (max-width: 1200px) {
-  // .tab1 {
-  //   &__table {
-  //     table-layout: auto;
-  //     width: 100px;
-  //     text-overflow: ellipsis;
-  //     white-space: nowrap;
-  //     overflow: hidden;
-  //   }
-  //   &__head,
-  //   &__col {
-  //     font-size: 0.8rem;
-  //     width: 100px;
-  //   }
-  // }
-
   .tab3 {
     &__col-head {
       font-size: 0.8rem;
@@ -470,11 +450,6 @@
       line-height: 1;
     }
   }
-
-  // .subtitle_in_tabs,
-  // .subtitle_in_tabs span {
-  //   font-size: 1.5rem;
-  // }
 }
 
 /* ======================= 650 ========================== */
