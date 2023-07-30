@@ -1,7 +1,8 @@
-from django.urls import include, path
 from crm_app.views import *
-
+from django.urls import include, path
 from rest_framework import routers
+from rest_framework.schemas import get_schema_view
+from rest_framework.documentation import include_docs_urls
 
 router = routers.DefaultRouter()
 router.register(r'maintenance', MaintenanceViewSet)
@@ -28,19 +29,27 @@ urlpatterns = [
 
     path('api/', include(router.urls)),
     # http://127.0.0.1:8000/api/maintenances/
-    # http://127.0.0.1:8000/api/claims/  ... and so on.
+    #   ... and so on.
     #   .........
     # http://127.0.0.1:8000/api/service_company/
+
+    # ====================== SCHEMA =============================
+    path('docs', include_docs_urls(title='SILANT website Documents')),
+    path('schema', get_schema_view(
+        title="SILANT website",
+        description="API for SILANT website",
+        version="1.0.0"
+    ), name='openapi-schema'),
 
     # ===========================================================
 
     path('', MachinesHomePage.as_view(), name='index'),
-    #     ----------------------------------------------------------------
+    #     -------------------------------------------------------
     path('search_machine/', search_machine, name='search_machine'),
     path('you_db/', page_after_authorization, name='page_after_authorization'),
     path('full_db_list/', full_db_list, name='full_db_list'),
 
-    #     ---------------------- CRUD -------------------------------
+    #     ---------------------- CRUD ---------------------------
     path('machine/<int:machine_id>/', show_machine, name='machine'),
     path('maintenance/<int:maintenance_id>/',
          show_maintenance, name='maintenance'),
